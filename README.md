@@ -1,5 +1,5 @@
 Comment lancer les tests automatisés :
-- Installer Katalon Recorder sur Chrome : 
+- Installer Katalon Studio sur Chrome : 
 
 https://chrome.google.com/webstore/detail/katalon-recorder-selenium/ljdobmomdgdljniojadhoplhkpialdid
 - Ouvrir un nouvel onglet sur lequel s'executeront les tests automatisés
