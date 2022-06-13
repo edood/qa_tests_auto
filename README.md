@@ -1,3 +1,5 @@
+Tout les projets et tests automatiques sont situés dans le dossier Katalon_Studio
+
 Comment lancer les tests automatisés :
 - Installer Katalon Studio sur Chrome : 
 
