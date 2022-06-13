@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>RGPD Cookie management Banner Wording</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner FR Text</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.fr<datalist><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/</option><option>http://tradelab.fr</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>3000</option><option>2000</option><option>5000</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td>Tradelab et ses partenaires utilisent des cookies afin d'assurer le bon fonctionnement technique de notre site, mesurer l'audience du site, vous permettre de vous connecter aux réseaux sociaux ainsi qu'à des fins de publicité ciblée. En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de ces cookies.</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner FR Buttons </td></tr>
+</thead>
+<tbody>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Abonnez-vous à la newsletter Tradelab !'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Insight'])[2]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='OK'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Centre de préférences de confidentialité'])[1]/preceding::button[2]</option><option>//button[@type='button']</option><option>//div[@id='notmenu']/div[7]/div/div[2]/div/button</option><option>//div[2]/div/button</option><option>css=button.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td>OK</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td>Personnaliser mes cookies</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner EN Text</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.com/en<datalist><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/</option><option>http://tradelab.com/en</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>3000</option><option>2000</option><option>5000</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td>Tradelab and its partners use cookies to ensure the technical functioning of our site, measure the site's audience, allow you to connect to social networks and for targeted advertising purposes. By continuing to browse this site, you accept the use of these cookies.</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner EN Buttons </td></tr>
+</thead>
+<tbody>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Abonnez-vous à la newsletter Tradelab !'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Insight'])[2]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='OK'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Centre de préférences de confidentialité'])[1]/preceding::button[2]</option><option>//button[@type='button']</option><option>//div[@id='notmenu']/div[7]/div/div[2]/div/button</option><option>//div[2]/div/button</option><option>css=button.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td>OK</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td>Personalize my cookies</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner IT Text</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.com/it<datalist><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/</option><option>http://tradelab.com/it</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>3000</option><option>2000</option><option>5000</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td>Tradelab e i suoi partner utilizzano i cookie per assicurare il funzionamento tecnico del nostro sito, misurare gli utenti del sito, permettervi di connettervi ai social media e a fini di targeting pubblicitario. Continuando con la navigazione su questo sito accettate l'utilizzo dei cookie.</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner IT Buttons </td></tr>
+</thead>
+<tbody>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Abonnez-vous à la newsletter Tradelab !'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Insight'])[2]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='OK'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Centre de préférences de confidentialité'])[1]/preceding::button[2]</option><option>//button[@type='button']</option><option>//div[@id='notmenu']/div[7]/div/div[2]/div/button</option><option>//div[2]/div/button</option><option>css=button.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td>OK</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td>Personalizza i miei cookie</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner PT Text</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.com/pt<datalist><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/</option><option>http://tradelab.com/pt</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>3000</option><option>2000</option><option>5000</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td>A Tradelab e seus parceiros utilizam cookies para garantir o bom funcionamento técnico do nosso site, medir sua audiência, permitir que você possas se conectar às redes sociais e também para os fins de targeting publicitário. Ao prosseguir com a sua navegação neste site, você aceita a utilização desses cookies.</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner PT Buttons </td></tr>
+</thead>
+<tbody>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Abonnez-vous à la newsletter Tradelab !'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Insight'])[2]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='OK'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Centre de préférences de confidentialité'])[1]/preceding::button[2]</option><option>//button[@type='button']</option><option>//div[@id='notmenu']/div[7]/div/div[2]/div/button</option><option>//div[2]/div/button</option><option>css=button.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td>OK</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td>Configurar o uso dos cookies</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner ES Text</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.com/es<datalist><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/</option><option>http://tradelab.com/es</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>3000</option><option>2000</option><option>5000</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td>Tradelab y sus socios utilizan cookies para garantizar el funcionamiento técnico de nuestro site, medir la audiencia del mismo, permitirle conectarse a redes sociales y con fines publicitarios específicos. Al continuar navegando en este site, usted acepta el uso de estas cookies.</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p<datalist><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Cookie management Banner ES Buttons </td></tr>
+</thead>
+<tbody>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Abonnez-vous à la newsletter Tradelab !'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Insight'])[2]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='OK'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Centre de préférences de confidentialité'])[1]/preceding::button[2]</option><option>//button[@type='button']</option><option>//div[@id='notmenu']/div[7]/div/div[2]/div/button</option><option>//div[2]/div/button</option><option>css=button.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-agreement</option></datalist></td><td>OK</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences<datalist><option>css=div.gdpr.gdpr-privacy-bar &gt; div &gt; div.gdpr-content &gt; p</option><option>css=div.gdpr-consent-management &gt; div.gdpr-info &gt; p</option><option>css=label#label_request</option><option>css=#input_email</option><option>id=input_email</option><option>name=email</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Adresse de courriel'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type de requête'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tradelab.com'])[1]/preceding::input[2]</option><option>//input[@id='input_email']</option><option>//input</option><option>css=div.gdpr-right &gt; div &gt; button.gdpr-preferences</option></datalist></td><td>Personalizar mis cookies</td>
+</tr>
+</tbody></table>
+</body>
+</html>

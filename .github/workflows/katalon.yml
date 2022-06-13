@@ -1,0 +1,48 @@
+name: KATALON
+on:
+  push:
+    branches: [ "fix/lancementautos" ]
+  workflow_dispatch:
+jobs:
+  RUN:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        # YOU CAN EDIT THIS
+#        test: [ "Katalon_Studio_DVS/QAP-195 Edit Targeting fields_OI" ]
+        test: [ "Katalon_Studio_DVS/QAP-195 Edit Targeting fields_OI", "Katalon_Studio_DVS/QAP-201 Create Edit OI and upload at DV360", "Katalon_Studio_DVS/QAP-165 Edit Targeting fields_Line", "Katalon_Studio_DVS/QAP-203 Create Edit Line and upload at DV360", "Katalon_Studio_DVS/QAP-204 Create Edit CP and upload at DV360" ]
+        # END EDIT
+
+    steps:
+      - id: explode-variable
+        name: Explode variable
+        env:
+          test: '${{ matrix.test }}'
+        run: |
+          $FOLDER = $Env:test.Split("/")[0]
+          $TS = $Env:test.Split("/")[1]
+          echo "::set-output name=folder::$FOLDER"
+          echo "::set-output name=ts::$TS"
+      - name: Checkout
+        uses: actions/checkout@v2
+#      - run: choco install screen-resolution --params "'/Width:1920 /Height:1080'" -y
+      - run: |
+          Set-DisplayResolution -Width 1920 -Height 1080  -Force
+        name : Change Display Resolution
+      - name: RUN Katalon Studio Github Action
+        uses: katalon-studio/katalon-studio-github-action@v2.2
+        with:
+          version: '7.6.6'
+          projectPath: '${{ github.workspace }}\Katalon_Studio\${{steps.explode-variable.outputs.folder}}'
+          args: '-noSplash  -retry=0 -browserType=Chrome -executionProfile=default -testSuitePath="Test Suites\${{steps.explode-variable.outputs.ts}}" -reportFolder="${{ github.workspace }}\Katalon_Studio\${{steps.explode-variable.outputs.folder}}\Report\${{steps.explode-variable.outputs.ts}}" -apiKey=a185ff1b-10c0-4856-9050-b6dd3493c4b2 --config -webui.autoUpdateDrivers=true -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=185.163.124.132 -proxy.server.port=3128 --env HTTP_PROXY="http://185.163.124.132:3128"  -statusDelay=60 --info -buildLabel="AUTO - ${{steps.explode-variable.outputs.ts}}"'
+        continue-on-error: true
+      - uses: actions/setup-java@v1
+        name: Upload to Katalon Analytics
+        with:
+          java-version: '1.8.0' # The JDK version to make available on the path.
+          java-package: jre # (jre, jdk, or jdk+fx) - defaults to jdk
+          architecture: x64 # (x64 or x86) - defaults to x64
+      - run: java -jar ${{ github.workspace }}\katalon-report-uploader-0.0.7.jar --kit.server.api=https://analytics.katalon.com  --projectId=73771 --path="${{ github.workspace }}\Katalon_Studio\${{steps.explode-variable.outputs.folder}}\Report\${{steps.explode-variable.outputs.ts}}" --email="test_qa@tradelab.fr" --password="2mbT=3h62" --type="katalon"

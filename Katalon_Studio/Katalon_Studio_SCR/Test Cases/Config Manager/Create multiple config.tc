@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Given I'm a trader
+When I log to the screenbox
+And I go to the tab config manager
+And I select an advertiser
+And I click on button create new config
+And the config form is displayed
+And I add a config setup with (site title, site url, default device desktop)
+And I click on button add site
+And I add setup with (site title, site url, device desktop, mobile, tablet)
+And I click on button save config
+And I check if I have a toast message
+And I click again on button create new config
+And I add a config setup with (site title, site url, device tablet)
+And I click on button save config
+And I check if I have a toast message
+And I click again on button create new config
+And I add a config setup with (site title, site url, device mobile)
+And I click on button save config
+And I check if I have a toast message</description>
+   <name>Create multiple config</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>6f31e529-8a41-4505-82df-da700df86bae</testCaseGuid>
+</TestCaseEntity>

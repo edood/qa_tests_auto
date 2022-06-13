@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>4 - Optimizer Loaders</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Operation Setup + Login + Advertiser</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option>saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td>3500<datalist><option>3500</option></datalist></td><td>waitForSync</td>
+</tr>
+<tr><td>store</td><td>november<datalist><option>november</option></datalist></td><td>month</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option>0</option></datalist></td><td>skipDateRange</td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=.${currentEnvironment}-${currentWebsite}<datalist><option>path=/, domain=.${currentEnvironment}-${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option>0</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>while</td><td>${sessionRefreshed} == 0<datalist><option>${sessionRefreshed} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>id=username<datalist><option>id=username</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=#login &gt; button<datalist><option>css=#login &gt; button</option></datalist></td><td>click</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.adv-autocomplete<datalist><option>css=.adv-autocomplete</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "CRF Banque - Tradelab"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option>document.querySelector('.adv-autocomplete').value = "Carrefour Banque"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option><option>document.querySelector('.adv-autocomplete').value = "CRF Banque - Tradelab"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>2260841<datalist><option>2260841</option></datalist></td><td>appnexusAdvertiserID</td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=div.loader<datalist><option>css=div.loader</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Default Tabs</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(1) &gt; div &gt; div<datalist><option>css=div.month-wrapper &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(1) &gt; div &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; div &gt; div<datalist><option>css=div.month-wrapper &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; div &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.campaign<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.campaign</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.seller_member<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.seller_member</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.publisher<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.publisher</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.placement<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.placement</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Change Advertiser</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.insertion_order<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.insertion_order</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td>operationName</td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "Boursorama"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option>document.querySelector('.adv-autocomplete').value = "Boursorama"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td>${operationName}</td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "Carrefour Banque"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option>document.querySelector('.adv-autocomplete').value = "Carrefour Banque"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Save config</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter<datalist><option>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter<datalist><option>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(3) &gt; button<datalist><option>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(3) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(3) &gt; button &gt; span<datalist><option>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(3) &gt; button &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog#save-filter<datalist><option>css=md-dialog#save-filter</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[name="templateName"]<datalist><option>css=input[name="templateName"]</option></datalist></td><td>Test</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#save-filter &gt; ng-transclude &gt; md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=#save-filter &gt; ng-transclude &gt; md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter<datalist><option>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter<datalist><option>css=div.datagrid-optimizer.has-selection &gt; div.toolgrid-container &gt; button.gridFilter</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(2) &gt; button &gt; span<datalist><option>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(2) &gt; button &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(5) &gt; button<datalist><option>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(5) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog#load-filter<datalist><option>css=md-dialog#load-filter</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(2)<datalist><option>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(2)<datalist><option>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon<datalist><option>css=div.sidebar-filter-menu &gt; filter-config &gt; md-menu &gt; svg-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(5) &gt; button<datalist><option>css=#menu_container_2 &gt; md-menu-content &gt; md-menu-item:nth-child(5) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog#load-filter<datalist><option>css=md-dialog#load-filter</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(1)<datalist><option>css=div.row-filter &gt; div &gt; div &gt; button:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#load-filter &gt; md-dialog-actions &gt; button<datalist><option>css=#load-filter &gt; md-dialog-actions &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#load-filter &gt; md-dialog-actions &gt; button<datalist><option>css=#load-filter &gt; md-dialog-actions &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Date Range menu</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.insertion_order<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.insertion_order</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(3)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(4)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>10000<datalist><option>10000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(5)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(6)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(6)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>10000<datalist><option>10000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Interval menu</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(3)<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(4)<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(5)<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(1)<datalist><option>css=#topbanner &gt; div.frequency-submenu.interval.active &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Operation Tab with settings</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=div &gt; label[for="line_item"]<datalist><option>css=div &gt; label[for="line_item"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="campaign"]<datalist><option>css=div &gt; label[for="campaign"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="line_item"]<datalist><option>css=div &gt; label[for="line_item"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="campaign"]<datalist><option>css=div &gt; label[for="campaign"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="metrics"]<datalist><option>css=label[for="metrics"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="pixels"]<datalist><option>css=label[for="pixels"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Tab with settings</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=radio-buttons-column &gt; label[for="dimensions"]<datalist><option>css=radio-buttons-column &gt; label[for="dimensions"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="campaign"]<datalist><option>css=div &gt; label[for="campaign"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="creative_name"]<datalist><option>css=div &gt; label[for="creative_name"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="size"]<datalist><option>css=div &gt; label[for="size"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>15000<datalist><option>15000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="insertion_order"]<datalist><option>css=div &gt; label[for="insertion_order"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="campaign"]<datalist><option>css=div &gt; label[for="campaign"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="creative_name"]<datalist><option>css=div &gt; label[for="creative_name"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="size"]<datalist><option>css=div &gt; label[for="size"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="metrics"]<datalist><option>css=label[for="metrics"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="pixels"]<datalist><option>css=label[for="pixels"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Campaign Tab with settings</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.campaign<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.campaign</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=radio-buttons-column &gt; label[for="dimensions"]<datalist><option>css=radio-buttons-column &gt; label[for="dimensions"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="insertion_order"]<datalist><option>css=div &gt; label[for="insertion_order"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="creative_name"]<datalist><option>css=div &gt; label[for="creative_name"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="size"]<datalist><option>css=div &gt; label[for="size"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="-1"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="insertion_order"]<datalist><option>css=div &gt; label[for="insertion_order"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="line_item"]<datalist><option>css=div &gt; label[for="line_item"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="seller_member"]<datalist><option>css=div &gt; label[for="seller_member"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="publisher"]<datalist><option>css=div &gt; label[for="publisher"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="placement"]<datalist><option>css=div &gt; label[for="placement"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="creative_name"]<datalist><option>css=div &gt; label[for="creative_name"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; label[for="size"]<datalist><option>css=div &gt; label[for="size"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="metrics"]<datalist><option>css=label[for="metrics"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>10000<datalist><option>10000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=header &gt; div.checkbox &gt; input<datalist><option>css=header &gt; div.checkbox &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=label[for="pixels"]<datalist><option>css=label[for="pixels"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.bottom-gradient &gt; button<datalist><option>css=div.bottom-gradient &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotVisible</td><td>css=p[translate="OPTIMIZER.nodata.title"]<datalist><option>css=p[translate="OPTIMIZER.nodata.title"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-id="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

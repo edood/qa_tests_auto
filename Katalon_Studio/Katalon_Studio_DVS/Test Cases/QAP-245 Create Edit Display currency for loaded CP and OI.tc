@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-245 Create Edit Display currency for loaded CP and OI</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>bac1dd0f-feb3-4587-8c43-0a6d9c13e271</testCaseGuid>
+</TestCaseEntity>

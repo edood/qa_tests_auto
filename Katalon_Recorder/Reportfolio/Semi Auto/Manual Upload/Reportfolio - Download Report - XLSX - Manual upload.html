@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Reportfolio - Download Report - XLSX - Manual upload</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup XLSX + Login</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>${csvXlsFolder}\APN.csv<datalist><option>${csvXlsFolder}\APN.csv</option></datalist></td><td>ApnCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\DBM.csv<datalist><option>${csvXlsFolder}\DBM.csv</option></datalist></td><td>DBMCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\DCM.csv<datalist><option>${csvXlsFolder}\DCM.csv</option></datalist></td><td>DCMCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\EUL.csv<datalist><option>${csvXlsFolder}\EUL.csv</option></datalist></td><td>EULCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\GA.csv<datalist><option>${csvXlsFolder}\GA.csv</option></datalist></td><td>GACsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template.xlsx<datalist><option>${csvXlsFolder}\Template.xlsx</option></datalist></td><td>templateFullPath</td>
+</tr>
+<tr><td>store</td><td>-<datalist><option>-</option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option>saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}<datalist><option>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td>isLoggedIn</td>
+</tr>
+<tr><td>if</td><td>${isLoggedIn} == 1<datalist><option>${isLoggedIn} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create folder</td></tr>
+</thead>
+<tbody>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Folder - Manual Upload XLSX</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Toasts - Success</td></tr>
+</thead>
+<tbody>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - Success Toast</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td>File well uploaded.</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Toasts - Failure</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>folders<datalist><option>folders</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - Failure Toast</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td>File upload failure, please retry</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Closed iteration</td></tr>
+</thead>
+<tbody>
+<tr><td>if</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>if</td><td>"${currentTime}" != "P0D"<datalist><option>"${currentTime}" != "P0D"</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P0D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - Closed Iteration</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>storeEval</td><td>document.location.href<datalist><option>document.location.href</option></datalist></td><td>currentReportUrl</td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P1D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${currentReportUrl}<datalist><option>${currentReportUrl}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=div.option.schedule &gt; button:nth-of-type(2)<datalist><option>css=div.option.schedule &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)<datalist><option>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)</option></datalist></td><td>tomorrow</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 1); var secondMonth = date.getMonth(); firstMonth != secondMonth<datalist><option>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 1); var secondMonth = date.getMonth(); firstMonth != secondMonth</option></datalist></td><td>isMonthChange</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')<datalist><option>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')</option></datalist></td><td>tomorrowNumeric</td>
+</tr>
+<tr><td>if</td><td>${isMonthChange} == 1<datalist><option>${isMonthChange} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.mat-calendar-next-button<datalist><option>css=button.mat-calendar-next-button</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${tomorrow}"]<datalist><option>css=[aria-label="${tomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${tomorrow}"]<datalist><option>css=[aria-label="${tomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>xpath=//*[text()='Report ${tomorrowNumeric}']<datalist><option>xpath=//*[text()='Report ${tomorrowNumeric}']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${DBMCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>if</td><td>"${currentTime}" != "P0D"<datalist><option>"${currentTime}" != "P0D"</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P0D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">APN - Via URL</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - APN Via URL</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option>window.location.href</option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['currentURL'].replace(/(.*)(\/folders.*)/, '$1/uploader$2/iteration/1')<datalist><option>storedVars['currentURL'].replace(/(.*)(\/folders.*)/, '$1/uploader$2/iteration/1')</option></datalist></td><td>uploaderURL</td>
+</tr>
+<tr><td>open</td><td>${uploaderURL}<datalist><option>${uploaderURL}</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "staging"</option><option>currentEnvironment</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"Hi,\n In order to build the daily report Test auto - Report - APN Via URL of the ${currentDate},\n may you please upload the CSV file coming from AppNexus\n and needed to complete the APN Subreport datasource. \n Thanks,"<datalist><option>"Hi,\n In order to build the daily report Test auto - Report - APN Via URL of the ${currentDate},\n may you please upload the CSV file coming from AppNexus\n and needed to complete the APN Subreport datasource. \n Thanks,"</option><option>"Hi,\n In order to build the daily report Test auto - Report - APN Via URL of the ${currentDate},\n may you please upload the CSV file coming from Appnexus\n and needed to complete the APN Subreport datasource. \n Thanks,"</option></datalist></td><td>uploaderWording</td>
+</tr>
+<tr><td>assertText</td><td>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section<datalist><option>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section</option></datalist></td><td>${uploaderWording}</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"Hi,\n In order to build the daily report Test auto - Report - APN Via URL of the ${currentDate},\n may you please upload the CSV file coming from Appnexus\n and needed to complete the APN Subreport datasource. \n Thanks,"<datalist><option>"Hi,\n In order to build the daily report Test auto - Report - APN Via URL of the ${currentDate},\n may you please upload the CSV file coming from Appnexus\n and needed to complete the APN Subreport datasource. \n Thanks,"</option></datalist></td><td>uploaderWording</td>
+</tr>
+<tr><td>assertText</td><td>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section<datalist><option>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section</option></datalist></td><td>${uploaderWording}</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=file-upload-btn &gt; button &gt; span &gt; input<datalist><option>css=file-upload-btn &gt; button &gt; span &gt; input</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td>File well uploaded.</td>
+</tr>
+<tr><td>open</td><td>${currentURL}<datalist><option>${currentURL}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 44</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>CampaignImpsClicksCTR %Total ConversionsConversion RateTotal Revenue (USD)Revenue eCPMRevenue eCPCRevenue eCPAMedia Cost (USD)Cost eCPMProfitProspection BP (16126112)331435256500001704707363300010961419319755424209647600025Prospection CD Lifetime (18122267)1678688262000015607431963000116936561619441372096470658756APB70 Prospection Microsoft (21019420)70506144700006339877134100019019631742841434105358463171Groupe 5 (Bann) (26288950)51495021300004136324107700020914652231199989044897560731IAB Catu00e9gories - [ASQ] - Immobilier - MTF (16371090)4968844794589481649641E-00579100015919209388862749078260267798Bidder sans visi (18359131)4960541650000332625145500009172388417524751084169213632APB50 Prospection LeBonCoin (21551334)4184341430000341750494700022632004390816223093399729232IAB - Grapeshot - Boursorama (21428959)4164662867232379113781E-0053180000763567733929560814701800412Mobile - CQT - Google - Banner (23027824)3966011700000428642481800020625263542602152136813107383Bidder PC (21422043)3781801170000309376551200013538527416463332110123045113</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>CD Cross device (24069059)57761000017313029300161011085784229110014247056857APB60 Prospection Rubicon (21960155)479840000833680723000479366421311212444168653615LA All A3 -30min (24754093)389518000462130949000231065468523989595861590746598213APB60 Prospection ASQ ATF/MTF (21960158)31631000031615551300041100221128523714063348403412Mobile - CQT - Adverline - Banner (23028607)27622000072411318000651701672931533106138052141APB60 Prospection Google (21960157)139900700050035745259651375957898500APB60 Prospection Webedia (21960154)12110010000825763848463614001949628404Mobile - CQT - Microsoft - Banner (23027511)64810001543209900052739108138750527391APB60 Prospection Orange (21960159)2490010004016064308050253233032128500Mobile - CQT - Schibsted - Banner (23025602)130000000572904406923077000</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DV360 - Via URL</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - DV360 Via URL</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(5)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>DV360 Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="frequency"]<datalist><option>css=mat-select[formcontrolname="frequency"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(2)<datalist><option>css=mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option[role="option"]<datalist><option>css=mat-option[role="option"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option>window.location.href</option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['currentURL'].replace(/(.*)(\/folders.*)/, '$1/uploader$2/iteration/1')<datalist><option>storedVars['currentURL'].replace(/(.*)(\/folders.*)/, '$1/uploader$2/iteration/1')</option></datalist></td><td>uploaderURL</td>
+</tr>
+<tr><td>open</td><td>${uploaderURL}<datalist><option>${uploaderURL}</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>storeEval</td><td>"Hi,\n In order to build the weekly report Test auto - Report - DV360 Via URL of the ${currentDate},\n may you please upload the CSV file coming from Google DV360\n and needed to complete the DV360 Subreport datasource. \n Thanks,"<datalist><option>"Hi,\n In order to build the weekly report Test auto - Report - DV360 Via URL of the ${currentDate},\n may you please upload the CSV file coming from Google DV360\n and needed to complete the DV360 Subreport datasource. \n Thanks,"</option></datalist></td><td>uploaderWording</td>
+</tr>
+<tr><td>assertText</td><td>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section<datalist><option>css=app-uploader &gt; div &gt; mat-card &gt; mat-card-content &gt; section</option></datalist></td><td>${uploaderWording}</td>
+</tr>
+<tr><td>type</td><td>css=file-upload-btn &gt; button &gt; span &gt; input<datalist><option>css=file-upload-btn &gt; button &gt; span &gt; input</option></datalist></td><td>${DBMCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option>css=snack-bar-container &gt; simple-snack-bar &gt; span</option></datalist></td><td>File well uploaded.</td>
+</tr>
+<tr><td>open</td><td>${currentURL}<datalist><option>${currentURL}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 49</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>Line Item IDLine ItemLine Item TypeLine Item StatusDV360 ActivityDV360 Activity StatusDV360 Activity Integration CodeDV360 Activity IDAdvertiser CurrencyPartner CurrencyClicksTotal ConversionsPost-Click ConversionsRevenue eCPA (PC) (Adv Currency)Revenue eCPA (Adv Currency)Revenue (Adv Currency)Post-View Conversions21480553IAB Retargeting OPEN G4 Configurateur Fibre 7dReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR01.000.000.0000000.0000000.0000001.0021480553IAB Retargeting OPEN G4 Configurateur Fibre 7dReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR01.000.000.0000000.0000000.0000001.0021480554IAB Retargeting OPEN G5 Configurateur Fibre 30dReal-time biddingActiveTotalEUREUR30.000.000.0000000.0000009.8700180.0021480554IAB Retargeting OPEN G5 Configurateur Fibre 30dReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR03.001.000.0000000.0000000.0000002.0021480555IAB Retargeting OPEN G6 Configurateur Fibre LifetimeReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR01.000.000.0000000.0000000.0000001.0021480556IAB Retargeting OPEN H1 Configurateur ADSL 1hReal-time biddingActiveTotalEUREUR20.000.000.0000000.0000005.2932060.0021480556IAB Retargeting OPEN H1 Configurateur ADSL 1hReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR019.002.000.0000000.0000000.00000017.0021480557IAB Retargeting OPEN H2 Configurateur ADSL 6hReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR02.000.000.0000000.0000000.0000002.0021480558IAB Retargeting OPEN H3 Configurateur ADSL 1dReal-time biddingActiveor_fai_en_eligibilite-resultat_2018-01Active10399885EUREUR03.003.000.0000000.0000000.0000000.0021480558IAB Retargeting OPEN H3 Configurateur ADSL 1dReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR02.001.000.0000000.0000000.0000001.00</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>21483356IAB Profiling Fibre FAI - Deal ASQ Intentionniste DéménagmentReal-time biddingActiveor_fai_en_eligibilite-resultat-fibre_2018-03Active10428880EUREUR07.005.000.0000000.0000000.0000002.0021483356IAB Profiling Fibre FAI - Deal ASQ Intentionniste DéménagmentReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR02.000.000.0000000.0000000.0000002.0021483364IAB Profiling Fibre FAI - Deal LPM Affinitaires&amp;Intéressés Télécomunications 728x90Real-time biddingActiveor_fai_en_eligibilite-resultat-fibre_2018-03Active10428880EUREUR06.003.000.0000000.0000000.0000003.0021483364IAB Profiling Fibre FAI - Deal LPM Affinitaires&amp;Intéressés Télécomunications 728x90Real-time biddingActiveor_fai_en_visites-all-pages_2018-03Active10410816EUREUR026.0010.000.0000000.0000000.00000016.0021483373IAB Profiling Fibre FAI - Deal Moneytizer High TechReal-time biddingActiveTotalEUREUR40.000.000.0000000.00000071.2902170.0021483378IAB Profiling Fibre FAI - Deal Solocal High TechReal-time biddingActiveTotalEUREUR00.000.000.0000000.0000000.4064560.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveTotalEUREUR2920.000.000.0000000.0000001042.4349110.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveor_fai_en_configurateur_2018-01Active10399879EUREUR03.000.000.0000000.0000000.0000003.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveor_fai_en_eligibilite-resultat-adsl_2018-03Active10411624EUREUR010.001.000.0000000.0000000.0000009.0021484968IAB Prospection Algo ODR FAI - Seller MicrosoftReal-time biddingActiveTotalEUREUR10.000.000.0000000.0000001.8475030.00</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">APN - Daily</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - APN Daily</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 44</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>CampaignImpsClicksCTR %Total ConversionsConversion RateTotal Revenue (USD)Revenue eCPMRevenue eCPCRevenue eCPAMedia Cost (USD)Cost eCPMProfitProspection BP (16126112)331435256500001704707363300010961419319755424209647600025Prospection CD Lifetime (18122267)1678688262000015607431963000116936561619441372096470658756APB70 Prospection Microsoft (21019420)70506144700006339877134100019019631742841434105358463171Groupe 5 (Bann) (26288950)51495021300004136324107700020914652231199989044897560731IAB Catu00e9gories - [ASQ] - Immobilier - MTF (16371090)4968844794589481649641E-00579100015919209388862749078260267798Bidder sans visi (18359131)4960541650000332625145500009172388417524751084169213632APB50 Prospection LeBonCoin (21551334)4184341430000341750494700022632004390816223093399729232IAB - Grapeshot - Boursorama (21428959)4164662867232379113781E-0053180000763567733929560814701800412Mobile - CQT - Google - Banner (23027824)3966011700000428642481800020625263542602152136813107383Bidder PC (21422043)3781801170000309376551200013538527416463332110123045113</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>CD Cross device (24069059)57761000017313029300161011085784229110014247056857APB60 Prospection Rubicon (21960155)479840000833680723000479366421311212444168653615LA All A3 -30min (24754093)389518000462130949000231065468523989595861590746598213APB60 Prospection ASQ ATF/MTF (21960158)31631000031615551300041100221128523714063348403412Mobile - CQT - Adverline - Banner (23028607)27622000072411318000651701672931533106138052141APB60 Prospection Google (21960157)139900700050035745259651375957898500APB60 Prospection Webedia (21960154)12110010000825763848463614001949628404Mobile - CQT - Microsoft - Banner (23027511)64810001543209900052739108138750527391APB60 Prospection Orange (21960159)2490010004016064308050253233032128500Mobile - CQT - Schibsted - Banner (23025602)130000000572904406923077000</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DV360 - Weekly</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - DV360 Weekly</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(5)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>DV360 Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="frequency"]<datalist><option>css=mat-select[formcontrolname="frequency"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(2)<datalist><option>css=mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option[role="option"]<datalist><option>css=mat-option[role="option"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${DBMCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 49</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>Line Item IDLine ItemLine Item TypeLine Item StatusDV360 ActivityDV360 Activity StatusDV360 Activity Integration CodeDV360 Activity IDAdvertiser CurrencyPartner CurrencyClicksTotal ConversionsPost-Click ConversionsRevenue eCPA (PC) (Adv Currency)Revenue eCPA (Adv Currency)Revenue (Adv Currency)Post-View Conversions21480553IAB Retargeting OPEN G4 Configurateur Fibre 7dReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR01.000.000.0000000.0000000.0000001.0021480553IAB Retargeting OPEN G4 Configurateur Fibre 7dReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR01.000.000.0000000.0000000.0000001.0021480554IAB Retargeting OPEN G5 Configurateur Fibre 30dReal-time biddingActiveTotalEUREUR30.000.000.0000000.0000009.8700180.0021480554IAB Retargeting OPEN G5 Configurateur Fibre 30dReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR03.001.000.0000000.0000000.0000002.0021480555IAB Retargeting OPEN G6 Configurateur Fibre LifetimeReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR01.000.000.0000000.0000000.0000001.0021480556IAB Retargeting OPEN H1 Configurateur ADSL 1hReal-time biddingActiveTotalEUREUR20.000.000.0000000.0000005.2932060.0021480556IAB Retargeting OPEN H1 Configurateur ADSL 1hReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR019.002.000.0000000.0000000.00000017.0021480557IAB Retargeting OPEN H2 Configurateur ADSL 6hReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR02.000.000.0000000.0000000.0000002.0021480558IAB Retargeting OPEN H3 Configurateur ADSL 1dReal-time biddingActiveor_fai_en_eligibilite-resultat_2018-01Active10399885EUREUR03.003.000.0000000.0000000.0000000.0021480558IAB Retargeting OPEN H3 Configurateur ADSL 1dReal-time biddingActiveor_open_en_configurateur_2018-01Active10399887EUREUR02.001.000.0000000.0000000.0000001.00</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>21483356IAB Profiling Fibre FAI - Deal ASQ Intentionniste DéménagmentReal-time biddingActiveor_fai_en_eligibilite-resultat-fibre_2018-03Active10428880EUREUR07.005.000.0000000.0000000.0000002.0021483356IAB Profiling Fibre FAI - Deal ASQ Intentionniste DéménagmentReal-time biddingActiveor_open_en_eligibilite-resultat_2018-01Active10399830EUREUR02.000.000.0000000.0000000.0000002.0021483364IAB Profiling Fibre FAI - Deal LPM Affinitaires&amp;Intéressés Télécomunications 728x90Real-time biddingActiveor_fai_en_eligibilite-resultat-fibre_2018-03Active10428880EUREUR06.003.000.0000000.0000000.0000003.0021483364IAB Profiling Fibre FAI - Deal LPM Affinitaires&amp;Intéressés Télécomunications 728x90Real-time biddingActiveor_fai_en_visites-all-pages_2018-03Active10410816EUREUR026.0010.000.0000000.0000000.00000016.0021483373IAB Profiling Fibre FAI - Deal Moneytizer High TechReal-time biddingActiveTotalEUREUR40.000.000.0000000.00000071.2902170.0021483378IAB Profiling Fibre FAI - Deal Solocal High TechReal-time biddingActiveTotalEUREUR00.000.000.0000000.0000000.4064560.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveTotalEUREUR2920.000.000.0000000.0000001042.4349110.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveor_fai_en_configurateur_2018-01Active10399879EUREUR03.000.000.0000000.0000000.0000003.0021484965IAB Prospection Algo ODR ODR FAI - Seller GoogleReal-time biddingActiveor_fai_en_eligibilite-resultat-adsl_2018-03Active10411624EUREUR010.001.000.0000000.0000000.0000009.0021484968IAB Prospection Algo ODR FAI - Seller MicrosoftReal-time biddingActiveTotalEUREUR10.000.000.0000000.0000001.8475030.00</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DCM - Every 2 weeks</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - DCM Every 2 weeks</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(4)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>DCM Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="frequency"]<datalist><option>css=mat-select[formcontrolname="frequency"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(4)<datalist><option>css=mat-option:nth-of-type(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option[role="option"]<datalist><option>css=mat-option[role="option"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${DCMCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 49</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>AnnonceurÉlément dynamique 1Flux 1 - Libellé de rapportFlux 1 - Identifiant uniqueFlux 1 - Valeur de la variable de rapport 1Flux 1 - Valeur de la variable de rapport 2Flux 1 - Valeur de la variable de rapport 3Flux 1 - Valeur de la variable de rapport 4Flux 1 - Valeur de la variable de rapport 5Flux 1 - Valeur de la variable de rapport 6Élément dynamique 2Flux 2 - Libellé de rapportFlux 2 - Identifiant uniqueFlux 2 - Valeur de la variable de rapport 1Flux 2 - Valeur de la variable de rapport 2Flux 2 - Valeur de la variable de rapport 3Flux 2 - Valeur de la variable de rapport 4Flux 2 - Valeur de la variable de rapport 5Flux 2 - Valeur de la variable de rapport 6Élément dynamique 3Flux 3 - Libellé de rapportFlux 3 - Identifiant uniqueFlux 3 - Valeur de la variable de rapport 1Flux 3 - Valeur de la variable de rapport 2Flux 3 - Valeur de la variable de rapport 3Flux 3 - Valeur de la variable de rapport 4Flux 3 - Valeur de la variable de rapport 5Flux 3 - Valeur de la variable de rapport 6Élément dynamique 4Flux 4 - Libellé de rapportFlux 4 - Identifiant uniqueFlux 4 - Valeur de la variable de rapport 1Flux 4 - Valeur de la variable de rapport 2Flux 4 - Valeur de la variable de rapport 3Flux 4 - Valeur de la variable de rapport 4Flux 4 - Valeur de la variable de rapport 5Flux 4 - Valeur de la variable de rapport 6Élément dynamique 5Flux 5 - Libellé de rapportFlux 5 - Identifiant uniqueFlux 5 - Valeur de la variable de rapport 1Flux 5 - Valeur de la variable de rapport 2Flux 5 - Valeur de la variable de rapport 3Flux 5 - Valeur de la variable de rapport 4Flux 5 - Valeur de la variable de rapport 5Flux 5 - Valeur de la variable de rapport 6DateImpressionsClicsTaux de clicsCFR_FAV_tunnel : CRFFAV_ValidPanier_Compteur_Unique: Nombre total de conversionsCFR_FAV_tunnel : CRFFAV_ValidPanier_Compteur_Unique: Conversions après affichageCFR_FAV_tunnel : CRFFAV_ValidPanier_Compteur_Unique: Conversions après clicCFR_FAV_tunnel : CRFFAV_ValidPanier_Compteur_Unique: Chiffre d'affaires totalCFR_FAV_tunnel : CRFFAV_ValidPanier_Compteur_Unique: Chiffre d'affaires issu des conversions après clicCFR_FAV_tunnel : CRFFAV_ConfirmCmd_Compteur_Unique: Nombre total de conversionsCFR_FAV_tunnel : CRFFAV_ConfirmCmd_Compteur_Unique: Conversions après affichageCFR_FAV_tunnel : CRFFAV_ConfirmCmd_Compteur_Unique: Conversions après clicCFR_FAV_tunnel : CRFFAV_ConfirmCmd_Compteur_Unique: Chiffre d'affaires totalCFR_FAV_tunnel : CRFFAV_ConfirmCmd_Compteur_Unique: Chiffre d'affaires issu des conversions après clicNEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-102387880.032.001.001.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-113596390.032.002.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-12160017360.022.002.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-13780840.054.004.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-144129690.022.002.000.000.0000000000.0000000002.002.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-1572532140.021.001.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x25012(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-1696803230.020.000.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x60037(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-101217430.020.000.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x60037(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-11989360.061.001.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3186127769789_300x60037(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-122077270.032.002.000.000.0000000000.0000000001.001.000.000.0000000000.000000000</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3193661254909_728x9059(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-14574020.031.001.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3193661254909_728x9059(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-151054940.040.000.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3193661254909_728x9059(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-1627014110.041.001.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-102340970.031.001.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-113590480.021.001.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-124410060.012.002.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-13967000.001.001.000.000.0000000000.0000000002.002.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-14977950.051.001.000.000.0000000000.0000000001.001.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-1587093190.021.001.000.000.0000000000.0000000000.000.000.000.0000000000.000000000NEW Mini sites Drive - TradelabFluxDCOCarrefourFAV_Flux3221249650345_300x25022(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)(not set)2018-09-1696042160.022.001.001.000.0000000000.0000000001.001.000.000.0000000000.000000000</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EUL - Monthly</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - EUL Monthly</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(2)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>EUL Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="frequency"]<datalist><option>css=mat-select[formcontrolname="frequency"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(3)<datalist><option>css=mat-option:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-select[formcontrolname="date"]<datalist><option>css=mat-select[formcontrolname="date"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option[role="option"]<datalist><option>css=mat-option[role="option"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${EULCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 33</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>nomimpressionsvisiteurs uniques journaliersnouveaux VUnouveau VU/VUtaux de rebonddevis réeldevisdevis (post-clic)devis (post-impression)devis (revisite)ventes réellesventesventes (post-clic)ventes (revisite)ventes (post-impression)paniers commencésvisitestemps passé/visiteimpression visibletaux de visibilitépourcentages d'impressions visiblespourcentage d'impressions non mesuréesx1global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %x2Tradelab-Tradelab-Strat28183212676163525.59 %47.63 %2242241920328787727858266536m.4s.13550.66 %0.48 %0.17 %x3Tradelab-Tradelab-Teads-RG-Mobile0100%0%00000000000128s.00%0%0%x4Tradelab-Tradelab-Strat-Device-Mobile533213.33 %29.09 %00000000001556m.39s.060.00 %0%60.00 %x5global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %x6Tradelab-Tradelab-Strat28183212676163525.59 %47.63 %2242241920328787727858266536m.4s.13550.66 %0.48 %0.17 %x7global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %x8Tradelab-Tradelab-Teads-RG-Mobile0100%0%00000000000128s.00%0%0%x9Tradelab-Tradelab-Strat-Device-Mobile533213.33 %29.09 %00000000001556m.39s.060.00 %0%60.00 %x10global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>z10global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %z9global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %z8Tradelab-Tradelab-Strat28183212676163525.59 %47.63 %2242241920328787727858266536m.4s.13550.66 %0.48 %0.17 %z7Tradelab-Tradelab-Teads-RG-Mobile0100%0%00000000000128s.00%0%0%z6Tradelab-Tradelab-Strat-Device-Mobile533213.33 %29.09 %00000000001556m.39s.060.00 %0%60.00 %z5global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %z4Tradelab-Tradelab-Strat28183212676163525.59 %47.63 %2242241920328787727858266536m.4s.13550.66 %0.48 %0.17 %z3Tradelab-Tradelab-Teads-RG-Mobile0100%0%00000000000128s.00%0%0%z2Tradelab-Tradelab-Strat-Device-Mobile533213.33 %29.09 %00000000001556m.39s.060.00 %0%60.00 %z1global28183712710163725.56 %47.59 %2242241920328787727859267096m.4s.13550.66 %0.48 %0.18 %</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GA - Daily</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - GA Daily</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(3)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>GA Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css= section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${GACsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>assertText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 38</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>Libellé d'événementMinuteNombre total d'événementsÉvénements uniquesValeur de l'événementValeur moyennecode:RF_ERR1,email:debug.tradelab@gmail.com0543800,00code:RF_ERR1,email:debug.tradelab@gmail.com2026300,00code:RF_ERR1,email:debug.tradelab@gmail.com5025100,00code:RF_ERR1,email:debug.tradelab@gmail.com1521100,00code:RF_ERR1,email:debug.tradelab@gmail.com1019000,00code:RF_ERR1,email:debug.tradelab@gmail.com007100,00code:RF_ERR1,email:debug.tradelab+59b210f119ab12817aaf44df4197aad4@gmail.com057500,00code:RF_ERR1,email:debug.tradelab@gmail.com306000,00code:RF_ERR1,email:debug.tradelab@gmail.com555100,00code:RF_ERR1,email:debug.tradelab+59b210f119ab12817aaf44df4197aad4@gmail.com105200,00</td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>code:RF_ERR1,email:Brice HANEQUIN &lt;bhanequin@tradelab.fr&gt;011000,00code:RF_ERR1,email:Brice HANEQUIN &lt;bhanequin@tradelab.fr&gt;441100,00code:RF_ERR1,email:debug.tradelab@gmail.com451100,00code:RF_ERR1,email:debug.tradelab+59b210f119ab12817aaf44df4197aad4@gmail.com151000,00code:RF_ERR1,email:debug.tradelab+59b210f119ab12817aaf44df4197aad4@gmail.com201000,00code:RF_ERR1,email:debug.tradelab+5c3c7ee14bc02a0cb2f52a2be56a8c8d@gmail.com201100,00code:RF_ERR1,email:debug.tradelab+5c3c7ee14bc02a0cb2f52a2be56a8c8d@gmail.com501000,00code:RF_ERR1,email:debug.tradelab+eac2b4652e5b7c1a3f39e958ce264197@gmail.com441100,00code:RF_ERR1,email:debug.tradelab+eac2b4652e5b7c1a3f39e958ce264197@gmail.com491100,00code:RF_ERR1,email:debug.tradelab+eac2b4652e5b7c1a3f39e958ce264197@gmail.com, Brice HANEQUIN &lt;bhanequin@tradelab.fr&gt;551100,00</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

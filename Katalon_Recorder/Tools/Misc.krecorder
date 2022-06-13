@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>Misc</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Testrail - Replace word in all cases</td></tr>
+</thead>
+<tbody>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td></tr>
+<tr><td>echo</td><td>Enter the word to replace below. Please verify the result when replacing special characters<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>store</td><td>rules<datalist><option></option></datalist></td><td>wordToReplace</td></tr>
+<tr><td>echo</td><td>Enter the word to replace with below. Please verify the result when replacing with special characters<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>store</td><td>accounts<datalist><option></option></datalist></td><td>newWordValue</td></tr>
+<tr><td>storeCssCount</td><td>css=tr > td:nth-child(5) > a<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>while</td><td>${numberOfCases} > 0<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForVisible</td><td>xpath=(//tr/td[5]/a)[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=(//tr/td[5]/a)[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>$('#custom_preconds_display').text()<datalist><option></option></datalist></td><td>preconds</td></tr>
+<tr><td>storeEval</td><td>var preconds = storedVars['preconds']; var regex = new RegExp(storedVars['wordToReplace'], "gim"); var newWordValue = storedVars['newWordValue']; preconds.replace(regex, newWordValue);<datalist><option></option></datalist></td><td>precondsNewText</td></tr>
+<tr><td>if</td><td>storedVars['stepsNewText'] != storedVars['steps']<datalist><option></option></datalist></td><td>true</td></tr>
+<tr><td>storeEval</td><td>if (storedVars['precondsNewText'] != storedVars['preconds']) $('#custom_preconds_display').text(storedVars['precondsNewText'])<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>keyUp</td><td>css=#custom_preconds_display<datalist><option></option></datalist></td><td>\119</td></tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>$('#custom_steps_display').text()<datalist><option></option></datalist></td><td>steps</td></tr>
+<tr><td>storeEval</td><td>var steps = storedVars['steps']; var regex = new RegExp(storedVars['wordToReplace'], "gim"); var newWordValue = storedVars['newWordValue']; steps.replace(regex, newWordValue);<datalist><option></option></datalist></td><td>stepsNewText</td></tr>
+<tr><td>if</td><td>storedVars['stepsNewText'] != storedVars['steps']<datalist><option></option></datalist></td><td>true</td></tr>
+<tr><td>storeEval</td><td>$('#custom_steps_display').text(storedVars['stepsNewText'])<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>keyUp</td><td>css=#custom_steps_display<datalist><option></option></datalist></td><td>\119</td></tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>$('#custom_expected_display').text().replace("Delete", "").replace("\N*$", "")<datalist><option></option></datalist></td><td>expected</td></tr>
+<tr><td>storeEval</td><td>var expected = storedVars['expected']; var regex = new RegExp(storedVars['wordToReplace'], "gim"); var newWordValue = storedVars['newWordValue']; expected.replace(regex, newWordValue);<datalist><option></option></datalist></td><td>expectedNewText</td></tr>
+<tr><td>if</td><td>storedVars['stepsNewText'] != storedVars['steps']<datalist><option></option></datalist></td><td>true</td></tr>
+<tr><td>storeEval</td><td>if (storedVars['expectedNewText'] != storedVars['expected']) $('#custom_expected_display').text(storedVars['expectedNewText'])<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>keyUp</td><td>css=#custom_expected_display<datalist><option></option></datalist></td><td>\119</td></tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td></tr>
+<tr><td>clickAndWait</td><td>css=#accept<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td></tr>
+<tr><td>open</td><td>${currentURL}<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>storedVars['numberOfCases'] - 1<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Testrail - Replace word in all titles</td></tr>
+</thead>
+<tbody>
+<tr><td>echo</td><td>Enter the word to replace below. Please verify the result when replacing special characters<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>store</td><td>rules<datalist><option></option></datalist></td><td>wordToReplace</td></tr>
+<tr><td>echo</td><td>Enter the word to replace with below. Please verify the result when replacing with special characters<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>store</td><td>accounts<datalist><option></option></datalist></td><td>newWordValue</td></tr>
+<tr><td>storeCssCount</td><td>css=#content-inner tr > td:nth-child(4) > a:nth-child(2)<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>while</td><td>${numberOfCases} > 0<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForVisible</td><td>xpath=(//tr/td[4]/a[2])[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=(//tr/td[4]/a[2])[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>$('#editCaseTitle').prop('value')<datalist><option></option></datalist></td><td>title</td></tr>
+<tr><td>storeEval</td><td>var title = storedVars['title']; var regex = new RegExp(storedVars['wordToReplace'], "gim"); var newWordValue = storedVars['newWordValue']; title.replace(regex, newWordValue);<datalist><option></option></datalist></td><td>stepsNewText</td></tr>
+<tr><td>type</td><td>css=#editCaseTitle<datalist><option></option></datalist></td><td>${stepsNewText}</td></tr>
+<tr><td>sendKeys</td><td>css=#editCaseTitle<datalist><option></option></datalist></td><td>${KEY_ENTER}</td></tr>
+<tr><td>clickAndWait</td><td>css=#editCaseSubmit<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForNotVisible</td><td>css=#editCaseTitle<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>storedVars['numberOfCases'] - 1<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Testrail - Replace versions</td></tr>
+</thead>
+<tbody>
+<tr><td>echo</td><td>Enter the word to replace below. Please verify the result when replacing special characters<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>store</td><td>3.12.0<datalist><option></option></datalist></td><td>newVersion</td></tr>
+<tr><td>storeCssCount</td><td>css=[id*=row] > td.action > a<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>click</td><td>css=[id*=row] > td.action > a > span.action-expand[style="display: inline;"]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>while</td><td>${numberOfCases} > 0<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForVisible</td><td>xpath=(//tbody/tr[contains(@class, 'row')]/td[4])[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=(//tbody/tr[contains(@class, 'row')]/td[4])[${numberOfCases}]<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForNotVisible</td><td>css=div.blockUI.blockOverlay<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeElementPresent</td><td>css=[id*=editChange] > a<datalist><option></option></datalist></td><td>isResultPresent</td></tr>
+<tr><td>if</td><td>${isResultPresent} == 1<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForVisible</td><td>css=[id*=editChange] > a<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>click</td><td>css=[id*=editChange] > a<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>waitForVisible</td><td>css=#addResultVersion<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>type</td><td>css=#addResultVersion<datalist><option></option></datalist></td><td>${newVersion}</td></tr>
+<tr><td>click</td><td>css=#addResultSubmit<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>click</td><td>css=#addResultSubmit<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td></tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td></tr>
+<tr><td>storeEval</td><td>storedVars['numberOfCases'] - 1<datalist><option></option></datalist></td><td>numberOfCases</td></tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td></tr>
+</tbody></table>
+</body>
+</html>

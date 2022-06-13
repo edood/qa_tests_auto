@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-402 Create indicator custom or from module with or without association</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>a16066e7-ad42-4950-a2ae-1e144c8e2269</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>DV360 - Check Inventory Sources Displayed</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Set last timestamp</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis<datalist><option>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-fab.filter-bar-toggle<datalist><option>css=material-fab.filter-bar-toggle</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input.search-box<datalist><option>css=input.search-box</option><option>last test error aurelien</option></datalist></td><td>26729301</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertCssCount</td><td>css=div.particle-table-row[role="row"]:not(.particle-table-last-row)<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row)</option></datalist></td><td>1</td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox</option><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option><option>css=material-select-item[aria-label="Download"] &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://www.ezyzip.com/decompresser-des-fichiers-en-ligne.html<datalist><option>http://www.ezyzip.com/decompresser-des-fichiers-en-ligne.html</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#extractFile<datalist><option>css=#extractFile</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#extractFile<datalist><option>css=#extractFile</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".zip" : ".zip"; sdfPath<datalist><option>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var sdfPath = "C:\Users\fbalhier\Downloads\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option></datalist></td><td>sdfPath</td>
+</tr>
+<tr><td>type</td><td>css=input#extractFile<datalist><option>css=input#extractFile</option></datalist></td><td>${sdfPath}</td>
+</tr>
+<tr><td>click</td><td>css=div.well &gt; form &gt; div:nth-of-type(3) &gt; button:nth-of-type(2)<datalist><option>css=div.well &gt; form &gt; div:nth-of-type(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://xmlgrid.net/csvToHtml.html<datalist><option>http://xmlgrid.net/csvToHtml.html</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".csv" : ".csv"; downloadedCsvPath<datalist><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option><option>var sdfPath = "C:\Users\fbalhier\Downloads\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['k'] &gt; 0 ? " (" + parseInt(storedVars['k']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option></datalist></td><td>downloadedCsvPath</td>
+</tr>
+<tr><td>type</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>${downloadedCsvPath}</td>
+</tr>
+<tr><td>click</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input[type="submit"]<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=table#15<datalist><option>css=table#15</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=table#15<datalist><option>css=table#15</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=td[id="1407"]<datalist><option>css=td[id="1407"]</option></datalist></td><td>timestamp</td>
+</tr>
+<tr><td>open</td><td>https://ethercalc.org/gexj5obk2bl6<datalist><option>https://ethercalc.org/gexj5obk2bl6</option><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit</option><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit#gid=1573010547</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option><option>css=#cell_A${i}</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>while</td><td>"${isGridLoaded}" == ''<datalist><option>"${isGridLoaded}" == ''</option><option>${isGridLoaded}</option><option>${isGridLoaded} != ''</option><option>"${isGridLoaded}" != ''</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option><option>css=#cell_A${i}</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${timestamp}" != ""<datalist><option>"${timestamp}" != ""</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#cell_F2<datalist><option>css=#cell_F2</option><option>css=#cell_BO2</option><option>css=cell_BO2</option><option>css=#cellF2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F2<datalist><option>css=#cell_F2</option><option>css=#cell_BO2</option><option>css=#cellF2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option><option>css=#cell_BO2</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerdown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mousedown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mouseup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>click</td>
+</tr>
+<tr><td>type</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>${timestamp}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>input</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>textInput</td>
+</tr>
+<tr><td>keyDown</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>change</td>
+</tr>
+<tr><td>keyUp</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerout</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerleave</td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F3<datalist><option>css=#cell_F3</option><option>css=#cell_BO3</option><option>css=#cell_BO2</option><option>css=#cellF3</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DV360 - Check Inventory Sources - Blacklist or Whitelist</td></tr>
+</thead>
+<tbody>
+<tr><td>storeEval</td><td>302<datalist><option>2</option><option>3</option><option>21</option><option>25</option><option>48</option><option>50</option><option>102</option><option>103</option><option>132</option><option>107</option><option>111</option><option>112</option><option>116</option><option>120</option><option>204</option><option>271</option><option>297</option><option>295</option><option>296</option><option>300</option><option>299</option><option>302</option><option>303</option><option>101</option><option>100</option><option>99</option><option>150</option><option>151</option><option>164</option><option>187</option><option>202</option><option>203</option></datalist></td><td>i</td>
+</tr>
+<tr><td>storeEval</td><td>i%100 - 2<datalist><option>i - 2</option><option>i%100 - 2</option><option>i%100 - 3</option><option>i%100 - 2 - (1 * i%100)</option><option>i%100 - (2 + (i / 100))</option><option>i%100 - (2 + Math.floor(i / 100))</option><option>i%300 - (2 + Math.floor(i / 100))</option><option>i%100 - (0 + Math.floor(i / 100))</option><option>i%100</option><option>i%100 - 2 - (0 * i%100)</option><option>100 - i%100 - 2 - (1 * i%100)</option><option>i%100 + 102 - (1 * i%100)</option><option>i%100 + 100 - 2 - (1 * i%100)</option><option>i%100 + 94 - 2 - (1 * i%100)</option><option>i%100 + 99 - 2 - (1 * i%100)</option><option>i%100 + 97 - 2 - (1 * i%100)</option><option>i%100 -  (1 * i%100)</option><option>i%100 -  2 - (1 * i%100)</option><option>i%100 </option><option>98 + i%100 -  2 - (1 * i%100)</option><option>98 + i%100</option></datalist></td><td>j</td>
+</tr>
+<tr><td>storeEval</td><td>j<datalist><option>i%100 - (2 + Math.floor(i / 100))</option><option>i - 2</option><option>i%100 - 2</option><option>i%100 - 3</option><option>i%100 - 2 - (1 * i%100)</option><option>i%100 - (2 + (i / 100))</option><option>j</option><option>j - 4</option><option>j - 3</option></datalist></td><td>s</td>
+</tr>
+<tr><td>storeEval</td><td>[]<datalist><option>css=td[id="1655"]</option><option>css=td[id="1651"]</option><option>var idsToBlacklist = []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent)</option><option>var idsToWhitelist= []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>var idsToWhitelist= []; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>[]</option></datalist></td><td>idsToWhitelist</td>
+</tr>
+<tr><td>storeEval</td><td>[]<datalist><option>[]</option><option>css=td[id="1655"]</option><option>css=td[id="1651"]</option><option>var idsToBlacklist = []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent)</option><option>var idsToWhitelist= []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>var idsToWhitelist= []; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option></datalist></td><td>idsNotDisplayed</td>
+</tr>
+<tr><td>storeEval</td><td>[]<datalist><option>[]</option><option>css=td[id="1655"]</option><option>css=td[id="1651"]</option><option>var idsToBlacklist = []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent)</option><option>var idsToWhitelist= []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>var idsToWhitelist= []; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option></datalist></td><td>idsToBlacklist</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>timestamp</td>
+</tr>
+<tr><td>while</td><td>j &lt; 10<datalist><option>i &lt; 313</option><option>j &lt; 101</option><option>j &lt; 17</option><option>j &lt; 100</option><option>j &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://ethercalc.org/8uyi7cwux8qu<datalist><option>https://ethercalc.org/8uyi7cwux8qu</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>attempts + 1<datalist><option>attempts + 1</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>if</td><td>${attempts} &gt; 30<datalist><option>${attempts} &gt; 30</option></datalist></td><td></td>
+</tr>
+<tr><td>refreshAndWait</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>while</td><td>"${isGridLoaded}" == ''<datalist><option>${isGridLoaded}</option><option>${isGridLoaded} != ''</option><option>"${isGridLoaded}" != ''</option><option>"${isGridLoaded}" == ''</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A${i}<datalist><option>css=#cell_A${i}</option></datalist></td><td>isPresent</td>
+</tr>
+<tr><td>while</td><td>${isPresent} == 0<datalist><option>${isPresent} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=div#te_scrollareav<datalist><option>css=div#te_scrollareav</option></datalist></td><td>1,1000</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>250</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A${i}<datalist><option>css=#cell_A${i}</option></datalist></td><td>isPresent</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('#cell_A${i}').scrollIntoView();<datalist><option>document.querySelector('#cell_A${i}').scrollIntoView();</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#cell_A${i}<datalist><option>css=#cell_A${i}</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A${i}<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>currentID</td>
+</tr>
+<tr><td>open</td><td>https://ethercalc.org/gexj5obk2bl6<datalist><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit</option><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit#gid=1573010547</option><option>https://ethercalc.org/gexj5obk2bl6</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>attempts + 1<datalist><option>attempts + 1</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>if</td><td>${attempts} &gt; 30<datalist><option>${attempts} &gt; 30</option></datalist></td><td></td>
+</tr>
+<tr><td>refreshAndWait</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>while</td><td>"${isGridLoaded}" == ''<datalist><option>"${isGridLoaded}" == ''</option><option>${isGridLoaded}</option><option>${isGridLoaded} != ''</option><option>"${isGridLoaded}" != ''</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A${i}</option><option>css=#cell_A1</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${timestamp}" != ""<datalist><option>"${timestamp}" != ""</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#cell_F2<datalist><option>css=#cell_BO2</option><option>css=cell_BO2</option><option>css=#cellF2</option><option>css=#cell_F2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F2<datalist><option>css=#cell_BO2</option><option>css=#cellF2</option><option>css=#cell_F2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option><option>css=#cell_BO2</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerdown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mousedown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mouseup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>click</td>
+</tr>
+<tr><td>type</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>${timestamp}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>input</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>textInput</td>
+</tr>
+<tr><td>keyDown</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>change</td>
+</tr>
+<tr><td>keyUp</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerout</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerleave</td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F3<datalist><option>css=#cell_BO3</option><option>css=#cell_BO2</option><option>css=#cellF3</option><option>css=#cell_F3</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#searchbarinput<datalist><option>css=input#searchbarinput</option></datalist></td><td>Inventory Source Targeting - Include</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#cell_BO2<datalist><option>css=cell_BO2</option><option>css=#cell_BO2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_BO2<datalist><option>css=#cell_BO2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=input.form-control.input-sm<datalist><option>css=#cell_BO2</option><option>css=input.form-control.input-sm</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerdown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mousedown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mouseup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>click</td>
+</tr>
+<tr><td>type</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>${currentID};</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>input</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>textInput</td>
+</tr>
+<tr><td>keyDown</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>change</td>
+</tr>
+<tr><td>keyUp</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerout</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerleave</td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_BO3<datalist><option>css=#cell_BO2</option><option>css=#cell_BO3</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#te_fullgrid &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(1)<datalist><option>css=#cell_BO2</option><option>css=#cell_BO3</option><option>css=input.form-control.input-sm</option><option>css=#cell_BO</option><option>css=#te_fullgrid &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)<datalist><option>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)<datalist><option>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)<datalist><option>css=body &gt; div.vex.vex-theme-flat-attack &gt; div.vex-content &gt; form &gt; div.vex-dialog-buttons &gt; input:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += parseInt(storedVars['j']) &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".csv" :  ".csv"; csvName;<datalist><option>document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1] + storedVars['i'] &gt; 1 ? "(" + storedVars['i'] + 1 + ")" + ".csv" :  + ".csv"</option><option>document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1] + storedVars['i'] &gt; 2 ? "(" + storedVars['i'] - 2 + ")" + ".csv" :  + ".csv"</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += storedVars['i'] &gt; 2 ? "(" + storedVars['i'] - 2 + ")" + ".csv" :  + ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += ${i} &gt; 2 ? "(" + storedVars['i'] - 2 + ")" + ".csv" :  + ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += ${i} &gt; 2 ? "(" + ${i} - 2) + ")" + ".csv" :  + ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += storedVars['i'] &gt; 2 ? "(" + parseInt(storedVars['i'] - 2) + ")" + ".csv" :  + ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += storedVars['i'] &gt; 2 ? "(" + parseInt(storedVars['i'] - 2) + ")" + ".csv" :  ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += storedVars['i'] &gt; 2 ? " (" + parseInt(storedVars['i'] - 2) + ")" + ".csv" :  ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".csv" :  ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += parseInt(storedVars['i'] - 2) &gt; 0 ? " (" + parseInt(storedVars['i'] - 2) + ")" + ".csv" :  ".csv"; csvName;</option><option>var csvName = document.location.href.match(/https:\/\/ethercalc\.org\/(.*)/)[1];  csvName += parseInt(storedVars['j']) &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".csv" :  ".csv"; csvName;</option></datalist></td><td>csvName</td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis<datalist><option>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-select-item[aria-label="Upload"] &gt; span &gt; span<datalist><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-select-item[aria-label="Upload"] &gt; span &gt; span<datalist><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-select-item[aria-label="Upload"] &gt; span &gt; span<datalist><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input<datalist><option>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input<datalist><option>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input<datalist><option>css=#sdf-upload &gt; focus-trap &gt; div:nth-child(2) &gt; div &gt; main &gt; file-selection &gt; div &gt; div:nth-child(2) &gt; input</option></datalist></td><td>C:\Users\fbalhier\Downloads\${csvName}</td>
+</tr>
+<tr><td>storeVisible</td><td>css=div.file-list<datalist><option>css=div.file-list</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=div.file-list<datalist><option>css=div.file-list</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.upload-button<datalist><option>css=material-button.upload-button</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=file-icon &gt; material-icon.schedule<datalist><option>css=file-icon &gt; material-icon.schedule</option><option>css=material-icon.schedule</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=file-icon &gt; material-icon.schedule<datalist><option>css=file-icon &gt; material-icon.schedule</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=file-icon &gt; material-icon.schedule<datalist><option>css=file-icon &gt; material-icon.schedule</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=file-icon &gt; material-icon@class<datalist><option>css=file-icon &gt; material-icon@class</option><option>css=file-icon &gt; material-icon</option></datalist></td><td>resultClass</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['resultClass'].match('check_circle') != null<datalist><option>storedVars['resultClass'].match('check_circle') != null</option><option>storedVars['resultClass'].match('check_circle')[0] != null</option></datalist></td><td>resultSuccess</td>
+</tr>
+<tr><td>click</td><td>css=material-icon.expand-button<datalist><option>css=material-icon.expand-button</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${resultSuccess} == 1<datalist><option>${resultSuccess} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.close-button<datalist><option>css=material-button.close-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-fab.filter-bar-toggle<datalist><option>css=material-fab.filter-bar-toggle</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input.search-box<datalist><option>css=input.search-box</option><option>last test error aurelien</option></datalist></td><td>26729301</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; ess-cell:nth-of-type(3) &gt; name-cell &gt; a<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox</option><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; ess-cell:nth-of-type(3) &gt; name-cell &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon<datalist><option>css=div.particle-content-loading</option><option>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 1</option><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon<datalist><option>css=div.particle-content-loading</option><option>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox</option><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option><option>css=div.inventory-sources-container &gt; div:nth-child(4) &gt; daux-card:nth-child(2) &gt; daux-card-section &gt; div &gt; div.card-section-content &gt; div &gt; edit-fab &gt; material-fab &gt; div &gt; material-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=public-exchange-name-cell<datalist><option>css=public-exchange-name-cell</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.all-selected-button-container &gt; material-button.selected-button').text() == "selected [0]"<datalist><option>$('div.all-selected-button-container &gt; material-button.selected-button').text() == "selected [0]"</option></datalist></td><td>isNotDisplayed</td>
+</tr>
+<tr><td>if</td><td>${isNotDisplayed} == 1<datalist><option>${isNotDisplayed} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var idsNotDisplayed = storedVars['idsNotDisplayed']; idsNotDisplayed.push(storedVars['currentID']); idsNotDisplayed<datalist><option>var idsToBlacklist = storedVars['idsToBlacklist']; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1].replace(';','')); idsToBlacklist</option><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)[1]</option><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\/)[1]</option><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1]</option><option>var idsToBlacklist = []; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1])</option><option>var idsToBlacklist = []; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1].replace(';','')); idsToBlacklist</option><option>var idsNotDisplayed = storedVars['idsNotDisplayed']; idsNotDisplayed.push(storedVars['currentID']); idsNotDisplayed</option></datalist></td><td>idsNotDisplayed</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option>css=div.pane.modal.visible &gt; div &gt; div.header &gt; material-icon &gt; i</option><option>css=div.pane.modal.visible &gt; div &gt; div.header &gt; material-icon</option><option>css=div.footer &gt; div &gt; material-yes-no-buttons &gt; material-button:nth-of-type(2) &gt; material-ripple</option><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis<datalist><option>https://displayvideo.google.com/#ng_nav/p/362434/a/3903434/c/2593516/io/7964872/lis</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button<datalist><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-select-item[aria-label="Upload"] &gt; span &gt; span<datalist><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-select-item[aria-label="Upload"] &gt; span &gt; span<datalist><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.clear-btn<datalist><option>css=material-button.clear-btn</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-fab.filter-bar-toggle<datalist><option>css=material-fab.filter-bar-toggle</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=input.search-box<datalist><option>css=input.search-box</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input.search-box<datalist><option>css=input.search-box</option><option>last test error aurelien</option></datalist></td><td>26729301</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=span.segment-highlight<datalist><option>css=span.segment-highlight</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.particle-content-loading<datalist><option>css=div.particle-content-loading</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertCssCount</td><td>css=div.particle-table-row[role="row"]:not(.particle-table-last-row)<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row)</option></datalist></td><td>1</td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox<datalist><option>css=div.particle-table-row[role="row"]:not(.particle-table-last-row) &gt; tools-cell &gt; div &gt; mat-checkbox</option><option>css=line-items &gt; div &gt; div &gt; div &gt; daux-table &gt; div:nth-child(1) &gt; daux-table-bar &gt; div &gt; daux-table-bar-right &gt; div &gt; material-menu &gt; material-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-menu.action-menu &gt; material-button.trigger-button<datalist><option>css=material-menu.action-menu &gt; material-button.trigger-button</option><option>css=material-select-item[aria-label="Upload"] &gt; span &gt; span</option><option>css=material-select-item[aria-label="Download"] &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item<datalist><option>css=menu-item-groups &gt; focus-trap &gt; div:nth-of-type(2) &gt; div:nth-of-type(4) &gt; material-select-item</option><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 1<datalist><option>${isVisible} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.progress-container<datalist><option>css=div.progress-container</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=material-button.download-button<datalist><option>css=material-button.download-button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://www.ezyzip.com/decompresser-des-fichiers-en-ligne.html<datalist><option>http://www.ezyzip.com/decompresser-des-fichiers-en-ligne.html</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#extractFile<datalist><option>css=#extractFile</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#extractFile<datalist><option>css=#extractFile</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".zip" : ".zip"; sdfPath<datalist><option>var sdfPath = "C:\Users\fbalhier\Downloads\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var sdfPath = "C:\\Users\\fbalhier\\Downloads\\SDF"; sdfPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".zip" : ".zip"; sdfPath</option></datalist></td><td>sdfPath</td>
+</tr>
+<tr><td>type</td><td>css=input#extractFile<datalist><option>css=input#extractFile</option></datalist></td><td>${sdfPath}</td>
+</tr>
+<tr><td>click</td><td>css=div.well &gt; form &gt; div:nth-of-type(3) &gt; button:nth-of-type(2)<datalist><option>css=div.well &gt; form &gt; div:nth-of-type(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=save-file-btn &gt; button<datalist><option>css=save-file-btn &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://xmlgrid.net/csvToHtml.html<datalist><option>http://xmlgrid.net/csvToHtml.html</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=span#openFileCmd &gt; input<datalist><option>css=span#openFileCmd &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".csv" : ".csv"; downloadedCsvPath<datalist><option>var sdfPath = "C:\Users\fbalhier\Downloads\SDF"; sdfPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".zip" : ".zip"; sdfPath</option><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['k'] &gt; 0 ? " (" + parseInt(storedVars['k']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['j'] &gt; 0 ? " (" + parseInt(storedVars['j']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option><option>var downloadedCsvPath = "C:\\Users\\fbalhier\\Downloads\\SDF-LineItems"; downloadedCsvPath += storedVars['s'] &gt; 0 ? " (" + parseInt(storedVars['s']) + ")" + ".csv" : ".csv"; downloadedCsvPath</option></datalist></td><td>downloadedCsvPath</td>
+</tr>
+<tr><td>type</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input#file0</option></datalist></td><td>${downloadedCsvPath}</td>
+</tr>
+<tr><td>click</td><td>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input[type="submit"]<datalist><option>css=#gridbox &gt; table &gt; tbody &gt; tr &gt; td &gt; form &gt; fieldset &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=table#15<datalist><option>css=table#15</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>1000</option><option>250</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=table#15<datalist><option>css=table#15</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=td[id="1407"]<datalist><option>css=td[id="1407"]</option></datalist></td><td>timestamp</td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('td[id="747"]').scrollIntoView()<datalist><option>document.querySelector('td[id="747"]').scrollIntoView()</option><option>$('td[id="1651"]').scrollTo()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=td[id="1651"]<datalist><option>css=td[id="1651"]</option><option>css=td[id="1655"]</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>ID to whitelist : ${idsToWhitelist}<datalist><option>ID to whitelist : ${idsToWhitelist}</option><option>ID to whitelist</option><option>ID to whitelist : ${idToWhitelist}</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${isNotDisplayed} == 0<datalist><option>${isNotDisplayed} == 1</option><option>${isNotDisplayed} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var idsToWhitelist= storedVars['idsToWhitelist']; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist<datalist><option>var idsToWhitelist= storedVars['idsToWhitelist']; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>css=td[id="1655"]</option><option>css=td[id="1651"]</option><option>var idsToBlacklist = []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent)</option><option>var idsToWhitelist= []; idsToBlacklist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option><option>var idsToWhitelist= []; idsToWhitelist.push(document.querySelector('td[id="1651"]').textContent.replace(';','')); idsToWhitelist</option></datalist></td><td>idsToWhitelist</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>s + 1<datalist><option>j + 1</option><option>i - 2</option><option>s + 1</option></datalist></td><td>s</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=errors-table &gt; div &gt; ess-table &gt; ess-particle-table &gt; div.ess-table-constraint &gt; div &gt; div.ess-table-canvas &gt; div.particle-table-row.particle-table-last-row &gt; ess-cell:nth-child(1) &gt; text-field<datalist><option>css=errors-table &gt; div &gt; ess-table &gt; ess-particle-table &gt; div.ess-table-constraint &gt; div &gt; div.ess-table-canvas &gt; div.particle-table-row.particle-table-last-row &gt; ess-cell:nth-child(1) &gt; text-field</option></datalist></td><td>error</td>
+</tr>
+<tr><td>storeEval</td><td>var idsToBlacklist = storedVars['idsToBlacklist']; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1].replace(';','')); idsToBlacklist<datalist><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)[1]</option><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\/)[1]</option><option>storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1]</option><option>var idsToBlacklist = []; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1])</option><option>var idsToBlacklist = []; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1].replace(';','')); idsToBlacklist</option><option>var idsToBlacklist = storedVars['idsToBlacklist']; idsToBlacklist .push(storedVars['error'].match(/Not a valid inventory source ID \((\d+)\)/)[1].replace(';','')); idsToBlacklist</option></datalist></td><td>idsToBlacklist</td>
+</tr>
+<tr><td>echo</td><td>IDs to blacklist : ${idsToBlacklist}<datalist><option>ID to blacklist</option><option>ID to blacklist : ${idToBlacklist}</option><option>ID to blacklist : ${idsToBlacklist}</option><option>IDs to blacklist : ${idsToBlacklist}</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>timestamp</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>j + 1<datalist><option>i - 2</option><option>j + 1</option></datalist></td><td>j</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['i'] + 1<datalist><option>i - 2</option><option>i + 1</option><option>storedVars['i'] + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>Setting last timestamp for future runs<datalist><option>Setting last timestamp for future runs</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://ethercalc.org/gexj5obk2bl6<datalist><option>https://ethercalc.org/gexj5obk2bl6</option><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit</option><option>https://docs.google.com/spreadsheets/d/1d3stDdS-K-aFHFPIvammegFEvnqrmpdmfNTz37YxQ10/edit#gid=1573010547</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>storeEval</td><td>attempts + 1<datalist><option>attempts + 1</option></datalist></td><td>attempts</td>
+</tr>
+<tr><td>if</td><td>${attempts} &gt; 30<datalist><option>${attempts} &gt; 30</option></datalist></td><td></td>
+</tr>
+<tr><td>refreshAndWait</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>while</td><td>${isVisible} == 0<datalist><option>${isVisible} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>250<datalist><option>250</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option></datalist></td><td>isVisible</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option><option>css=#cell_A${i}</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>while</td><td>"${isGridLoaded}" == ''<datalist><option>"${isGridLoaded}" == ''</option><option>${isGridLoaded}</option><option>${isGridLoaded} != ''</option><option>"${isGridLoaded}" != ''</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#cell_A1<datalist><option>css=#cell_A1</option><option>css=#cell_A${i}</option></datalist></td><td>isGridLoaded</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${timestamp}" != ""<datalist><option>"${timestamp}" != ""</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=#cell_F2<datalist><option>css=#cell_F2</option><option>css=#cell_BO2</option><option>css=cell_BO2</option><option>css=#cellF2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F2<datalist><option>css=#cell_F2</option><option>css=#cell_BO2</option><option>css=#cellF2</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAt</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option><option>css=#cell_BO2</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerdown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mousedown</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>mouseup</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>click</td>
+</tr>
+<tr><td>type</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>${timestamp}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>input</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>textInput</td>
+</tr>
+<tr><td>keyDown</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>change</td>
+</tr>
+<tr><td>keyUp</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>\13</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerout</td>
+</tr>
+<tr><td>fireEvent</td><td>css=input.form-control.input-sm<datalist><option>css=input.form-control.input-sm</option></datalist></td><td>pointerleave</td>
+</tr>
+<tr><td>clickAt</td><td>css=#cell_F3<datalist><option>css=#cell_F3</option><option>css=#cell_BO3</option><option>css=#cell_BO2</option><option>css=#cellF3</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-295 Delete Planned Rule Already Executed</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>915b62fa-3c06-421e-a5ed-a9a6ca7cb692</testCaseGuid>
+</TestCaseEntity>

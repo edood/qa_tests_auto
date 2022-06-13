@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Test_Line1_Cersei_Video_Feb_Juin</name>
+   <tag></tag>
+   <elementGuidId>ab9950eb-60b6-4224-9223-63b9a09b9cdc</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//no-kennedy[@id='LineItems-plugin-2-id']/line-items/div/div/div/daux-table/progress-bar-frame/div/div/ess-table/ess-particle-table/div/div/div[2]/div[5]/ess-cell[3]/name-cell/a</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>name _ngcontent-fnw-94</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>#ng_nav/p/362434/a/3903435/c/2593532/io/7964886/li/24828742</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Test_Line1_Cersei_Video_Feb_Juin</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;LineItems-plugin-2-id&quot;)/line-items[@class=&quot;_nghost-fnw-49&quot;]/div[@class=&quot;line-items-container _ngcontent-fnw-49&quot;]/div[@class=&quot;line-items-component-content _ngcontent-fnw-49&quot;]/div[@class=&quot;line-items-table-container _ngcontent-fnw-49&quot;]/daux-table[@class=&quot;_ngcontent-fnw-49 _nghost-fnw-35&quot;]/progress-bar-frame[@class=&quot;_ngcontent-fnw-35&quot;]/div[1]/div[@class=&quot;_ngcontent-fnw-35&quot;]/ess-table[@class=&quot;_ngcontent-fnw-35 _nghost-fnw-36 horizontal-scroll-optimization&quot;]/ess-particle-table[@class=&quot;ess-container _ngcontent-fnw-36&quot;]/div[@class=&quot;ess-table-constraint _ngcontent-fnw-36&quot;]/div[@class=&quot;ess-table-wrapper _ngcontent-fnw-36&quot;]/div[@class=&quot;ess-table-canvas mouse-active _ngcontent-fnw-36 density-cozy particle-table-noborder&quot;]/div[@class=&quot;particle-table-row active-row&quot;]/ess-cell[@class=&quot;resizable&quot;]/name-cell[@class=&quot;_nghost-fnw-94&quot;]/a[@class=&quot;name _ngcontent-fnw-94&quot;]</value>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//no-kennedy[@id='LineItems-plugin-2-id']/line-items/div/div/div/daux-table/progress-bar-frame/div/div/ess-table/ess-particle-table/div/div/div[2]/div[5]/ess-cell[3]/name-cell/a</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:link</name>
+      <type>Main</type>
+      <value>//a[contains(text(),'Test_Line1_Cersei_Video_Feb_Juin')]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CPA'])[2]/following::a[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Convs.'])[2]/following::a[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='€0.00'])[1]/preceding::a[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='€0.00'])[2]/preceding::a[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '#ng_nav/p/362434/a/3903435/c/2593532/io/7964886/li/24828742')]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[5]/ess-cell[3]/name-cell/a</value>
+   </webElementXpaths>
+</WebElementEntity>

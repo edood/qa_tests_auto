@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Delete report</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup DB + Login</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>-<datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=e01e8392215c0a5f4a3e5bbfcb54d0c5&amp;old_usr=tradelab_dev<datalist><option></option></datalist></td><td>DB_URL</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>login<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}<datalist><option></option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=button.logout<datalist><option></option></datalist></td><td>isLoggedIn</td>
+</tr>
+<tr><td>if</td><td>${isLoggedIn} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.logout<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.logout<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Delete setup</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td>5000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-login &gt; div &gt; section &gt; form &gt; div:nth-child(2) &gt; input<datalist><option></option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>css=div &gt; section &gt; form &gt; div:nth-child(3) &gt; input<datalist><option></option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=form &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=folders-list &gt; folder-element:nth-child(3) &gt; div &gt; div.folder-header &gt; button &gt; span &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=folders-list &gt; folder-element<datalist><option></option></datalist></td><td>numberOfFolders</td>
+</tr>
+<tr><td>storeEval</td><td>numberOfFolders + 2<datalist><option></option></datalist></td><td>numberOfFolders </td>
+</tr>
+<tr><td>storeEval</td><td>3<datalist><option></option></datalist></td><td>inc</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=folders-list &gt; folder-element:nth-child(3) &gt; div &gt; div.folder-content.open &gt; div:nth-child(1) &gt; span &gt; a<datalist><option></option></datalist></td><td>isReportPresent</td>
+</tr>
+<tr><td>while</td><td>${isReportPresent} == 0 || ${inc} &gt; numberOfFolders<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=folders-list &gt; folder-element:nth-child(${inc}) &gt; div &gt; div.folder-header &gt; button &gt; span &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=folders-list &gt; folder-element:nth-child(${inc}) &gt; div &gt; div.folder-content.open &gt; div:nth-child(1) &gt; span &gt; a<datalist><option></option></datalist></td><td>isReportPresent</td>
+</tr>
+<tr><td>storeEval</td><td>inc + 1<datalist><option></option></datalist></td><td>inc</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.folder-content.open &gt; div &gt; span &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.folder-content.open &gt; div &gt; span &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeLocation</td><td>url<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['url'].split('\/'); tab[6];<datalist><option></option></datalist></td><td>reportID</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; header &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=confirm-dialog &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=snack-bar-container &gt; simple-snack-bar &gt; span<datalist><option></option></datalist></td><td>Report successfully deleted</td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-content &gt; app-home &gt; div &gt; img<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav &gt; div &gt; div.button-container &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>1500<datalist><option></option></datalist></td><td>pause1500</td>
+</tr>
+<tr><td>store</td><td>500<datalist><option></option></datalist></td><td>pause500</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>0<datalist><option></option></datalist></td><td>pause1500</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option></option></datalist></td><td>pause500</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${DB_URL}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td>50<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=fieldset &gt; div:nth-child(2) &gt; input <datalist><option></option></datalist></td><td>${dbLogin}</td>
+</tr>
+<tr><td>pause</td><td>${pause500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=fieldset &gt; div:nth-child(3) &gt; input <datalist><option></option></datalist></td><td>${dbPassword}</td>
+</tr>
+<tr><td>storeElementPresent</td><td>id=select_server<datalist><option></option></datalist></td><td>isStaging</td>
+</tr>
+<tr><td>if</td><td>${isStaging} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=select_server<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#select_server &gt; option:nth-child(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topmenu &gt; li:nth-child(2) &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${pause1500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td>SELECT * FROM tradelab_dev.folio_document where folio_document_id = ${reportID};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.success<datalist><option></option></datalist></td><td>resultmysql</td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['resultmysql'].split('.'); tab[0];<datalist><option></option></datalist></td><td>result</td>
+</tr>
+<tr><td>verifyEval</td><td>"MySQL a retourné un résultat vide (aucune ligne)"<datalist><option></option></datalist></td><td>MySQL a retourné un résultat vide (aucune ligne)</td>
+</tr>
+<tr><td>click</td><td>css=#topmenu &gt; li:nth-child(2) &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${pause1500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td>SELECT * FROM tradelab_dev.folio_document_iteration where folio_document_id = ${reportID};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.success<datalist><option></option></datalist></td><td>resultmysql</td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['resultmysql'].split('.'); tab[0];<datalist><option></option></datalist></td><td>result</td>
+</tr>
+<tr><td>verifyEval</td><td>"MySQL a retourné un résultat vide (aucune ligne)"<datalist><option></option></datalist></td><td>MySQL a retourné un résultat vide (aucune ligne)</td>
+</tr>
+<tr><td>click</td><td>css=#topmenu &gt; li:nth-child(2) &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${pause1500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td>SELECT * FROM tradelab_dev.folio_subreport where folio_document_id = ${reportID};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.success<datalist><option></option></datalist></td><td>resultmysql</td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['resultmysql'].split('.'); tab[0];<datalist><option></option></datalist></td><td>result</td>
+</tr>
+<tr><td>verifyEval</td><td>"MySQL a retourné un résultat vide (aucune ligne)"<datalist><option></option></datalist></td><td>MySQL a retourné un résultat vide (aucune ligne)</td>
+</tr>
+<tr><td>click</td><td>css=#topmenu &gt; li:nth-child(2) &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${pause1500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td>SELECT * FROM tradelab_dev.folio_document_schedule where folio_document_id = ${reportID};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.success<datalist><option></option></datalist></td><td>resultmysql</td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['resultmysql'].split('.'); tab[0];<datalist><option></option></datalist></td><td>result</td>
+</tr>
+<tr><td>verifyEval</td><td>"MySQL a retourné un résultat vide (aucune ligne)"<datalist><option></option></datalist></td><td>MySQL a retourné un résultat vide (aucune ligne)</td>
+</tr>
+<tr><td>pause</td><td>${pause1500}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topmenu &gt; li:nth-child(2) &gt; a<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option></option></datalist></td><td>SELECT * FROM tradelab_dev.folio_document_user where folio_document_id = ${reportID};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.success<datalist><option></option></datalist></td><td>resultmysql</td>
+</tr>
+<tr><td>storeEval</td><td>var tab=storedVars['resultmysql'].split('.'); tab[0];<datalist><option></option></datalist></td><td>result</td>
+</tr>
+<tr><td>verifyEval</td><td>"MySQL a retourné un résultat vide (aucune ligne)"<datalist><option></option></datalist></td><td>MySQL a retourné un résultat vide (aucune ligne)</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

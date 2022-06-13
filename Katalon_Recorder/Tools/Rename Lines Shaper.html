@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Rename Lines Shaper</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Rename Lines Shaper</td></tr>
+</thead>
+<tbody>
+<tr><td>storeEval</td><td>1<datalist><option>1</option><option>2</option></datalist></td><td>i</td>
+</tr>
+<tr><td>storeCssCount</td><td>css=#tree-list &gt; div &gt; div.io-container &gt; div&gt; div<datalist><option>css=div.ess-edit-icon-wrapper &gt; div.ess-edit-icon:not(.ess-dropdown-icon)</option><option>css=#tree-list &gt; div &gt; div.io-container &gt; div&gt; div</option></datalist></td><td>maxItems</td>
+</tr>
+<tr><td>storeEval</td><td>maxItems + 1<datalist><option>i + 1</option><option>1</option><option>2</option><option>maxItems + 1</option></datalist></td><td>maxItems</td>
+</tr>
+<tr><td>while</td><td>${i} &lt; ${maxItems}<datalist><option>${i} &lt; 23</option><option>${i} &gt; 0</option><option>${i} &lt; maxItems</option><option>${i} &lt; ${maxItems}</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>i + 1<datalist><option>1</option><option>2</option><option>i + 1</option></datalist></td><td>j</td>
+</tr>
+<tr><td>click</td><td>css=#tree-list &gt; div &gt; div.io-container &gt; div:nth-child(${j}) &gt; div<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Test_Line_Arya_Display_Feb_August'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='CPA'])[1]/following::div[12]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='-'])[1]/preceding::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='-'])[2]/preceding::div[1]</option><option>//no-kennedy[@id='LineItems-plugin-2-id']/line-items/div/div/div/daux-table/progress-bar-frame/div/div/ess-table/ess-particle-table/div/div/div[2]/div[3]/ess-cell[3]/div/div</option><option>//ess-cell[3]/div/div</option><option>css=ess-cell.resizable &gt; div.ess-edit-icon-wrapper &gt; div.ess-edit-icon</option><option>css=div.ess-edit-icon-wrapper &gt; div.ess-edit-icon:nth-child(${i}):not(.ess-dropdown-icon)</option><option>css=#tree-list &gt; div &gt; div.io-container &gt; div&gt; div</option><option>css=#tree-list &gt; div &gt; div.io-container &gt; div:nth-child(i} &gt; div</option><option>css=#tree-list &gt; div &gt; div.io-container &gt; div:nth-child(${i}) &gt; div</option><option>css=#tree-list &gt; div &gt; div.io-container &gt; div:nth-child(${j}) &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-name &gt; div &gt; input<datalist><option>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-name &gt; div &gt; input</option></datalist></td><td>Test_Auto_Line_Item_${i}</td>
+</tr>
+<tr><td>click</td><td>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-start_date &gt; div &gt; div.ivu-date-picker-rel &gt; div &gt; input<datalist><option>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-start_date &gt; div &gt; div.ivu-date-picker-rel &gt; div &gt; input</option></datalist></td><td>01 Jul 2019</td>
+</tr>
+<tr><td>click</td><td>css=span.ivu-date-picker-cells-cell-today<datalist><option>css=span.ivu-date-picker-cells-cell-today</option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-status &gt; select<datalist><option>css=#field-form-by-tier &gt; div:nth-child(1) &gt; div &gt; div.form-item.field-status &gt; select</option></datalist></td><td>value=Active</td>
+</tr>
+<tr><td>storeEval</td><td>i + 1<datalist><option>i + 1</option><option>i - 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-401 Create_Update indicator at Association panel</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>f5965f0a-4682-4c25-abd4-8495effccbae</testCaseGuid>
+</TestCaseEntity>

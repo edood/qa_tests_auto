@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-271 bulk duplicate activate pause</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>b981b1c5-1e48-41ff-aad8-89c4bec46ecf</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>0 - Config</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Global</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>saasLogin</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>saasPassword</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>apnLogin</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>apnPassword</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>dbLogin</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>dbPassword</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Reportfolio</td></tr>
+</thead>
+<tbody>
+<tr><td>echo</td><td>Le chemin ci-dessous doit être entier depuis la racine, et correspond au dossier versionné "Reportfolio/CSV &amp; Template"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>xxxxx\Reportfolio\CSV &amp; Template<datalist><option></option></datalist></td><td>csvXlsFolder</td>
+</tr>
+<tr><td>echo</td><td>0 si vous ne voulez pas télécharger le rapport XLS à la fin de chaque cas de test. 1 sinon.<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>downloadReport</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer</td></tr>
+</thead>
+<tbody>
+<tr><td>echo</td><td>Examples =&gt;  CRF Banque - Tradelab (391320) // Boursorama (845763) // SFR SaaS (1547186)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>advertiserName</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>appnexusAdvertiserID</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer DV360</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>adv_id</td>
+</tr>
+<tr><td>echo</td><td>=== Template : Line, Creative, URL/App, Exchange, Inventory Source ===<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>template</td>
+</tr>
+<tr><td>echo</td><td>=== Date range =&gt;: 1 = Yesterday ; 2 = Last 2 days ; 3 = Last 7 days ; 4 = Last 30 days ; 5 = Custom ===<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>dateRange</td>
+</tr>
+<tr><td>echo</td><td>=== Day of the month example (Custom) : 1 ===<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>startDay</td>
+</tr>
+<tr><td>echo</td><td>=== Day of the month example (Custom) : 15 ===<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>endDay</td>
+</tr>
+</tbody></table>
+</body>
+</html>

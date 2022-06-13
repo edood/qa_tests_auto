@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>RGPD Generic Banner Checks</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RGPD Generic Banner Checks</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://tradelab.com/<datalist><option>http://tradelab.com/</option><option>http://tradelab.com/fr/</option><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.fr</option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotCookieByName</td><td>gdpr[allowed_cookies]<datalist><option>css=div.gdpr-privacy-bar@style</option><option>gdpr[allowed_cookies]</option></datalist></td><td>["wordpress","pll_language","gdpr","_ga","pardot","vimeo"]</td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span<datalist><option>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>500</option><option>750</option><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span<datalist><option>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span<datalist><option>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertCookieByName</td><td>gdpr[allowed_cookies]<datalist><option>gdpr[allowed_cookies]</option><option>css=div.gdpr-privacy-bar@style</option></datalist></td><td>["wordpress","pll_language","gdpr","_ga","pardot","vimeo"]</td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-privacy-bar<datalist><option>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span</option><option>css=div.gdpr-privacy-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-privacy-bar<datalist><option>css=div.gdpr-privacy-bar &gt; div &gt; div.gdpr-right &gt; span</option><option>css=div.gdpr-privacy-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForAttribute</td><td>css=div.gdpr-privacy-bar@style<datalist><option>css=div.gdpr-privacy-bar@style</option></datalist></td><td>background-color: rgba(0, 0, 0, 0.9); outline: rgb(255, 255, 255) none 0px; display: none;</td>
+</tr>
+<tr><td>click</td><td>css=#RTB &gt; div &gt; div &gt; img<datalist><option>css=#RTB &gt; div &gt; div &gt; img</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>assertAttribute</td><td>css=div.gdpr-privacy-bar@style<datalist><option>css=div.gdpr-privacy-bar@style</option></datalist></td><td>display: none;</td>
+</tr>
+<tr><td>assertCookieByName</td><td>gdpr[allowed_cookies]<datalist><option>gdpr[allowed_cookies]</option></datalist></td><td>["wordpress","pll_language","gdpr","_ga","pardot","vimeo"]</td>
+</tr>
+<tr><td>open</td><td>http://tradelab.com/programmatique/<datalist><option>http://tradelab.com/</option><option>http://tradelab.com/fr/</option><option>http://tradelab.com/programmatique/</option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.fr</option></datalist></td><td></td>
+</tr>
+<tr><td>deleteAllVisibleCookies</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>3000</option><option>2000</option><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option><option>https://my-data.tradelab.fr/?lang=${currentLabel}</option><option>http://tradelab.com/my-data/</option><option>https://codepen.io/nfxpnk/pen/vERyxK</option><option>https://my-data.tradelab.fr/?lang=${langue}</option><option>http://tradelab.com/${currentLabel}/</option><option>http://tradelab.com/programmatique/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div.text-center.head-title &gt; img").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div.text-center.head-title &gt; img").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div &gt; h1").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div &gt; h1").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div:nth-child(2)").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#notmenu &gt; div:nth-child(3) &gt; div:nth-child(2)").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#flikr").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#flikr").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#flikr-12 &gt; div:nth-child(1) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(1)").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#flikr-12 &gt; div:nth-child(1) &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; div:nth-child(1)").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#flikr-12 &gt; div:nth-child(2)").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#flikr-12 &gt; div:nth-child(2)").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>3000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("#flikr-12 &gt; div:nth-child(3)").scrollIntoView()<datalist><option>document.querySelector("#flikr-12 &gt; div:nth-child(2)").scrollIntoView()</option><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("#flikr-12 &gt; div:nth-child(3)").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>3000</option><option>2000</option><option>1000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector("div.footer-flikr").scrollIntoView()<datalist><option>document.querySelector("ul#menu-menu-footer &gt; li &gt; a.gdpr-preferences").scrollIntoView()</option><option>document.querySelector("div.footer-flikr").scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>1000</option><option>3000</option><option>2000</option><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.gdpr-privacy-bar<datalist><option>css=div.gdpr-privacy-bar@style</option><option>css=div.gdpr-privacy-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.gdpr-privacy-bar<datalist><option>css=div.gdpr-privacy-bar@style</option><option>css=div.gdpr-privacy-bar</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

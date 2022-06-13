@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Reportfolio - Regenerate XLS</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup XLSX + Login</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>${csvXlsFolder}\APN.csv<datalist><option></option></datalist></td><td>ApnCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template.xlsx<datalist><option></option></datalist></td><td>templateFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template Insert a Table.xlsx<datalist><option></option></datalist></td><td>templateInsertTableFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template.xlsm<datalist><option></option></datalist></td><td>templateXLSMFullPath</td>
+</tr>
+<tr><td>store</td><td>-<datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>login<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}<datalist><option></option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=button.logout<datalist><option></option></datalist></td><td>isLoggedIn</td>
+</tr>
+<tr><td>if</td><td>${isLoggedIn} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}${tiret}${currentWebsite}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.logout<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.logout<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option></option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option></option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option></option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option></option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create folder</td></tr>
+</thead>
+<tbody>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-folder"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-folder"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option></option></datalist></td><td>Test auto - Regenerate XLS</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create report - Rename report</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Report Creation</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>APN Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option></option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option></option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option></option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option></option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option></option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>6000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - First Renaming</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Check regeneration mail - All</td></tr>
+</thead>
+<tbody>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Report Creation from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>reportCreationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - First Renaming from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>reportRenamingMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>storeEval</td><td>document.title<datalist><option></option></datalist></td><td>currentTitle</td>
+</tr>
+<tr><td>openWindow</td><td>https://mail.google.com/mail/u/0/#search/from%3A(reportfolio%40tradelab.fr)+subject%3A(New+report)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://mail.google.com/mail/u/0/#search/from%3A(reportfolio%40tradelab.fr)+subject%3A(New+report)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowMaximize</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>30<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>15<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>while</td><td>("${firstMailTitle}" != "${reportRenamingMailTitle}" || "${secondMailTitle}" != "${reportCreationMailTitle}") &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>${reportCreationMailTitle}</td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${reportRenamingMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(2) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div:nth-of-type(2) &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.title<datalist><option></option></datalist></td><td>windowTitle</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Template change XLSX</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; label &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option></option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Template change XLSX from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>30<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Template change XLSM</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; label &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option></option></datalist></td><td>${templateXLSMFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Template change XLSM from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Fail change template</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; label &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option></option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container.mat-snack-bar-error &gt; simple-snack-bar<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Fail change template from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>while</td><td>("${firstMailTitle}" == "${regenerationMailTitle}" || "${secondMailTitle}" == "${regenerationMailTitle}") &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertNotEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>assertNotEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(2) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div:nth-of-type(2) &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option></option></datalist></td><td>isSubreportCreated</td>
+</tr>
+<tr><td>while</td><td>${isSubreportCreated} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option></option></datalist></td><td>isSubreportCreated</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(2) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(2) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>APN Subreport 2</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(2) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option></option></datalist></td><td>${templateInsertTableFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option></option></datalist></td><td>9</td>
+</tr>
+<tr><td>fireEvent</td><td>css=tr:nth-of-type(2) &gt; td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option></option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option></option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Delete subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet &gt; div &gt; div.options &gt; button &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-container &gt; div &gt; div &gt; div &gt; div &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=confirm-dialog &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Delete subreport from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Start from row</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt;  contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(1) &gt; input<datalist><option></option></datalist></td><td>2</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Start from row from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt;div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Exclude last</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; input<datalist><option></option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Exclude last from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Separator</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select<datalist><option></option></datalist></td><td>value=;</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Separator from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Sheet number</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option></option></datalist></td><td>10</td>
+</tr>
+<tr><td>fireEvent</td><td>css=tr:nth-of-type(1) &gt; td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option></option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Sheet number from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>30<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Insert a table (check)</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>pause</td><td>6000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt;td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Insert a table (check) from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>while</td><td>("${firstMailTitle}" != "${regenerationMailTitle}" || "${secondMailTitle}" == "${regenerationMailTitle}") &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>assertNotEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(2) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div:nth-of-type(2) &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt;div &gt;  contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Insert a table (uncheck)</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt;td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Insert a table (uncheck) from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt;div &gt;  contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Reset the sheet (check)</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt;td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Reset the sheet (check) from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Reset the sheet (uncheck)</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt;td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Reset the sheet (uncheck) from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>while</td><td>"${firstMailTitle}" != "${regenerationMailTitle}" &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; i<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>Test auto - Report - Regenerate XLS - Cancel XLS changes</td>
+</tr>
+<tr><td>fireEvent</td><td>css=mat-sidenav-container &gt; mat-sidenav-content &gt; app-document &gt; section &gt; header &gt; div &gt; contenteditable &gt; div &gt; input<datalist><option></option></datalist></td><td>blur</td>
+</tr>
+<tr><td>pause</td><td>6000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt;td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button:nth-of-type(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"New report Test auto - Report - Regenerate XLS - Cancel XLS changes from " + "${saasLogin}" + "@tradelab.fr"<datalist><option></option></datalist></td><td>regenerationMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>window.location.href<datalist><option></option></datalist></td><td>currentURL</td>
+</tr>
+<tr><td>selectWindow</td><td>title=${windowTitle}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>windowFocus</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>20<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>while</td><td>("${firstMailTitle}" != "${regenerationMailTitle}" || "${secondMailTitle}" == "${regenerationMailTitle}") &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.Cq &gt; div &gt; div &gt; div:nth-child(5) &gt; div &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>firstMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>secondMailTitle</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['remainingAttempts'] - 1<datalist><option></option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[0].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>assertNotEval</td><td>$('div.Cp &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span')[1].innerText<datalist><option></option></datalist></td><td>${regenerationMailTitle}</td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(1) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.Cp &gt; div &gt; table &gt; tbody &gt; tr:nth-of-type(2) &gt; td:nth-of-type(6) &gt; div &gt; div &gt; div:nth-of-type(2) &gt; span &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

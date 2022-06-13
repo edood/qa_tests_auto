@@ -1,0 +1,22 @@
+steps:
+    - name: 'gcr.io/cloud-builders/gsutil'
+      entrypoint: 'bash'
+      args:
+      - -c
+      - |
+         gsutil cp gs://bkt-katalon-$_ENV-eu-qa-auto-test/katalon-report-uploader-0.0.5.jar /workspace
+    -  name: 'gcr.io/cloud-builders/docker'
+       entrypoint: 'bash'
+       args:
+       - '-c'
+       - |
+          docker run -v /workspace:/project katalonstudio/katalon bash -c 'IFS=$'/';if [ -z "$_SPECIFIC" ];then for i in $(find /project/Katalon_Studio/$_PROJECT_PATH/Test\ Suites/ -name "*.ts" | rev | cut -d '/' -f1 | rev | tr "\n" "/");do testsuite=`echo $i | cut -d '.' -f1`;/katalon/scripts/katalonc.sh  -projectPath=/project/Katalon_Studio/$_PROJECT_PATH  -browserType="Chrome" -apiKey=$_API_KEY -retry=0 -statusDelay=15 -testSuitePath="Test Suites/$testsuite" -executionProfile=$_PROFILE || echo "helloLL"; done;else /katalon/scripts/katalonc.sh  -projectPath=/project/Katalon_Studio/$_PROJECT_PATH  -browserType="Chrome" -apiKey=$_API_KEY -retry=0 -statusDelay=15 -testSuitePath="Test Suites/$_SPECIFIC" -executionProfile=$_PROFILE || echo "helloLL";fi'
+    -  name: 'gcr.io/cloud-builders/javac'
+       entrypoint: 'bash'
+       args:
+       - '-c'
+       - | 
+         java -jar katalon-report-uploader-0.0.5.jar  --kit.server.api=https://analytics.katalon.com  --projectId=$_PROJECTID --path="/workspace/Katalon_Studio/$_PROJECT_PATH/Reports" --email=$_EMAIL --password=$_PASSWORD --type="katalon"
+options:
+  machineType: 'N1_HIGHCPU_32'
+timeout: 900s

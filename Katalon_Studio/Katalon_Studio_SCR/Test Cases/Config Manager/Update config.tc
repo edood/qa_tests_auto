@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Given I'm a trader
+when I log to the screenbox
+And I select an advertiser with configs already created
+And I select a first config
+And I edit the config name
+And I add a site on config selected
+And I click on save config
+And I check if a toast message is displayed
+And I select a second config
+And I edit the config site title, site url, device
+And I click on save config
+And I check if a toast message is displayed</description>
+   <name>Update config</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>5833fa95-a866-439c-afaf-8c8f4d26372a</testCaseGuid>
+</TestCaseEntity>

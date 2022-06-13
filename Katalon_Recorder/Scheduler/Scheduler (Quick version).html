@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Scheduler (Quick version)</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup + Login + Advertiser</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>${currentEnvironment}-saas.tradelab.fr<datalist><option>${currentEnvironment}-saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td>3500<datalist><option>3500</option></datalist></td><td>waitForSync</td>
+</tr>
+<tr><td>store</td><td>30<datalist><option>30</option></datalist></td><td>boostValue</td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>storeEval</td><td>var appnexusUrl = (currentEnvironment == "staging" || currentEnvironment == "dev"  || currentEnvironment.includes("shared")) ? "https://console-test.appnexus.com" : "https://console.appnexus.com" ; appnexusUrl<datalist><option>var appnexusUrl = (currentEnvironment == "staging" || currentEnvironment == "dev"  || currentEnvironment.includes("shared")) ? "https://console-test.appnexus.com" : "https://console.appnexus.com" ; appnexusUrl</option></datalist></td><td>appnexusURL</td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/login<datalist><option>${appnexusURL}/login</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option>css=.anx.btn.btn-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option>css=#anxs-login-username</option></datalist></td><td>${apnLogin}</td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option>css=#anxs-login-password</option></datalist></td><td>${apnPassword}</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option>css=.anx.btn.btn-login</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>path=/, domain=.${currentWebsite}<datalist><option>path=/, domain=.${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option>0</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>while</td><td>${sessionRefreshed} == 0<datalist><option>${sessionRefreshed} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>open</td><td>https://${currentWebsite}/${page}<datalist><option>https://${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>id=username<datalist><option>id=username</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=#login &gt; button<datalist><option>css=#login &gt; button</option></datalist></td><td>click</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.adv-autocomplete<datalist><option>css=.adv-autocomplete</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "Tradelab recrutement"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option>document.querySelector('.adv-autocomplete').value = "Tradelab recrutement"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>1881659<datalist><option>1881659</option></datalist></td><td>appnexusAdvertiserID</td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=div.loader<datalist><option>css=div.loader</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>scheduler<datalist><option>scheduler</option></datalist></td><td>page</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create and Edit Schedule (Bid - Creative)</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentWebsite}/${page}<datalist><option>https://${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; mat-progress-bar<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; mat-progress-bar</option><option>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div</option><option>css=schedule-list &gt; div &gt; div.list-container</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div</option><option>css=schedule-list &gt; div &gt; div.list-container</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div</option><option>css=schedule-list &gt; div &gt; div.list-container &gt; mat-progress-bar</option><option>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div</option><option>css=schedule-list &gt; div &gt; div.list-container</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=ul.schedules &gt; li<datalist><option>css=ul.schedules &gt; li</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>while</td><td>numberOfSchedules &gt; 0<datalist><option>numberOfSchedules &gt; 0</option><option>numberOfSchedules &gt; 0 &amp;&amp; ${scheduleIsPresent} == false</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; button &gt; span<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; button &gt; span</option><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)</option><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)</option><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(1)</option><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=confirmation-modal &gt; div &gt; button:nth-child(2)<datalist><option>css=confirmation-modal &gt; div &gt; button:nth-child(2)</option><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=confirmation-modal &gt; div &gt; button:nth-child(2)<datalist><option>css=confirmation-modal &gt; div &gt; button:nth-child(2)</option><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=confirmation-modal &gt; div &gt; button:nth-child(2)<datalist><option>css=confirmation-modal &gt; div &gt; button:nth-child(2)</option><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['numberOfSchedules'] - 1<datalist><option>storedVars['numberOfSchedules'] - 1</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-list &gt; div.schedule-list &gt; div.list-container &gt; button &gt; mat-icon<datalist><option>css=schedule-list &gt; div.schedule-list &gt; div.list-container &gt; button &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-list &gt; div.schedule-list &gt; div.list-container &gt; button &gt; mat-icon<datalist><option>css=schedule-list &gt; div.schedule-list &gt; div.list-container &gt; button &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=bid-boost-percentage &gt; input<datalist><option>css=bid-boost-percentage &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=bid-boost-percentage &gt; input<datalist><option>css=bid-boost-percentage &gt; input</option></datalist></td><td>${boostValue}</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(1) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(1) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-child(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-child(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>if</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-child(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-child(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.cdk-overlay-backdrop<datalist><option>css=.cdk-overlay-backdrop</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>if</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(3) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(3) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.mat-pseudo-checkbox-checked<datalist><option>css=.mat-pseudo-checkbox-checked</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-pseudo-checkbox-checked<datalist><option>css=.mat-pseudo-checkbox-checked</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-pseudo-checkbox-checked<datalist><option>css=.mat-pseudo-checkbox-checked</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-pseudo-checkbox-checked<datalist><option>css=.mat-pseudo-checkbox-checked</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-pseudo-checkbox-checked<datalist><option>css=.mat-pseudo-checkbox-checked</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option:nth-of-type(1)<datalist><option>css=mat-option:nth-of-type(1)</option></datalist></td><td>boostedCpmCpcCampaignId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['boostedCpmCpcCampaignId'].match(/\((\d+)\)/)[1]<datalist><option>storedVars['boostedCpmCpcCampaignId'].match(/\((\d+)\)/)[1]</option></datalist></td><td>boostedCpmCpcCampaignId</td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option:nth-of-type(4)<datalist><option>css=mat-option:nth-of-type(4)</option></datalist></td><td>boostedCpmBaseOnCampaignId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['boostedCpmBaseOnCampaignId'].match(/\((\d+)\)/)[1]<datalist><option>storedVars['boostedCpmBaseOnCampaignId'].match(/\((\d+)\)/)[1]</option></datalist></td><td>boostedCpmBaseOnCampaignId</td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option:nth-of-type(5)<datalist><option>css=mat-option:nth-of-type(5)</option></datalist></td><td>boostedCpmBaseOffCampaignId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['boostedCpmBaseOffCampaignId'].match(/\((\d+)\)/)[1]<datalist><option>storedVars['boostedCpmBaseOffCampaignId'].match(/\((\d+)\)/)[1]</option></datalist></td><td>boostedCpmBaseOffCampaignId</td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option:nth-of-type(6)<datalist><option>css=mat-option:nth-of-type(6)</option></datalist></td><td>boostedCpmCpaCampaignId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['boostedCpmCpaCampaignId'].match(/\((\d+)\)/)[1]<datalist><option>storedVars['boostedCpmCpaCampaignId'].match(/\((\d+)\)/)[1]</option></datalist></td><td>boostedCpmCpaCampaignId</td>
+</tr>
+<tr><td>click</td><td>css=.cdk-overlay-backdrop<datalist><option>css=.cdk-overlay-backdrop</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=formly-field-mat-input &gt; input<datalist><option>css=formly-field-mat-input &gt; input</option></datalist></td><td>Test Schedule All cases</td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div &gt; mat-card.mat-card-no-shadow.mat-card.ng-star-inserted &gt; mat-card-content &gt; div &gt; button:nth-of-type(1)<datalist><option>css=schedule-form &gt; div &gt; mat-card.mat-card-no-shadow.mat-card.ng-star-inserted &gt; mat-card-content &gt; div &gt; button:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=svg.mat-datepicker-toggle-default-icon.ng-star-inserted<datalist><option>css=svg.mat-datepicker-toggle-default-icon.ng-star-inserted</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getMinutes()+11);<datalist><option>parseInt(new Date().getMinutes()+11);</option></datalist></td><td>futureMinutes</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours());<datalist><option>parseInt(new Date().getHours());</option></datalist></td><td>currentHour</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours()+1);<datalist><option>parseInt(new Date().getHours()+1);</option></datalist></td><td>nextHour</td>
+</tr>
+<tr><td>storeEval</td><td>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;<datalist><option>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>if</td><td>futureMinutes &gt;= 60<datalist><option>futureMinutes &gt;= 60</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>nextHour &lt; 10<datalist><option>nextHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>currentHour &lt; 10<datalist><option>currentHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>scheduleTime += ":";<datalist><option>scheduleTime += ":";</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)<datalist><option>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>setText</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>${scheduleTime}</td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>input</td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]</option></datalist></td><td>buttonStillDisabled</td>
+</tr>
+<tr><td>if</td><td>${buttonStillDisabled} == 1<datalist><option>${buttonStillDisabled} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getMinutes()+11);<datalist><option>parseInt(new Date().getMinutes()+11);</option></datalist></td><td>futureMinutes</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours());<datalist><option>parseInt(new Date().getHours());</option></datalist></td><td>currentHour</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours()+1);<datalist><option>parseInt(new Date().getHours()+1);</option></datalist></td><td>nextHour</td>
+</tr>
+<tr><td>storeEval</td><td>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;<datalist><option>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>if</td><td>futureMinutes &gt;= 60<datalist><option>futureMinutes &gt;= 60</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>nextHour &lt; 10<datalist><option>nextHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>currentHour &lt; 10<datalist><option>currentHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>scheduleTime += ":";<datalist><option>scheduleTime += ":";</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)<datalist><option>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>setText</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>${scheduleTime}</td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option></datalist></td><td>input</td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td>Schedule created</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)<datalist><option>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)<datalist><option>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(3) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(3) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(3) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-option:nth-of-type(1) &gt; mat-pseudo-checkbox<datalist><option>css=.mat-pseudo-checkbox-checked</option><option>css=mat-option:nth-of-type(1) &gt; mat-pseudo-checkbox</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(1) &gt; mat-pseudo-checkbox<datalist><option>css=.mat-pseudo-checkbox</option><option>css=mat-option:nth-of-type(1) &gt; mat-pseudo-checkbox</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option:nth-of-type(4) &gt; mat-pseudo-checkbox<datalist><option>css=.mat-pseudo-checkbox</option><option>css=mat-option:nth-of-type(4) &gt; mat-pseudo-checkbox</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.cdk-overlay-backdrop<datalist><option>css=.cdk-overlay-backdrop</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div &gt; mat-card.mat-card-no-shadow.mat-card.ng-star-inserted &gt; mat-card-content &gt; div &gt; button:nth-of-type(2)<datalist><option>css=schedule-form &gt; div &gt; mat-card.mat-card-no-shadow.mat-card.ng-star-inserted &gt; mat-card-content &gt; div &gt; button:nth-of-type(1)</option><option>css=schedule-form &gt; div &gt; mat-card.mat-card-no-shadow.mat-card.ng-star-inserted &gt; mat-card-content &gt; div &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>700<datalist><option>700</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(1) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>700<datalist><option>700</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>if</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td>firstCreativeOffId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['firstCreativeOffId'].match(/\d+/)[0]<datalist><option>storedVars['firstCreativeOffId'].match(/\d+/)[0]</option></datalist></td><td>firstCreativeOffId</td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td>secondCreativeOffId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['secondCreativeOffId'].match(/\d+/)[0]<datalist><option>storedVars['secondCreativeOffId'].match(/\d+/)[0]</option></datalist></td><td>secondCreativeOffId</td>
+</tr>
+<tr><td>click</td><td>css=.cdk-overlay-backdrop<datalist><option>css=.cdk-overlay-backdrop</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div &gt; button.align-center.based-last-one.mat-raised-button.mat-accent.ng-star-inserted &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div &gt; button.align-center.based-last-one.mat-raised-button.mat-accent.ng-star-inserted &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div &gt; button.align-center.based-last-one.mat-raised-button.mat-accent.ng-star-inserted &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div &gt; button.align-center.based-last-one.mat-raised-button.mat-accent.ng-star-inserted &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]</option></datalist></td><td>buttonStillDisabled</td>
+</tr>
+<tr><td>if</td><td>${buttonStillDisabled} == 1<datalist><option>${buttonStillDisabled} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-8<datalist><option>id=mat-input-8</option><option>id=mat-input-1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-8<datalist><option>id=mat-input-8</option><option>id=mat-input-1</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getMinutes()+11);<datalist><option>parseInt(new Date().getMinutes()+11);</option></datalist></td><td>futureMinutes</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours());<datalist><option>parseInt(new Date().getHours());</option></datalist></td><td>currentHour</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours()+1);<datalist><option>parseInt(new Date().getHours()+1);</option></datalist></td><td>nextHour</td>
+</tr>
+<tr><td>storeEval</td><td>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;<datalist><option>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>if</td><td>futureMinutes &gt;= 60<datalist><option>futureMinutes &gt;= 60</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>nextHour &lt; 10<datalist><option>nextHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>currentHour &lt; 10<datalist><option>currentHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>scheduleTime += ":";<datalist><option>scheduleTime += ":";</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)<datalist><option>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>setText</td><td>id=mat-input-8<datalist><option>id=mat-input-1</option><option>id=mat-input-8</option></datalist></td><td>${scheduleTime}</td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-8<datalist><option>id=mat-input-1</option><option>id=mat-input-8</option></datalist></td><td>input</td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td>Schedule edited</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon<datalist><option>css=schedule-list &gt; div &gt; div.list-container &gt; div &gt; div:nth-child(1) &gt; div &gt; ul &gt; li &gt; schedule-item &gt; div &gt; button &gt; span &gt; mat-icon</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=resume-list &gt; resume-item:nth-child(4) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)<datalist><option>css=resume-list &gt; resume-item:nth-child(4) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option><option>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=resume-list &gt; resume-item:nth-child(4) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)<datalist><option>css=resume-list &gt; resume-item:nth-child(4) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option><option>css=resume-list &gt; resume-item:nth-child(2) &gt; mat-card &gt; mat-card-header &gt; div.card-actions &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>if</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(2) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select@aria-disabled</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>if</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css=schedule-dynamic-form formly-field:nth-child(2) mat-select<datalist><option>css=schedule-dynamic-form formly-field:nth-child(2) mat-select</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select<datalist><option>css=formly-field:nth-of-type(1) &gt; formly-group &gt; formly-form &gt; formly-field:nth-child(2) &gt; formly-wrapper-mat-form-field &gt; mat-form-field &gt; div &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix &gt; formly-field-mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option.mat-option:nth-of-type(1)<datalist><option>css=mat-option.mat-option:nth-of-type(1)</option></datalist></td><td>firstCreativeOnId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['firstCreativeOnId'].match(/\d+/)[0]<datalist><option>storedVars['firstCreativeOnId'].match(/\d+/)[0]</option></datalist></td><td>firstCreativeOnId</td>
+</tr>
+<tr><td>storeText</td><td>css=mat-option.mat-option:nth-of-type(2)<datalist><option>css=mat-option.mat-option:nth-of-type(2)</option></datalist></td><td>secondCreativeOnId</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['secondCreativeOnId'].match(/\d+/)[0]<datalist><option>storedVars['secondCreativeOnId'].match(/\d+/)[0]</option></datalist></td><td>secondCreativeOnId</td>
+</tr>
+<tr><td>click</td><td>css=.cdk-overlay-backdrop<datalist><option>css=.cdk-overlay-backdrop</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(3) &gt; mat-card-content &gt; div.ng-star-inserted &gt; form &gt; div &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button[disabled]</option></datalist></td><td>buttonStillDisabled</td>
+</tr>
+<tr><td>if</td><td>${buttonStillDisabled} == 1<datalist><option>${buttonStillDisabled} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-14<datalist><option>id=mat-input-8</option><option>id=mat-input-1</option><option>id=mat-input-14</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-14<datalist><option>id=mat-input-8</option><option>id=mat-input-1</option><option>id=mat-input-14</option></datalist></td><td>focus</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getMinutes()+11);<datalist><option>parseInt(new Date().getMinutes()+11);</option></datalist></td><td>futureMinutes</td>
+</tr>
+<tr><td>storeEval</td><td>0<datalist><option>0</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours());<datalist><option>parseInt(new Date().getHours());</option></datalist></td><td>currentHour</td>
+</tr>
+<tr><td>storeEval</td><td>parseInt(new Date().getHours()+1);<datalist><option>parseInt(new Date().getHours()+1);</option></datalist></td><td>nextHour</td>
+</tr>
+<tr><td>storeEval</td><td>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;<datalist><option>if(futureMinutes &gt;= 60) { scheduleTime = nextHour; } else { scheduleTime = currentHour; } scheduleTime;</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>if</td><td>futureMinutes &gt;= 60<datalist><option>futureMinutes &gt;= 60</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>nextHour &lt; 10<datalist><option>nextHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>currentHour &lt; 10<datalist><option>currentHour &lt; 10</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>"0" + scheduleTime<datalist><option>"0" + scheduleTime</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>scheduleTime += ":";<datalist><option>scheduleTime += ":";</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>storeEval</td><td>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)<datalist><option>var scheduleTime = storedVars['scheduleTime'] ; scheduleTime += (new Date().getMinutes()+11)%60 &lt; 10 ? "0" + parseInt((new Date().getMinutes()+11)%60) : parseInt((new Date().getMinutes()+11)%60)</option></datalist></td><td>scheduleTime</td>
+</tr>
+<tr><td>setText</td><td>id=mat-input-14<datalist><option>id=mat-input-1</option><option>id=mat-input-14</option></datalist></td><td>${scheduleTime}</td>
+</tr>
+<tr><td>fireEvent</td><td>id=mat-input-14<datalist><option>id=mat-input-1</option><option>id=mat-input-14</option></datalist></td><td>input</td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span<datalist><option>css=schedule-form &gt; div.schedule-form.ng-star-inserted &gt; mat-card:nth-child(6) &gt; mat-card-content &gt; div &gt; button &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=body &gt; md-toast &gt; div &gt; span<datalist><option>css=body &gt; md-toast &gt; div &gt; span</option></datalist></td><td>Schedule edited</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=ul.schedules &gt; li<datalist><option>css=ul.schedules &gt; li</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>store</td><td>false<datalist><option>false</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>while</td><td>numberOfSchedules &gt; 0 &amp;&amp; ${scheduleIsPresent} == false<datalist><option>numberOfSchedules &gt; 0 &amp;&amp; ${scheduleIsPresent} == false</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td>currentScheduleName</td>
+</tr>
+<tr><td>if</td><td>"${currentScheduleName}".includes("Test Schedule All cases")<datalist><option>"${currentScheduleName}".includes("Test Schedule Bid increase")</option><option>"${currentScheduleName}".includes("Test Schedule All cases")</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>storeText</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td>fullScheduleName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['fullScheduleName'].match(/\((\d+)\)/)[1]<datalist><option>storedVars['fullScheduleName'].match(/\((\d+)\)/)[1]</option></datalist></td><td>scheduleId</td>
+</tr>
+<tr><td>storeEval</td><td>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+((d.getHours()-2).toString().length==2?(d.getHours()-2).toString():"0"+(d.getHours()-2).toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str<datalist><option>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str</option><option>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+((d.getHours()-2).toString().length==2?(d.getHours()-2).toString():"0"+(d.getHours()-2).toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str</option></datalist></td><td>expectedNextRun</td>
+</tr>
+<tr><td>storeEval</td><td>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = (d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str<datalist><option>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str</option><option>var d = new Date(); var d = new Date(d.getTime() + 120000); var date_format_str = (d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((d.getMinutes()).toString().length==2?(d.getMinutes()).toString():"0"+(d.getMinutes()).toString())+":00"; date_format_str</option></datalist></td><td>preferredTime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['numberOfSchedules'] - 1<datalist><option>storedVars['numberOfSchedules'] - 1</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>${scheduleIsPresent}<datalist><option>${scheduleIsPresent}</option></datalist></td><td>true</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Store Appnexus values</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmCpcCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmCpcCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td>cpmCpcPpimpBidValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)</option></datalist></td><td>cpmCpcPpimpMinValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td>cpmCpcPpimpMaxValue</td>
+</tr>
+<tr><td>storeEval</td><td>"."<datalist><option>"."</option></datalist></td><td>del</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmCpcPpimpBidValue = storedVars['cpmCpcPpimpBidValue']; var cpmCpcPpimpBidValueBis = parseFloat(storedVars['cpmCpcPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmCpcPpimpBidValueBis -= cpmCpcPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpBidValueBis = cpmCpcPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpBidValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmCpcPpimpBidValue = storedVars['cpmCpcPpimpBidValue']; var cpmCpcPpimpBidValueBis = parseFloat(storedVars['cpmCpcPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmCpcPpimpBidValueBis += cpmCpcPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpBidValueBis = cpmCpcPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpBidValueBis).replace(/\./, '${del}')</option><option>var boostedCpmCpcPpimpBidValue = storedVars['cpmCpcPpimpBidValue']; var cpmCpcPpimpBidValueBis = parseFloat(storedVars['cpmCpcPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmCpcPpimpBidValueBis -= cpmCpcPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpBidValueBis = cpmCpcPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpBidValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmCpcPpimpBidValue</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmCpcPpimpMaxValue = storedVars['cpmCpcPpimpMaxValue']; var cpmCpcPpimpMaxValueBis = parseFloat(storedVars['cpmCpcPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmCpcPpimpMaxValueBis -= cpmCpcPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpMaxValueBis = cpmCpcPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpMaxValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmCpcPpimpMaxValue = storedVars['cpmCpcPpimpMaxValue']; var cpmCpcPpimpMaxValueBis = parseFloat(storedVars['cpmCpcPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmCpcPpimpMaxValueBis += cpmCpcPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpMaxValueBis = cpmCpcPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpMaxValueBis).replace(/\./, '${del}')</option><option>var boostedCpmCpcPpimpMaxValue = storedVars['cpmCpcPpimpMaxValue']; var cpmCpcPpimpMaxValueBis = parseFloat(storedVars['cpmCpcPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmCpcPpimpMaxValueBis -= cpmCpcPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmCpcPpimpMaxValueBis = cpmCpcPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmCpcPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmCpcPpimpMaxValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmCpcPpimpMaxValue</td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmBaseOnCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmBaseOnCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td>cpmBaseOnPpimpBidValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)</option></datalist></td><td>cpmBaseOnPpimpMinValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td>cpmBaseOnPpimpMaxValue</td>
+</tr>
+<tr><td>storeEval</td><td>"."<datalist><option>"."</option></datalist></td><td>del</td>
+</tr>
+<tr><td>storeEval</td><td>30<datalist><option>30</option></datalist></td><td>boostValue</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmBaseOnPpimpBidValue = storedVars['cpmBaseOnPpimpBidValue']; var cpmBaseOnPpimpBidValueBis = parseFloat(storedVars['cpmBaseOnPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOnPpimpBidValueBis -= cpmBaseOnPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpBidValueBis = cpmBaseOnPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, "");  boostedCpmBaseOnPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpBidValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmBaseOnPpimpBidValue = storedVars['cpmBaseOnPpimpBidValue']; var cpmBaseOnPpimpBidValueBis = parseFloat(storedVars['cpmBaseOnPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOnPpimpBidValueBis += cpmBaseOnPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpBidValueBis = cpmBaseOnPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, "");  boostedCpmBaseOnPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpBidValueBis).replace(/\./, '${del}')</option><option>var boostedCpmBaseOnPpimpBidValue = storedVars['cpmBaseOnPpimpBidValue']; var cpmBaseOnPpimpBidValueBis = parseFloat(storedVars['cpmBaseOnPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOnPpimpBidValueBis -= cpmBaseOnPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpBidValueBis = cpmBaseOnPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, "");  boostedCpmBaseOnPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpBidValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmBaseOnPpimpBidValue</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmBaseOnPpimpMaxValue = storedVars['cpmBaseOnPpimpMaxValue']; var cpmBaseOnPpimpMaxValueBis = parseFloat(storedVars['cpmBaseOnPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmBaseOnPpimpMaxValueBis -= cpmBaseOnPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpMaxValueBis = cpmBaseOnPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOnPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpMaxValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmBaseOnPpimpMaxValue = storedVars['cpmBaseOnPpimpMaxValue']; var cpmBaseOnPpimpMaxValueBis = parseFloat(storedVars['cpmBaseOnPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmBaseOnPpimpMaxValueBis += cpmBaseOnPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpMaxValueBis = cpmBaseOnPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOnPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpMaxValueBis).replace(/\./, '${del}')</option><option>var boostedCpmBaseOnPpimpMaxValue = storedVars['cpmBaseOnPpimpMaxValue']; var cpmBaseOnPpimpMaxValueBis = parseFloat(storedVars['cpmBaseOnPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmBaseOnPpimpMaxValueBis -= cpmBaseOnPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmBaseOnPpimpMaxValueBis = cpmBaseOnPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOnPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmBaseOnPpimpMaxValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmBaseOnPpimpMaxValue</td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmBaseOffCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmBaseOffCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td>cpmBaseOffPpimpBidValue</td>
+</tr>
+<tr><td>storeEval</td><td>"."<datalist><option>"."</option></datalist></td><td>del</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmBaseOffPpimpBidValue = storedVars['cpmBaseOffPpimpBidValue']; var cpmBaseOffPpimpBidValueBis = parseFloat(storedVars['cpmBaseOffPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOffPpimpBidValueBis += cpmBaseOffPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOffPpimpBidValueBis = cpmBaseOffPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOffPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOffPpimpBidValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmBaseOffPpimpBidValue = storedVars['cpmBaseOffPpimpBidValue']; var cpmBaseOffPpimpBidValueBis = parseFloat(storedVars['cpmBaseOffPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOffPpimpBidValueBis += cpmBaseOffPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOffPpimpBidValueBis = cpmBaseOffPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOffPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOffPpimpBidValueBis).replace(/\./, '${del}')</option><option>var boostedCpmBaseOffPpimpBidValue = storedVars['cpmBaseOffPpimpBidValue']; var cpmBaseOffPpimpBidValueBis = parseFloat(storedVars['cpmBaseOffPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmBaseOffPpimpBidValueBis -= cpmBaseOffPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmBaseOffPpimpBidValueBis = cpmBaseOffPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmBaseOffPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmBaseOffPpimpBidValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmBaseOffPpimpBidValue</td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmCpaCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmCpaCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td>cpmCpaPpimpBidValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2)</option></datalist></td><td>cpmCpaPpimpMinValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td>cpmCpaPpimpMaxValue</td>
+</tr>
+<tr><td>storeText</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div:nth-child(3)<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div:nth-child(3)</option></datalist></td><td>cpmCpaPpconvPostClickCost</td>
+</tr>
+<tr><td>storeEval</td><td>"."<datalist><option>"."</option></datalist></td><td>del</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmPpimpBidValue = storedVars['cpmCpaPpimpBidValue']; var cpmPpimpBidValueBis = parseFloat(storedVars['cpmCpaPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmPpimpBidValueBis += cpmPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmPpimpBidValueBis = cpmPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmPpimpBidValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmPpimpBidValue = storedVars['cpmCpaPpimpBidValue']; var cpmPpimpBidValueBis = parseFloat(storedVars['cpmCpaPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmPpimpBidValueBis += cpmPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmPpimpBidValueBis = cpmPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmPpimpBidValueBis).replace(/\./, '${del}')</option><option>var boostedCpmPpimpBidValue = storedVars['cpmCpaPpimpBidValue']; var cpmPpimpBidValueBis = parseFloat(storedVars['cpmCpaPpimpBidValue'].replace(/\${del}/, '.').replace(/[€\$]/, '')); cpmPpimpBidValueBis -= cpmPpimpBidValueBis * storedVars['boostValue'] / 100;  cpmPpimpBidValueBis = cpmPpimpBidValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpBidValue.replace(/\d+(\${del}\d+)?/, cpmPpimpBidValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmCpaPpimpBidValue</td>
+</tr>
+<tr><td>storeEval</td><td>var boostedCpmPpimpMaxValue = storedVars['cpmCpaPpimpMaxValue']; var cpmPpimpMaxValueBis = parseFloat(storedVars['cpmCpaPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmPpimpMaxValueBis += cpmPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmPpimpMaxValueBis = cpmPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmPpimpMaxValueBis).replace(/\./, '${del}')<datalist><option>var boostedCpmPpimpMaxValue = storedVars['cpmCpaPpimpMaxValue']; var cpmPpimpMaxValueBis = parseFloat(storedVars['cpmCpaPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmPpimpMaxValueBis += cpmPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmPpimpMaxValueBis = cpmPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmPpimpMaxValueBis).replace(/\./, '${del}')</option><option>var boostedCpmPpimpMaxValue = storedVars['cpmCpaPpimpMaxValue']; var cpmPpimpMaxValueBis = parseFloat(storedVars['cpmCpaPpimpMaxValue'].replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); cpmPpimpMaxValueBis -= cpmPpimpMaxValueBis * storedVars['boostValue'] / 100;  cpmPpimpMaxValueBis = cpmPpimpMaxValueBis.toFixed(6).replace(/\.?0*$/, ""); boostedCpmPpimpMaxValue.replace(/\d+(\${del}\d+)?/, cpmPpimpMaxValueBis).replace(/\./, '${del}')</option></datalist></td><td>boostedCpmCpaPpimpMaxValue</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Check and wait for Schedule</td></tr>
+</thead>
+<tbody>
+<tr><td>if</td><td>"${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "staging"</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev<datalist><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option></datalist></td><td></td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}".includes("shared")<datalist><option>"${currentEnvironment}" == "dev" || "${currentEnvironment}".includes("shared")</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://dev-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=caac3dab0524681249324e44a31660a6&amp;old_usr=tradelab_dev<datalist><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=caac3dab0524681249324e44a31660a6&amp;old_usr=tradelab_dev</option><option>https://dev-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=caac3dab0524681249324e44a31660a6&amp;old_usr=tradelab_dev</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#input_username<datalist><option>css=#input_username</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#input_username<datalist><option>css=#input_username</option></datalist></td><td>${dbLogin}</td>
+</tr>
+<tr><td>type</td><td>css=#input_password<datalist><option>css=#input_username</option><option>css=#input_password</option></datalist></td><td>${dbPassword}</td>
+</tr>
+<tr><td>storeEval</td><td>document.title<datalist><option>document.title</option><option>window.location.href</option></datalist></td><td>currentTitle</td>
+</tr>
+<tr><td>submitAndWait</td><td>name=login_form<datalist><option>css=#input_go</option><option>name=login_form</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option><option>title=${windowTitle}</option><option>https://mail.google.com/mail/u/0/#search/from%3A(reportfolio%40tradelab.fr)+subject%3A(New+report)</option><option>window1</option><option>name=window1</option><option>name='window1'</option><option>name=myWindow</option><option>var=myWindow</option><option>win_ser_local</option></datalist></td><td></td>
+</tr>
+<tr><td>close</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>title=${currentTitle}<datalist><option>win_ser_1</option><option>title=${windowTitle}</option><option>https://mail.google.com/mail/u/0/#search/from%3A(reportfolio%40tradelab.fr)+subject%3A(New+report)</option><option>window1</option><option>name=window1</option><option>name='window1'</option><option>name=myWindow</option><option>var=myWindow</option><option>win_ser_local</option><option>title=${currentTitle}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;server=2&amp;token=ee097158d729acf66aeb22bf39d56d9c&amp;db_query_force=1<datalist><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;server=2&amp;token=ee097158d729acf66aeb22bf39d56d9c&amp;db_query_force=1</option><option>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "staging"</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;server=2&amp;token=ee097158d729acf66aeb22bf39d56d9c&amp;db_query_force=1<datalist><option>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;server=2&amp;token=ee097158d729acf66aeb22bf39d56d9c&amp;db_query_force=1</option></datalist></td><td></td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}".includes("shared")<datalist><option>"${currentEnvironment}" == "dev" || "${currentEnvironment}".includes("shared")</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://dev-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;token=66625ee5593d4631fcf3b3be514444e6<datalist><option>https://${currentEnvironment}-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=caac3dab0524681249324e44a31660a6&amp;old_usr=tradelab_dev</option><option>https://staging-saas.tradelab.fr/tvflNDOqWgcZ/index.php?server=2&amp;token=39d0aba2bf1fdf58fbd589b8ba639430&amp;old_usr=tradelab_dev</option><option>https://dev-saas.tradelab.fr/tvflNDOqWgcZ/db_sql.php?db=tradelab_dev&amp;token=66625ee5593d4631fcf3b3be514444e6</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option>css=</option><option>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea<datalist><option>css=#sqlquerycontainerfull &gt; div &gt; div:nth-child(1) &gt; textarea</option></datalist></td><td>UPDATE  `tradelab_dev`.`tasks_schedule` SET  `utc_expected_next_run` =  '${expectedNextRun}', `tz_preferred_time` =  '${preferredTime}' WHERE  `tasks_schedule`.`schedule_id` = ${scheduleId};</td>
+</tr>
+<tr><td>click</td><td>css=fieldset.tblFooters &gt; input<datalist><option>css=fieldset.tblFooters &gt; input</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.success<datalist><option>css=div.success</option><option>css=div.sqlquery_message &gt; div:nth-child(1) &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentWebsite}/${page}<datalist><option>https://${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.list-container<datalist><option>css=div.list-container</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>1000 * 60 * 2<datalist><option>1000 * 60 * 2</option><option>1000 * 60 * 11</option></datalist></td><td>waitingForScheduleToRun</td>
+</tr>
+<tr><td>pause</td><td>${waitingForScheduleToRun}<datalist><option>${waitingForScheduleToRun}</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>5000<datalist><option>5000</option></datalist></td><td></td>
+</tr>
+<tr><td>refreshAndWait</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.list-container<datalist><option>css=div.list-container</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=ul.schedules &gt; li<datalist><option>css=ul.schedules &gt; li</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>store</td><td>false<datalist><option>false</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>while</td><td>numberOfSchedules &gt; 0<datalist><option>numberOfSchedules &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div').scrollIntoView()<datalist><option>document.querySelector('ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td>currentScheduleName</td>
+</tr>
+<tr><td>if</td><td>"${currentScheduleName}" == "${fullScheduleName}"<datalist><option>"${currentScheduleName}" == "${fullScheduleName}"</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option>true</option></datalist></td><td>false</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['numberOfSchedules'] - 1<datalist><option>storedVars['numberOfSchedules'] - 1</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>${scheduleIsPresent}<datalist><option>${scheduleIsPresent}</option></datalist></td><td>false</td>
+</tr>
+<tr><td>click</td><td>css=schedule-list &gt; div &gt; div.header &gt; div &gt; a:nth-child(2)<datalist><option>css=schedule-list &gt; div &gt; div.header &gt; div &gt; a:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=ul.schedules &gt; li<datalist><option>css=ul.schedules &gt; li</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>store</td><td>false<datalist><option>false</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>while</td><td>numberOfSchedules &gt; 0 &amp;&amp; ${scheduleIsPresent} == false<datalist><option>numberOfSchedules &gt; 0 &amp;&amp; ${scheduleIsPresent} == false</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div').scrollIntoView()<datalist><option>document.querySelector('ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td>currentScheduleName</td>
+</tr>
+<tr><td>if</td><td>"${currentScheduleName}" == "${fullScheduleName}"<datalist><option>"${currentScheduleName}" == "${fullScheduleName}"</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>true<datalist><option>true</option></datalist></td><td>scheduleIsPresent</td>
+</tr>
+<tr><td>highlight</td><td>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div<datalist><option>css=ul.schedules &gt; li:nth-of-type(${numberOfSchedules}) &gt; schedule-item &gt; div &gt; div.infos &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['numberOfSchedules'] - 1<datalist><option>storedVars['numberOfSchedules'] - 1</option></datalist></td><td>numberOfSchedules</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>${scheduleIsPresent}<datalist><option>${scheduleIsPresent}</option></datalist></td><td>true</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Check new values on Appnexus</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmCpaCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmCpaCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmCpaPpimpBidValue}".replace(/[€\$]/, '')) ; var diff = Math.abs(secondValue - firstValue).toPrecision(1) ; 0.00002 &gt; diff &amp;&amp; diff &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmCpaPpimpBidValue}".replace(/[€\$]/, '')) ; var diff = Math.abs(secondValue - firstValue).toPrecision(1) ; 0.00002 &gt; diff &amp;&amp; diff &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmCpaPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmCpaPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmCpaPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmCpaPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-conversion &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div').innerText.replace(/\${del}/, '.').replace(/Post-click cost: [€\$]/, '')); var secondValue = parseFloat("${cpmCpaPpconvPostClickCost}".replace(/Post-click cost: [€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-conversion &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div').innerText.replace(/\${del}/, '.').replace(/Post-click cost: [€\$]/, '')); var secondValue = parseFloat("${cpmCpaPpconvPostClickCost}".replace(/Post-click cost: [€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div:nth-child(3)<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td:nth-child(2) &gt; span &gt; ul &gt; li &gt; div &gt; div:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmBaseOffCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmBaseOffCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmBaseOffPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmBaseOffPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmBaseOnCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmBaseOnCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmBaseOnPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmBaseOnPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmBaseOnPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmBaseOnPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/buyside/campaign:${boostedCpmCpcCampaignId}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>${appnexusURL}/buyside/campaign:${boostedCpmCpcCampaignId}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmCpcPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/[€\$]/, '')); var secondValue = parseFloat("${boostedCpmCpcPpimpBidValue}".replace(/[€\$]/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(2) &gt; td:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmCpcPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Min [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${cpmCpcPpimpMinValue}".replace(/Min [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(4) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertEval</td><td>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmCpcPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0<datalist><option>var firstValue = parseFloat(document.querySelector('div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span').innerText.replace(/\${del}/, '.').replace(/Max [€\$]/, '').replace(/ CPM/, '')); var secondValue = parseFloat("${boostedCpmCpcPpimpMaxValue}".replace(/Max [€\$]/, '').replace(/ CPM/, '')) ; var secondValue = parseFloat("${boostedCpmBaseOnPpimpBidValue}".replace(/[€\$]/, '')) ; 0.00002 &gt; (secondValue - firstValue) &gt;= 0</option></datalist></td><td>true</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span<datalist><option>css=div.pay-per-impression.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(5) &gt; td:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-click.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td>--</td>
+</tr>
+<tr><td>highlight</td><td>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span<datalist><option>css=div.pay-per-conversion.indent &gt; div &gt; div &gt; table &gt; tbody &gt; tr &gt; td &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOffId}<datalist><option>https://console.appnexus.com/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOffId}</option><option>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOffId}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()<datalist><option>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td>Inactive</td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOffId}<datalist><option>https://console.appnexus.com/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOffId}</option><option>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOffId}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()<datalist><option>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td>Inactive</td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOnId}<datalist><option>https://console.appnexus.com/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOnId}</option><option>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${firstCreativeOnId}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()<datalist><option>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td>Active</td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOnId}<datalist><option>https://console.appnexus.com/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOnId}</option><option>${appnexusURL}/creative?id=${appnexusAdvertiserID}&amp;creative_id=${secondCreativeOnId}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()<datalist><option>document.querySelector('div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state').scrollIntoView()</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>highlight</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state<datalist><option>css=div.creative-summary &gt; table &gt; tbody &gt; tr.details-row-state &gt; td.details-state</option></datalist></td><td>Active</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+'0 - Config.html'
+
+Katalon_Studio/Katalon_Studio_*/.groovy
+Katalon_Studio/Katalon_Studio_*/.classpath
+Katalon_Studio/Katalon_Studio_*/.project
+Katalon_Studio/Katalon_Studio_*/.settings
+Katalon_Studio/Katalon_Studio_*/.cache
+Katalon_Studio/Katalon_Studio_*/Libs/
+Katalon_Studio/Katalon_Studio_*/Profiles/
+Katalon_Studio/Katalon_Studio_*/Reports/
+Katalon_Studio/Katalon_Studio_*/settings/internal/
+Katalon_Studio/Katalon_Studio_*/settings/external/
+Katalon_Studio/Katalon_Studio_*/bin/
+Katalon_Studio/Katalon_Studio_*/bin/lib/
+Katalon_Studio/Katalon_Studio_*/bin/lib/Temp*.class
+Katalon_Studio/Katalon_Studio_*/bin/lib/internal/*.class
+Katalon_Studio/Katalon_Studio_*/bin/*.class
+Katalon_Studio/Katalon_Studio_*/bin/.gitignore
+Katalon_Studio/Katalon_Studio_*/bin/keyword/
+Katalon_Studio/Katalon_Studio_*/Scripts/Debug
+Katalon_Studio/Katalon_Studio_*/Scripts/Debug/*
+Katalon_Studio/Katalon_Studio_*/Test Cases/Debug/*
+Katalon_Studio/Katalon_Studio_*/Scripts/Debug
+Katalon_Studio/Katalon_Studio_*/Scripts/Debug/*
+Katalon_Studio/Katalon_Studio_*/Test Cases/Debug/*
+Katalon_Studio/Katalon_Studio_*/Drivers/*
+Katalon_Studio/Katalon_Studio_*/*.prj
+Katalon_Studio/Katalon_Studio_*/*.log

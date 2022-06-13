@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Reportfolio - Download Cumulative Iterations</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup XLSX + Login</td></tr>
+</thead>
+<tbody>
+<tr><td>echo</td><td>=============================================<datalist><option>=============================================</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>=== Be sure to log in to the Commander beforehand ===<datalist><option>=== Be sure to log in to the Commander beforehand ===</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>=============================================<datalist><option>=============================================</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\APN.csv<datalist><option>${csvXlsFolder}\APN.csv</option></datalist></td><td>ApnCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\APN 2.csv<datalist><option>${csvXlsFolder}\APN 2.csv</option></datalist></td><td>ApnCsvTwoFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\APN 3.csv<datalist><option>${csvXlsFolder}\APN 3.csv</option></datalist></td><td>ApnCsvThreeFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template.xlsx<datalist><option>${csvXlsFolder}\Template.xlsx</option></datalist></td><td>templateFullPath</td>
+</tr>
+<tr><td>store</td><td>-<datalist><option>-</option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option>saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}<datalist><option>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td>isLoggedIn</td>
+</tr>
+<tr><td>if</td><td>${isLoggedIn} == 1<datalist><option>${isLoggedIn} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=userName</option><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=userName</option><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create folder</td></tr>
+</thead>
+<tbody>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Download Cumulative Iterations</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Download Cumulated Iteration - One iteration</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>folders<datalist><option>folders</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>if</td><td>"${currentTime}" != "P0D"<datalist><option>"${currentTime}" != "P0D"</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P0D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>Math.floor(10000 + Math.random() * 90000)<datalist><option>Math.floor(10000 + Math.random() * 90000)</option></datalist></td><td>randomNumber</td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - Download Cumulative Iterations - One Iteration</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>Download Cumulative Iterations - One Iteration</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>1500</option><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#cumulative<datalist><option>css=#cumulative</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>1500</option><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Download Cumulated Iteration - Three iterations</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>folders<datalist><option>folders</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>if</td><td>"${currentTime}" != "P0D"<datalist><option>"${currentTime}" != "P0D"</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P0D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - Download Cumulative Iterations - Three Iterations</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>Download Cumulative Iterations - Three Iterations</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#cumulative<datalist><option>css=#cumulative</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.location.href<datalist><option>document.location.href</option></datalist></td><td>currentReportUrl</td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P1D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${currentReportUrl}<datalist><option>${currentReportUrl}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=div.option.schedule &gt; button:nth-of-type(2)<datalist><option>css=div.option.schedule &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)<datalist><option>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)</option></datalist></td><td>tomorrow</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 2); var secondMonth = date.getMonth(); firstMonth != secondMonth<datalist><option>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 2); var secondMonth = date.getMonth(); firstMonth != secondMonth</option></datalist></td><td>isMonthChange</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')<datalist><option>const date = new Date(); date.setDate(date.getDate() + 1); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')</option></datalist></td><td>tomorrowNumeric</td>
+</tr>
+<tr><td>if</td><td>${isMonthChange} == 1<datalist><option>${isMonthChange} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.mat-calendar-next-button<datalist><option>css=button.mat-calendar-next-button</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${tomorrow}"]<datalist><option>css=[aria-label="${tomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${tomorrow}"]<datalist><option>css=[aria-label="${tomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>xpath=//*[text()='Report ${tomorrowNumeric}']<datalist><option>xpath=//*[text()='Report ${tomorrowNumeric}']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvTwoFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P2D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option>3000</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${currentReportUrl}<datalist><option>${currentReportUrl}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.option.schedule &gt; label &gt; i<datalist><option>css=div.option.schedule &gt; label &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=div.option.schedule &gt; button:nth-of-type(2)<datalist><option>css=div.option.schedule &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 2); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)<datalist><option>const date = new Date(); date.setDate(date.getDate() + 2); const options = { year: 'numeric', month: 'long', day: 'numeric' }; new Intl.DateTimeFormat('en-US', options).format(date)</option></datalist></td><td>dayAfterTomorrow</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 2); var secondMonth = date.getMonth(); firstMonth != secondMonth<datalist><option>const date = new Date(); var firstMonth = date.getMonth(); date.setDate(date.getDate() + 2); var secondMonth = date.getMonth(); firstMonth != secondMonth</option></datalist></td><td>isMonthChange</td>
+</tr>
+<tr><td>storeEval</td><td>const date = new Date(); date.setDate(date.getDate() + 2); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')<datalist><option>const date = new Date(); date.setDate(date.getDate() + 2); const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; new Intl.DateTimeFormat('fr-FR', options).format(date).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1')</option></datalist></td><td>dayAfterTomorrowNumeric</td>
+</tr>
+<tr><td>if</td><td>${isMonthChange} == 1<datalist><option>${isMonthChange} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.mat-calendar-next-button<datalist><option>css=button.mat-calendar-next-button</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${dayAfterTomorrow}"]<datalist><option>css=[aria-label="${dayAfterTomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=[aria-label="${dayAfterTomorrow}"]<datalist><option>css=[aria-label="${dayAfterTomorrow}"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>xpath=//*[text()='Report ${dayAfterTomorrowNumeric}']<datalist><option>xpath=//*[text()='Report ${dayAfterTomorrowNumeric}']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${ApnCsvThreeFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php<datalist><option>http://${currentEnvironment}-reportfolio-api.tradelab.fr/internals/commander/index.php</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementPresent</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=body &gt; p &gt; a &gt; button<datalist><option>css=body &gt; p &gt; a &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>currentTime</td>
+</tr>
+<tr><td>if</td><td>"${currentTime}" != "P0D"<datalist><option>"${currentTime}" != "P0D"</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#delta_interval<datalist><option>css=#delta_interval</option></datalist></td><td>P0D</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=form &gt; p &gt; input[type="submit"]<datalist><option>css=form &gt; p &gt; input[type="submit"]</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>${currentReportUrl}<datalist><option>${currentReportUrl}</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

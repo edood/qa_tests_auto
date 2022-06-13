@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-243 Check Display currency for CP</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>ce5d951c-2d25-40a5-82a2-aec313245707</testCaseGuid>
+</TestCaseEntity>

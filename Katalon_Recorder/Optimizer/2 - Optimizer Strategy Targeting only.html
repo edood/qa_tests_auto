@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>2 - Optimizer Strategy Targeting only</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Setup + Login + Advertiser</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option>saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td>8000<datalist><option>4000</option><option>8000</option></datalist></td><td>waitForSync</td>
+</tr>
+<tr><td>store</td><td>november<datalist><option>november</option></datalist></td><td>month</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>skipDateRange</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option>0</option></datalist></td><td>skipApnLogin</td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=.${currentEnvironment}-${currentWebsite}<datalist><option>path=/, domain=.${currentEnvironment}-${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option>0</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>while</td><td>${sessionRefreshed} == 0<datalist><option>${sessionRefreshed} == 0</option></datalist></td><td></td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option>AuthToken</option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option>750</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>id=username<datalist><option>id=username</option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=#login &gt; button<datalist><option>css=#login &gt; button</option></datalist></td><td>click</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.adv-autocomplete<datalist><option>css=.adv-autocomplete</option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "${advertiserName}"; var evt = new Event("keydown"); evt.keyCode=13; document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option>document.querySelector('.adv-autocomplete').value = "${advertiserName}"; var evt = new Event("keydown"); evt.keyCode=13; document.querySelector('.adv-autocomplete').dispatchEvent(evt);</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=div.loader<datalist><option>css=div.loader</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipApnLogin} != 1<datalist><option>${skipApnLogin} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option>https://console-test.appnexus.com/login</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option>css=.anx.btn.btn-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option>css=#anxs-login-username</option></datalist></td><td>${apnLogin}</td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option>css=#anxs-login-password</option></datalist></td><td>${apnPassword}</td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option>css=.anx.btn.btn-login</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Target include</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)</option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option>storedVars['strategyName'].match(/.* \((.*)\)/)[1]</option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option>css=.fullOptim-overlay</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option>css=.full-optim-header &gt; .switch &gt; md-switch</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td>segmentCount</td>
+</tr>
+<tr><td>storeEval</td><td>${segmentCount} - 1<datalist><option>${segmentCount} - 1</option></datalist></td><td>lastSegment</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td>targetCount</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tab</td>
+</tr>
+<tr><td>while</td><td>i &lt;= targetCount<datalist><option>i &lt;= targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");<datalist><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>tab + segmentTextToRemove;<datalist><option>tab + segmentTextToRemove;</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>if</td><td>i &lt; targetCount<datalist><option>i &lt; targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>tab + " ";<datalist><option>tab + " ";</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>targetElem<datalist><option>targetElem</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>${i} + 1<datalist><option>${i} + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(22)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(22)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(22)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(22)</option><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(45)</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>(segmentTextToSend.replace(/ \([^\)]*\)$/, "")).replace(/ $/, '');<datalist><option>(segmentTextToSend.replace(/ \(.*\)/, "")).replace(' ', '');</option><option>(segmentTextToSend.replace(/ \(.*\)/, "")).replace(/ $/, '');</option><option>(segmentTextToSend.replace(/( \(.*\))+/, "")).replace(/ $/, '');</option><option>(segmentTextToSend.replace(/ \([^\)]*\)/, "")).replace(/ $/, '');</option><option>(segmentTextToSend.replace(/ \([^\)]*\)$/, "")).replace(/ $/, '');</option></datalist></td><td>segmentTextToSendFormatted</td>
+</tr>
+<tr><td>click</td><td>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)<datalist><option>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>captureEntirePageScreenshot</td><td>Modals - 14 - Target 1.png<datalist><option>Modals - 14 - Target 1.png</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td>Segments Targeting</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td>I want to target</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>${segmentTextToSendFormatted}</td>
+</tr>
+<tr><td>click</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=md-dialog &gt; md-dialog-content<datalist><option>css=md-dialog &gt; md-dialog-content</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option>css=.force-update-icon</option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option>${isForceUpdate} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option>css=#updateQuickOptimLauncher</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option>${waitForSync}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div</option><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", ""); segmentTextToVerify.replace(" (", " - ID "); segmentTextToVerify.replace(")", "");<datalist><option>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", ""); segmentTextToVerify.replace(" (", " - ID "); segmentTextToVerify.replace(")", "");</option></datalist></td><td>segmentSendToVerify</td>
+</tr>
+<tr><td>assertText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td>${segmentSendToVerify}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Target include one segment</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)</option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option>storedVars['strategyName'].match(/.* \((.*)\)/)[1]</option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option>css=.fullOptim-overlay</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option>css=.full-optim-header &gt; .switch &gt; md-switch</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td>segmentCount</td>
+</tr>
+<tr><td>storeEval</td><td>${segmentCount} - 1<datalist><option>${segmentCount} - 1</option></datalist></td><td>lastSegment</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td>targetCount</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tab</td>
+</tr>
+<tr><td>while</td><td>i &lt;= targetCount<datalist><option>i &lt;= targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");<datalist><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>tab + segmentTextToRemove;<datalist><option>tab + segmentTextToRemove;</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>if</td><td>i &lt; targetCount<datalist><option>i &lt; targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>tab + " ";<datalist><option>tab + " ";</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>targetElem<datalist><option>targetElem</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>${i} + 1<datalist><option>${i} + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(10)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(10)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(10)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(10)</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>(segmentTextToSend.replace(/ \([^\)]*\)$/, "")).replace(/ $/, '');<datalist><option>(segmentTextToSend.replace(/ \(.*\)/, "")).replace(' ', '');</option><option>(segmentTextToSend.replace(/ \([^\)]*\)$/, "")).replace(' ', '');</option><option>(segmentTextToSend.replace(/ \([^\)]*\)$/, ""));</option><option>(segmentTextToSend.replace(/ \([^\)]*\)$/, "")).replace(/ $/, '');</option></datalist></td><td>segmentTextToSendFormatted</td>
+</tr>
+<tr><td>click</td><td>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)<datalist><option>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>captureEntirePageScreenshot</td><td>Modals - 14 - Target 1.png<datalist><option>Modals - 14 - Target 1.png</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td>Segments Targeting</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td>I want to target</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td>${tab}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>${segmentTextToSendFormatted}</td>
+</tr>
+<tr><td>click</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=md-dialog &gt; md-dialog-content<datalist><option>css=md-dialog &gt; md-dialog-content</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option>css=.force-update-icon</option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option>${isForceUpdate} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option>css=#updateQuickOptimLauncher</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option>${waitForSync}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div</option><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", ""); segmentTextToVerify.replace(" (", " - ID "); segmentTextToVerify.replace(")", "");<datalist><option>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", ""); segmentTextToVerify.replace(" (", " - ID "); segmentTextToVerify.replace(")", "");</option></datalist></td><td>segmentSendToVerify</td>
+</tr>
+<tr><td>assertText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td>${segmentSendToVerify}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Target exclude one segment</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)</option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option>storedVars['strategyName'].match(/.* \((.*)\)/)[1]</option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option>css=.fullOptim-overlay</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option>css=.full-optim-header &gt; .switch &gt; md-switch</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td>segmentCount</td>
+</tr>
+<tr><td>storeEval</td><td>${segmentCount} - 1<datalist><option>${segmentCount} - 1</option></datalist></td><td>lastSegment</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td>targetCount</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tab</td>
+</tr>
+<tr><td>while</td><td>i &lt;= targetCount<datalist><option>i &lt;= targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");<datalist><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/, "");</option><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, "");</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>tab + segmentTextToRemove;<datalist><option>tab + segmentTextToRemove;</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>if</td><td>i &lt; targetCount<datalist><option>i &lt; targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>tab + " ";<datalist><option>tab + " ";</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>targetElem<datalist><option>targetElem</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>${i} + 1<datalist><option>${i} + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleclick</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(2)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>"not " + segmentTextToSend<datalist><option>"not " + segmentTextToSend</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToSend.replace(/ \([^\)]*\)$/, "").replace(/ $/, '');<datalist><option>segmentTextToSend.replace(/ \(.*\)/, "");</option><option>segmentTextToSend.replace(/ \([^\)]*\)$/, "");</option><option>segmentTextToSend.replace(/ \([^\)]*\)$/, "").replace(/ $/, '');</option></datalist></td><td>segmentTextToSendFormatted</td>
+</tr>
+<tr><td>click</td><td>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)<datalist><option>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>captureEntirePageScreenshot</td><td>Modals - 14 - Target 1.png<datalist><option>Modals - 14 - Target 1.png</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td>Segments Targeting</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td>I want to target</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td>${tab}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>${segmentTextToSendFormatted}</td>
+</tr>
+<tr><td>click</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=md-dialog &gt; md-dialog-content<datalist><option>css=md-dialog &gt; md-dialog-content</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option>css=.force-update-icon</option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option>${isForceUpdate} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option>css=#updateQuickOptimLauncher</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option>${waitForSync}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div</option><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", "").replace("not ", "");<datalist><option>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", "").replace("not ", "");</option></datalist></td><td>segmentSendToVerify</td>
+</tr>
+<tr><td>assertText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section &gt; section &gt; section &gt; span.target-item</option></datalist></td><td>${segmentSendToVerify}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Target include with or</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)</option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option>storedVars['strategyName'].match(/.* \((.*)\)/)[1]</option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option>css=.fullOptim-overlay</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option>css=.full-optim-header &gt; .switch &gt; md-switch</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td>segmentCount</td>
+</tr>
+<tr><td>storeEval</td><td>${segmentCount} - 1<datalist><option>${segmentCount} - 1</option></datalist></td><td>lastSegment</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td>targetCount</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tab</td>
+</tr>
+<tr><td>while</td><td>i &lt;= targetCount<datalist><option>i &lt;= targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, '');<datalist><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, '');</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>tab + segmentTextToRemove;<datalist><option>tab + segmentTextToRemove;</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>if</td><td>i &lt; targetCount<datalist><option>i &lt; targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>tab + " ";<datalist><option>tab + " ";</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>targetElem<datalist><option>targetElem</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>${i} + 1<datalist><option>${i} + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(5)</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(19)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(19)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li &gt; span<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li &gt; span</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToSend.replace(/ \([^\)]*\) or/, ' or').replace(/ \([^\)]*\)$/, '').replace(/ $/, '');<datalist><option>segmentTextToSend.replace(/ \(\d*\)/g, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)$/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) [(or)$]/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) [ $]/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)[(or)$]/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)(or)|$/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)( or)|$/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) |$/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)/g, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\)/g, '').replace(/ $/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) or/g, '').replace(/ $/, ' or');</option><option>segmentTextToSend.replace(/ \([^\)]*\) or/g, ' or').replace(/ $/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) or/g, ' or').replace(/ \([^\)]*\)$/g, '').replace(/ $/, '');</option><option>segmentTextToSend.replace(/ \([^\)]*\) or/, ' or').replace(/ \([^\)]*\)$/, '').replace(/ $/, '');</option></datalist></td><td>segmentTextToSendFormatted</td>
+</tr>
+<tr><td>click</td><td>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)<datalist><option>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>captureEntirePageScreenshot</td><td>Modals - 14 - Target 1.png<datalist><option>Modals - 14 - Target 1.png</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td>Segments Targeting</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td>I want to target</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td>${tab}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>numbcharstring1</td>
+</tr>
+<tr><td>storeEval</td><td>numbcharstring1.length<datalist><option>numbcharstring1.length</option></datalist></td><td>string1</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToSendFormatted.length<datalist><option>segmentTextToSendFormatted.length</option></datalist></td><td>string2</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>${segmentTextToSendFormatted}</td>
+</tr>
+<tr><td>click</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=md-dialog &gt; md-dialog-content<datalist><option>css=md-dialog &gt; md-dialog-content</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option>css=.force-update-icon</option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option>${isForceUpdate} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option>css=#updateQuickOptimLauncher</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option>${waitForSync}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div</option><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", "").replace(" (", " - ID ").replace(")", "").replace(" or ", "or");<datalist><option>var segmentTextToVerify = segmentTextToSend.replace(" (", " - ID "); segmentTextToVerify.replace(")", "").replace(" (", " - ID ").replace(")", "").replace(" or ", "or");</option></datalist></td><td>segmentSendToVerify</td>
+</tr>
+<tr><td>assertText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section &gt; section &gt; section<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section &gt; section &gt; section</option></datalist></td><td>${segmentSendToVerify}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Target Full Optim</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option>optimizer</option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}-${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${skipDateRange} != 1<datalist><option>${skipDateRange} != 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range.active &gt; ul &gt; li:nth-child(7)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>while</td><td>'${monthName}' != '${month} 2018'<datalist><option>'${monthName}' != '${month} 2018'</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(1) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=th.month-name<datalist><option>css=th.month-name</option></datalist></td><td>monthName</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span<datalist><option>css=div.month-wrapper &gt; table &gt; thead &gt; tr.caption &gt; th:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.day.toMonth<datalist><option>css=.day.toMonth</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)<datalist><option>css=#topbanner &gt; div.frequency-submenu.range &gt; div &gt; date-range &gt; div.buttons-container &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>while</td><td>${isLoading} == 1<datalist><option>${isLoading} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>storeVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular<datalist><option>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; md-progress-circular</option></datalist></td><td>isLoading</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)</option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option>storedVars['strategyName'].match(/.* \((.*)\)/)[1]</option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option>css=.fullOptim-overlay</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option>css=.full-optim-header &gt; .switch &gt; md-switch</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.label-type.ng-scope.target &gt; label<datalist><option>css=div.label-type.ng-scope.target &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=strategy-segment &gt; div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=strategy-segment &gt; div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span</option></datalist></td><td>segmentCount</td>
+</tr>
+<tr><td>storeEval</td><td>${segmentCount} - 1<datalist><option>${segmentCount} - 1</option></datalist></td><td>lastSegment</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(${lastSegment})</option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td>targetCount</td>
+</tr>
+<tr><td>store</td><td>1<datalist><option>1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tab</td>
+</tr>
+<tr><td>while</td><td>i &lt;= targetCount<datalist><option>i &lt;= targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, '');<datalist><option>segmentTextToRemove.replace(/ \(.[0-9]*\)/g, '');</option><option>segmentTextToRemove.replace(/ \([^\)]*\)$/, '');</option></datalist></td><td>segmentTextToRemove</td>
+</tr>
+<tr><td>storeEval</td><td>tab + segmentTextToRemove;<datalist><option>tab + segmentTextToRemove;</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>if</td><td>i &lt; targetCount<datalist><option>i &lt; targetCount</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>tab + " ";<datalist><option>tab + " ";</option></datalist></td><td>tab</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel:nth-child(4) &gt; div.slidingPanelContainer &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>targetElem<datalist><option>targetElem</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>${i} + 1<datalist><option>${i} + 1</option></datalist></td><td>i</td>
+</tr>
+<tr><td>store</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1)</option></datalist></td><td>targetElem</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(40)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(40)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(40)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(40)</option></datalist></td><td>targetModalFormated</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li.ng-scope.group<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li.ng-scope.group</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(1)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>targetModalFormated + " and "<datalist><option>targetModalFormated + " and "</option></datalist></td><td>targetModalFormated</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(2) &gt; span<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(2) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(2)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.segment-link &gt; span:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>targetModalFormated + "not "<datalist><option>targetModalFormated + "not "</option></datalist></td><td>targetModalFormated</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(3) &gt; span<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(3) &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(53)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(53)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(53)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(53)</option></datalist></td><td>tmpstring</td>
+</tr>
+<tr><td>storeEval</td><td>targetModalFormated + tmpstring + " or "<datalist><option>targetModalFormated + tmpstring + " or "</option></datalist></td><td>targetModalFormated</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(14)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(14)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(14)<datalist><option>css=div.available-segments &gt; div &gt; tab-selector &gt; div &gt; ng-transclude &gt; div &gt; ng-transclude &gt; span:nth-child(14)</option></datalist></td><td>tmpstring</td>
+</tr>
+<tr><td>storeEval</td><td>targetModalFormated + tmpstring<datalist><option>targetModalFormated + tmpstring</option></datalist></td><td>targetModalFormated</td>
+</tr>
+<tr><td>storeEval</td><td><datalist><option></option></datalist></td><td>record1</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2)<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1) &gt; span &gt; span &gt; span &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1) &gt; span &gt; span &gt; span &gt; tooltip-target</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1) &gt; span &gt; span &gt; span &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(1) &gt; span &gt; span &gt; span &gt; tooltip-target</option></datalist></td><td>record2</td>
+</tr>
+<tr><td>storeEval</td><td>record2.match(/\(\d*\)/);<datalist><option>record2.match(/\(\d*\)/);</option></datalist></td><td>recordID1</td>
+</tr>
+<tr><td>storeEval</td><td>record2.replace(/ \(\d*\)/, '')<datalist><option>record2.replace(/ \(\d*\)/, '')</option></datalist></td><td>record2</td>
+</tr>
+<tr><td>store</td><td>Age<datalist><option>Age</option></datalist></td><td>record3</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display &gt; div &gt; i<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display &gt; div &gt; i<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td>record4</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input</option></datalist></td><td>5</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input</option></datalist></td><td>record5</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td>record6</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector.ng-pristine.ng-untouched.ng-valid.ng-scope.ng-isolate-scope.ng-empty &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector.ng-pristine.ng-untouched.ng-valid.ng-scope.ng-isolate-scope.ng-empty &gt; div &gt; input</option></datalist></td><td>7</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(4) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector:nth-child(4) &gt; div &gt; input</option></datalist></td><td>record7</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(5) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td>record8</td>
+</tr>
+<tr><td>store</td><td>Value<datalist><option>Value</option></datalist></td><td>record9</td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td>record10</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input</option></datalist></td><td>10</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(1) &gt; div &gt; input</option></datalist></td><td>record11</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values:nth-child(3) &gt; tl-num-selector.ng-pristine.ng-untouched.ng-valid.ng-scope.ng-isolate-scope.ng-empty &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values:nth-child(3) &gt; tl-num-selector.ng-pristine.ng-untouched.ng-valid.ng-scope.ng-isolate-scope.ng-empty &gt; div &gt; input</option></datalist></td><td>200</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(3) &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector:nth-child(3) &gt; div &gt; input</option></datalist></td><td>record12</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(1) &gt; span &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(1) &gt; span &gt; tooltip-target</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(1) &gt; span &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(1) &gt; span &gt; tooltip-target</option></datalist></td><td>record13</td>
+</tr>
+<tr><td>storeEval</td><td>record13.match(/\(\d*\)/);<datalist><option>record13.match(/\(\d*\)/);</option></datalist></td><td>recordID2</td>
+</tr>
+<tr><td>storeEval</td><td>record13.replace(/ \(\d*\)/, '')<datalist><option>record13.replace(/ \(\d*\)/, '')</option></datalist></td><td>record13</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>Age<datalist><option>Age</option></datalist></td><td>record14</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td>record15</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelBody &gt; sliding-panel-body &gt; strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelBody &gt; sliding-panel-body &gt; strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>400</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelBody &gt; sliding-panel-body &gt; strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelBody &gt; sliding-panel-body &gt; strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>record16</td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td>record17</td>
+</tr>
+<tr><td>store</td><td>Value<datalist><option>Value</option></datalist></td><td>record18</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(2)</option></datalist></td><td>record19</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>300</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>record20</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2) &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2) &gt; tooltip-target</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2) &gt; tooltip-target<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul &gt; li:nth-child(4) &gt; span &gt; span:nth-child(2) &gt; span:nth-child(2) &gt; tooltip-target</option></datalist></td><td>record21</td>
+</tr>
+<tr><td>storeEval</td><td>var tmp = record21; tmp.replace()<datalist><option>var tmp = record21; tmp.replace()</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>record21.match(/\(\d*\)/);<datalist><option>record21.match(/\(\d*\)/);</option></datalist></td><td>recordID3</td>
+</tr>
+<tr><td>storeEval</td><td>record21.replace(/ \(\d*\)/, '')<datalist><option>record21.replace(/ \(\d*\)/, '')</option></datalist></td><td>record21</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>Age<datalist><option>Age</option></datalist></td><td>record22</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(3)</option></datalist></td><td>record23</td>
+</tr>
+<tr><td>type</td><td>css= strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css= strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>70</td>
+</tr>
+<tr><td>storeValue</td><td>css= strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css= strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>record24</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)<datalist><option>css=strategy-segment-data &gt; div &gt; div.col-md-6 &gt; div.values &gt; dropdown:nth-child(2) &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(1)</option></datalist></td><td>record24</td>
+</tr>
+<tr><td>store</td><td>Value<datalist><option>Value</option></datalist></td><td>record25</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-display</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; dropdown &gt; div &gt; div.dropdown-list &gt; div &gt; div:nth-child(4)</option></datalist></td><td>record26</td>
+</tr>
+<tr><td>type</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>33</td>
+</tr>
+<tr><td>storeValue</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(2) &gt; div.values &gt; tl-num-selector &gt; div &gt; input</option></datalist></td><td>record27</td>
+</tr>
+<tr><td>click</td><td>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope<datalist><option>css=strategy-segment-data &gt; div &gt; div:nth-child(3) &gt; button.tlb.secondary.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header<datalist><option>css=css=strategy-segment &gt; sliding-panel.segment-panel.ng-isolate-scope &gt; div.slidingPanelContainer.opened &gt; ng-transclude.slidingPanelHeader.bottom &gt; sliding-panel-header</option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul<datalist><option>css=strategy-segment &gt; div.edit-panel &gt; div.row.target &gt; ul</option></datalist></td><td>segmentTextToSend</td>
+</tr>
+<tr><td>storeEval</td><td>targetModalFormated.replace(/ \([^\)]*\) and not/, ' and not').replace(/ \([^\)]*\) or/, ' or').replace(/ \([^\)]*\)$/, '');<datalist><option>targetModalFormated.replace(/ \(\d*\)/g, '');</option><option>targetModalFormated.replace(/ \([^\)]*\)$/, '');</option><option>targetModalFormated.replace(/ \([^\)]*\) and not/, ' and not').replace(/ \([^\)]*\) or/, ' or').replace(/ $/, '');</option><option>targetModalFormated.replace(/ \([^\)]*\) and not/, ' and not').replace(/ \([^\)]*\) or/, ' or').replace(/ \([^\)]*\)$/, '');</option></datalist></td><td>segmentTextToSendFormatted</td>
+</tr>
+<tr><td>click</td><td>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)<datalist><option>css=div.full-optim.editMode.big-screen &gt; div.tabs-header.ng-scope &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>captureEntirePageScreenshot</td><td>Modals - 14 - Target 1.png<datalist><option>Modals - 14 - Target 1.png</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2</option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>echo</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p</option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span</option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p</option></datalist></td><td>Segments Targeting</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; p</option></datalist></td><td>I want to target</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line.col-md-3</option></datalist></td><td>${tab}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line.col-md-3</option></datalist></td><td>${segmentTextToSendFormatted}</td>
+</tr>
+<tr><td>click</td><td>css=md-dialog-actions &gt; button:nth-child(2)<datalist><option>css=md-dialog-actions &gt; button:nth-child(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=md-dialog &gt; md-dialog-content<datalist><option>css=md-dialog &gt; md-dialog-content</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option>css=.force-update-icon</option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option>${isForceUpdate} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option>css=#updateQuickOptimLauncher</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option>css=.md-toast-text</option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option>${waitForSync}</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div</option><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section &gt; section:nth-child(1) &gt; section &gt; section &gt; span.target-item</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>segmentTextToSend.replace(/\)/g, '').replace(' or ', 'or');<datalist><option>segmentTextToSend.replace(/\)/g, '').replace(' or ', 'or');</option></datalist></td><td>segmentSendToVerify</td>
+</tr>
+<tr><td>storeText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section</option></datalist></td><td>tobeasserted</td>
+</tr>
+<tr><td>storeEval</td><td>tmp = JSON.stringify(recordID1); tmp.replace(/\D*/, '');<datalist><option>tmp = JSON.stringify(recordID1); tmp.replace(/\D*/, '');</option></datalist></td><td>recordID1</td>
+</tr>
+<tr><td>storeEval</td><td>tmp = JSON.stringify(recordID2); tmp.replace(/\D*/, '');<datalist><option>tmp = JSON.stringify(recordID2); tmp.replace(/\D*/, '');</option></datalist></td><td>recordID2</td>
+</tr>
+<tr><td>storeEval</td><td>tmp = JSON.stringify(recordID3); tmp.replace(/\D*/, '');<datalist><option>tmp = JSON.stringify(recordID3); tmp.replace(/\D*/, '');</option></datalist></td><td>recordID3</td>
+</tr>
+<tr><td>storeEval</td><td>record2 + " - " + record11 + " &lt; Value &lt; " + record12 + ": " + record11 + " &lt; Value &lt; " + record12 + " - Age: " + record5 + " " + record6.toLowerCase() + " to " + record7 + " " + record8.toLowerCase() + " old" +", ID " + recordID1.match(/\d*/) + "and" + record13 + " - " + "Value &lt; " + record20 + " to 6 hours, 40 minutes" + " old" + ", ID " + recordID2.match(/\d*/) + "or"+ record21 + " - Value = " + record27 + " - Age: 1 hour, 10 minutes" + ", ID " + recordID3.match(/\d*/)<datalist><option>record2 + " - " + record11 + " &lt; Value &lt; " + record12 + ": " + record11 + " &lt; Value &lt; " + record12 + " - Age: " + record5 + " " + record6.toLowerCase() + " to " + record7 + " " + record8.toLowerCase() + " old" +", ID " + recordID1.match(/\d*/) + "and" + record13 + " - " + "Value &lt; " + record20 + " to 6 hours, 40 minutes" + " old" + ", ID " + recordID2.match(/\d*/) + "or"+ record21 + " - Value = " + record27 + " - Age: 1 hour, 10 minutes" + ", ID " + recordID3.match(/\d*/)</option></datalist></td><td>apnFormatSegment</td>
+</tr>
+<tr><td>assertText</td><td>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section<datalist><option>css=section.li-settings-segments-targeting-cntr &gt; div &gt; div &gt; section</option></datalist></td><td>${apnFormatSegment}</td>
+</tr>
+</tbody></table>
+</body>
+</html>

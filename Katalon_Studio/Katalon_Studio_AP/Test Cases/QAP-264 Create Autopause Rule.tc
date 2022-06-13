@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-264 Create Autopause Rule</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>bc15a376-e271-4e08-9467-324cae573e27</testCaseGuid>
+</TestCaseEntity>

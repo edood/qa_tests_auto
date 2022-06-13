@@ -1,0 +1,2376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>2 - Optimizer Strategy Bidder</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Setup + Login + Advertiser</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option></option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td>staging<datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>store</td><td>3500<datalist><option></option></datalist></td><td>waitForSync</td>
+</tr>
+<tr><td>store</td><td>login<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=.${currentEnvironment}-${currentWebsite}<datalist><option></option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option></option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>store</td><td>0<datalist><option></option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>while</td><td>${sessionRefreshed} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>deleteCookie</td><td>AuthToken<datalist><option></option></datalist></td><td>${optionsString}</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>id=username<datalist><option></option></datalist></td><td>sessionRefreshed</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username<datalist><option></option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option></option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>fireEvent</td><td>css=#login &gt; button<datalist><option></option></datalist></td><td>click</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.adv-autocomplete<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>runScript</td><td>document.querySelector('.adv-autocomplete').value = "Boursorama"; var evt = new Event("keydown"); evt.keyCode=13;   document.querySelector('.adv-autocomplete').dispatchEvent(evt);<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>391320<datalist><option></option></datalist></td><td>appnexusAdvertiserID</td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=div.loader<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementNotPresent</td><td>css=div.loader<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Cost Plus Margin</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1];<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(4) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>oldSaasCostPlusMargin</td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(4) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(4) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(4) &gt; div.cell-content &gt; div.line &gt; .edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(4) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>saasCostPlusMargin</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#optim-confirm-modal<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; p<datalist><option></option></datalist></td><td>Margin</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; p<datalist><option></option></datalist></td><td>Cost Plus Margin</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; div.first-line &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; div.first-line &gt; p<datalist><option></option></datalist></td><td>${oldSaasCostPlusMargin}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; div.last-line &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(10) &gt; div.row.margin_real &gt; div.last-line &gt; p<datalist><option></option></datalist></td><td>${saasCostPlusMargin}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>if(storedVars['saasCostPlusMargin'].match('.') != null) storedVars['saasCostPlusMargin'].replace('.',',');<datalist><option></option></datalist></td><td>saasCostPlusMargin</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(9) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(9) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>Total cost plus ${saasCostPlusMargin}%</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Extra Geo-Target 1</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.extra &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>4<datalist><option></option></datalist></td><td>numberOfTabs</td>
+</tr>
+<tr><td>while</td><td>${numberOfTabs} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(${numberOfTabs}) &gt; label.disabled<datalist><option></option></datalist></td><td>isTabDisabled</td>
+</tr>
+<tr><td>if</td><td>${isTabDisabled} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(${numberOfTabs}) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td>numberOfItemsToDelete</td>
+</tr>
+<tr><td>while</td><td>${numberOfItemsToDelete} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td>numberOfItemsToDelete</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>numberOfTabs - 1<datalist><option></option></datalist></td><td>numberOfTabs</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=geo-target-setup &gt; div &gt; div.header-container &gt; button.small.save-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.pixels &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.extra &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(1) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td>numberOfItemsToDelete</td>
+</tr>
+<tr><td>while</td><td>${numberOfItemsToDelete} &gt; 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>750<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeCssCount</td><td>css=div &gt; ul &gt; li &gt; div.delete<datalist><option></option></datalist></td><td>numberOfItemsToDelete</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[name="search"]<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=geo-target-setup &gt; div &gt; div.header-container &gt; button.small.save-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.pixels &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.extra &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked");<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>if</td><td>${excludeCountries} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeCountries} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>France<datalist><option></option></datalist></td><td>saasCountries</td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(2) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>if</td><td>${excludeRegions} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeRegions} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var saasRegions = []; $('div.geoDropzone &gt; ul &gt; li').each(function() { saasRegions.push($(this).attr('title')); });saasRegions;<datalist><option></option></datalist></td><td>saasRegionsToSync</td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(3) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>if</td><td>${excludeCities} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeCities} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.geo-drag-zone &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var saasCities = []; $('div.geoDropzone &gt; ul &gt; li').each(function() { saasCities.push($(this).attr('title')); });saasCities;<datalist><option></option></datalist></td><td>saasCitiesToSync</td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(4) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>if</td><td>${excludeDMA} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeDMA} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#search_value<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>pause</td><td>3000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.angucomplete-title<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=div.loader &gt; md-progress-circular &gt; svg<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.market-areas &gt; ng-transclude &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.market-areas &gt; ng-transclude &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.market-areas &gt; ng-transclude &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>css=div.market-areas &gt; ng-transclude &gt; ul &gt; li<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var saasDMA = []; $('div.market-areas-targeted &gt; ul &gt; li.chips').each(function() { saasDMA.push($(this).attr('title')); });saasDMA;<datalist><option></option></datalist></td><td>saasDMAToSync</td>
+</tr>
+<tr><td>click</td><td>css=geo-target-setup &gt; div &gt; div.header-container &gt; button.small.save-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var saasRegions = []; $('div.regions.line &gt; div').each(function() { saasRegions.push($(this).prop('innerText')); });saasRegions;<datalist><option></option></datalist></td><td>saasRegions</td>
+</tr>
+<tr><td>storeEval</td><td>var saasCities = []; $('div.cities.line &gt; div').each(function() { saasCities.push($(this).prop('innerText')); });saasCities;<datalist><option></option></datalist></td><td>saasCities</td>
+</tr>
+<tr><td>storeEval</td><td>var saasDMA = []; $('div.dmas.line &gt; div').each(function() { saasDMA.push($(this).prop('innerText')); });saasDMA;<datalist><option></option></datalist></td><td>saasDMA</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option></option></datalist></td><td>Geo Targeting</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Countries</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Regions</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeRegions}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Cities</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCities}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Dmas</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeDMA}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Countries</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; div<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Regions</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeRegions}</td>
+</tr>
+<tr><td>storeEval</td><td>var regionsAreVisible  = true; var regions = storedVars['saasRegions']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; div').each(function() { if ($(this).prop('innerText') != regions[i]) {regionsAreVisible = false; } i++; }); regionsAreVisible == true;<datalist><option></option></datalist></td><td>regionsAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${regionsAreVisible}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Cities</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCities}</td>
+</tr>
+<tr><td>storeEval</td><td>var citiesAreVisible = true; var cities = storedVars['saasCities']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; div').each(function() { if ($(this).prop('innerText') != cities[i]) {citiesAreVisible = false; } i++; }); citiesAreVisible == true;<datalist><option></option></datalist></td><td>citiesAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${citiesAreVisible}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeDMA}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Dmas</td>
+</tr>
+<tr><td>storeEval</td><td>var dmasAreVisible = true; var dmas= storedVars['saasDMA']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; div').each(function() { if ($(this).prop('innerText') != dmas[i]) {dmasAreVisible = false; } i++; }); dmasAreVisible == true;<datalist><option></option></datalist></td><td>dmasAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${regionsAreVisible}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.${excludeCountries} &gt; section.country &gt; section &gt; span.target-item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCountries} &gt; section.country &gt; section &gt; span.target-item<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][0]<datalist><option></option></datalist></td><td>region1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][1]<datalist><option></option></datalist></td><td>region2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][2]<datalist><option></option></datalist></td><td>region3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][3]<datalist><option></option></datalist></td><td>region4</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][0]<datalist><option></option></datalist></td><td>city1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][1]<datalist><option></option></datalist></td><td>city2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][2]<datalist><option></option></datalist></td><td>city3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][3]<datalist><option></option></datalist></td><td>city4</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][0]<datalist><option></option></datalist></td><td>dma1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][1]<datalist><option></option></datalist></td><td>dma2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][2]<datalist><option></option></datalist></td><td>dma3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][3]<datalist><option></option></datalist></td><td>dma4</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${region1} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${region2} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${region3} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${region4} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${city1}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${city2}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${city3}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${city4}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; div<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${dma1}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${dma2}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${dma3}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${dma4}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Extra Geo-Target 2</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div.wrapper &gt; div.radio-type-container &gt; div.tabs &gt; div.extra &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.edit-geo-tartgeting<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldExcludeCountries</td>
+</tr>
+<tr><td>if</td><td>${oldExcludeCountries} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>oldExcludeCountries</td>
+</tr>
+<tr><td>elseIf</td><td>${oldExcludeCountries} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>oldExcludeCountries</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked");<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>if</td><td>${excludeCountries} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeCountries} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeCountries</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(2) &gt; label.disabled<datalist><option></option></datalist></td><td>isTabDisabled</td>
+</tr>
+<tr><td>if</td><td>${isTabDisabled} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(2) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldExcludeRegions</td>
+</tr>
+<tr><td>if</td><td>${oldExcludeRegions} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>oldExcludeRegions</td>
+</tr>
+<tr><td>elseIf</td><td>${oldExcludeRegions} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>oldExcludeRegions</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>if</td><td>${excludeRegions} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeRegions} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeRegions</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(3) &gt; label.disabled<datalist><option></option></datalist></td><td>isTabDisabled</td>
+</tr>
+<tr><td>if</td><td>${isTabDisabled} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(3) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldExcludeCities</td>
+</tr>
+<tr><td>if</td><td>${oldExcludeCities} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>oldExcludeCities</td>
+</tr>
+<tr><td>elseIf</td><td>${oldExcludeCities} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>oldExcludeCities</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.action-switch-container.include-exclude &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container.include-exclude &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>if</td><td>${excludeCities} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeCities} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeCities</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(4) &gt; label.disabled<datalist><option></option></datalist></td><td>isTabDisabled</td>
+</tr>
+<tr><td>if</td><td>${isTabDisabled} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#fullOptimTabs &gt; div &gt; ng-transclude &gt; section &gt; full-optim-extra &gt; geo-target-setup &gt; div &gt; div.row &gt; tab-selector &gt; div &gt; div &gt; div &gt; div:nth-of-type(4) &gt; label<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.action-switch-container &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldExcludeDMA</td>
+</tr>
+<tr><td>if</td><td>${oldExcludeDMA} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>oldExcludeDMA</td>
+</tr>
+<tr><td>elseIf</td><td>${oldExcludeDMA} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>oldExcludeDMA</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.action-switch-container &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.action-switch-container &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>if</td><td>${excludeDMA} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>include<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>elseIf</td><td>${excludeDMA} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>exclude<datalist><option></option></datalist></td><td>excludeDMA</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=geo-target-setup &gt; div &gt; div.header-container &gt; button.small.save-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var saasRegions = []; $('div.regions.line &gt; div').each(function() { saasRegions.push($(this).prop('innerText')); });saasRegions;<datalist><option></option></datalist></td><td>saasRegions</td>
+</tr>
+<tr><td>storeEval</td><td>var saasCities = []; $('div.cities.line &gt; div').each(function() { saasCities.push($(this).prop('innerText')); });saasCities;<datalist><option></option></datalist></td><td>saasCities</td>
+</tr>
+<tr><td>storeEval</td><td>var saasDMA = []; $('div.dmas.line &gt; div').each(function() { saasDMA.push($(this).prop('innerText')); });saasDMA;<datalist><option></option></datalist></td><td>saasDMA</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; p<datalist><option></option></datalist></td><td>Geo Targeting</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Countries</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${oldExcludeCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Regions</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${oldExcludeRegions}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Cities</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${oldExcludeCities}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Dmas</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.first-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${oldExcludeDMA}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Countries</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.countries &gt; div<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Regions</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeRegions}</td>
+</tr>
+<tr><td>storeEval</td><td>var regionsAreVisible  = true; var regions = storedVars['saasRegions']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; div').each(function() { if ($(this).prop('innerText') != regions[i]) {regionsAreVisible = false; } i++; }); regionsAreVisible == true;<datalist><option></option></datalist></td><td>regionsAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${regionsAreVisible}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Cities</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeCities}</td>
+</tr>
+<tr><td>storeEval</td><td>var citiesAreVisible = true; var cities = storedVars['saasCities']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.cities &gt; div').each(function() { if ($(this).prop('innerText') != cities[i]) {citiesAreVisible = false; } i++; }); citiesAreVisible == true;<datalist><option></option></datalist></td><td>citiesAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${citiesAreVisible}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>rule : ${excludeDMA}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.dmas &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>Dmas</td>
+</tr>
+<tr><td>storeEval</td><td>var dmasAreVisible = true; var dmas= storedVars['saasDMA']; var i = 0; $('#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(17) &gt; div &gt; div.last-line &gt; div.line-type &gt; div.regions &gt; div').each(function() { if ($(this).prop('innerText') != dmas[i]) {dmasAreVisible = false; } i++; }); dmasAreVisible == true;<datalist><option></option></datalist></td><td>dmasAreVisible</td>
+</tr>
+<tr><td>assertEval</td><td>true<datalist><option></option></datalist></td><td>${regionsAreVisible}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=section.${excludeCountries} &gt; section.country &gt; section &gt; span.target-item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCountries} &gt; section.country &gt; section &gt; span.target-item<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][0]<datalist><option></option></datalist></td><td>region1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][1]<datalist><option></option></datalist></td><td>region2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][2]<datalist><option></option></datalist></td><td>region3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasRegionsToSync'][3]<datalist><option></option></datalist></td><td>region4</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][0]<datalist><option></option></datalist></td><td>city1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][1]<datalist><option></option></datalist></td><td>city2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][2]<datalist><option></option></datalist></td><td>city3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasCitiesToSync'][3]<datalist><option></option></datalist></td><td>city4</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][0]<datalist><option></option></datalist></td><td>dma1</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][1]<datalist><option></option></datalist></td><td>dma2</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][2]<datalist><option></option></datalist></td><td>dma3</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasDMAToSync'][3]<datalist><option></option></datalist></td><td>dma4</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${region1} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${region2} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${region3} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeRegions} &gt; section.region &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${region4} - ${saasCountries}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${city1}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${city2}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${city3}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.${excludeCities} &gt; section.city &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${city4}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; div<datalist><option></option></datalist></td><td>France</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(1)<datalist><option></option></datalist></td><td>${dma1}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(3)<datalist><option></option></datalist></td><td>${dma2}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(5)<datalist><option></option></datalist></td><td>${dma3}</td>
+</tr>
+<tr><td>assertText</td><td>css=section.dma &gt; section.${excludeDMA} &gt; section &gt; section &gt; span.target-item:nth-child(7)<datalist><option></option></datalist></td><td>${dma4}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Status Display</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementNotPresent</td><td>css=.full-optim-header &gt; .switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.full-optim-header<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertElementNotPresent</td><td>css=.full-optim-header &gt; .switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Status Update Switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>if</td><td>${oldSaasStatus} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>active<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>elseIf</td><td>${oldSaasStatus} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>inactive<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>if</td><td>${saasStatus} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>active<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>elseIf</td><td>${saasStatus} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>inactive<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; p<datalist><option></option></datalist></td><td>Campaign</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; p<datalist><option></option></datalist></td><td>Status</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasStatus}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasStatus}</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasStatus'].charAt(0).toUpperCase() + storedVars['saasStatus'].slice(1)<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>6000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=table.details-table &gt; tbody &gt; tr:nth-child(1) &gt; td.force-left &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.details-table &gt; tbody &gt; tr:nth-child(1) &gt; td.force-left &gt; span<datalist><option></option></datalist></td><td>${saasStatus}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Status Update Switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>if</td><td>${oldSaasStatus} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>active<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>elseIf</td><td>${oldSaasStatus} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>inactive<datalist><option></option></datalist></td><td>oldSaasStatus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('.full-optim-header &gt; .switch &gt; md-switch').getAttribute("aria-checked")<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>if</td><td>${saasStatus} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>active<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>elseIf</td><td>${saasStatus} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>inactive<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; p<datalist><option></option></datalist></td><td>Campaign</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; p<datalist><option></option></datalist></td><td>Status</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasStatus}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(2) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasStatus}</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['saasStatus'].charAt(0).toUpperCase() + storedVars['saasStatus'].slice(1)<datalist><option></option></datalist></td><td>saasStatus</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>6000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=table.details-table &gt; tbody &gt; tr:nth-child(1) &gt; td.force-left &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.details-table &gt; tbody &gt; tr:nth-child(1) &gt; td.force-left &gt; span<datalist><option></option></datalist></td><td>${saasStatus}</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Daily Pacing switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>saasDailyBudget</td>
+</tr>
+<tr><td>storeText</td><td>css=#dailyPacingElm<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; p.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; md-switch@aria-checked<datalist><option></option></datalist></td><td>oldSaasDailyPacingBis</td>
+</tr>
+<tr><td>if</td><td>"${oldSaasDailyPacing}" == "on" &amp;&amp; "${oldSaasDailyPacingBis}" == "false"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>flight<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "on" &amp;&amp; "${oldSaasDailyPacingBis}" == "true"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>day<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "off" &amp;&amp; "${oldSaasDailyPacingBis}" == "false"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>even<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; md-switch@aria-checked<datalist><option></option></datalist></td><td>saasDailyPacing</td>
+</tr>
+<tr><td>if</td><td>"${saasDailyPacing}" == "true"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>day<datalist><option></option></datalist></td><td>saasDailyPacing</td>
+</tr>
+<tr><td>elseIf</td><td>"${saasDailyPacing}" == "false"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>even<datalist><option></option></datalist></td><td>saasDailyPacing</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#optim-confirm-modal<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; p<datalist><option></option></datalist></td><td>Budget</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; p<datalist><option></option></datalist></td><td>Pacing Kind</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.first-line &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasDailyPacing}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasDailyPacing}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>saasDailyBudget = storedVars['saasDailyBudget'] ; if(saasDailyBudget.match(/\./,'') == null) saasDailyBudget += ".00"; else saasDailyBudget<datalist><option></option></datalist></td><td>saasDailyBudget</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${saasDailyPacing}" == "day" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget} (daily pacing enabled)</td>
+</tr>
+<tr><td>elseIf</td><td>"${saasDailyPacing}" == "even" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget}</td>
+</tr>
+<tr><td>elseIf</td><td>"${saasDailyPacing}" == "flight" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasDailyBudget}' == 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>Unlimited</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Daily Budget + no Pacing switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1]<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=#dailyPacingElm<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; p.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeAttribute</td><td>css=div.general-settings &gt; div:nth-child(2) &gt; div &gt; p &gt; md-switch@aria-checked<datalist><option></option></datalist></td><td>oldSaasDailyPacingBis</td>
+</tr>
+<tr><td>if</td><td>"${oldSaasDailyPacing}" == "on" &amp;&amp; "${oldSaasDailyPacingBis}" == "false"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>flight<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "on" &amp;&amp; "${oldSaasDailyPacingBis}" == "true"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>day<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "off" &amp;&amp; "${oldSaasDailyPacingBis}" == "false"<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>even<datalist><option></option></datalist></td><td>oldSaasDailyPacing</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>oldSaasDailyBudget</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasDailyBudget}' == 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; .bid-checkbox &gt; dropdown &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.dropdown-list &gt; div &gt; div:nth-of-type(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.dropdown-list &gt; div &gt; div:nth-of-type(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; .bid-checkbox &gt;  .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)').innerText;<datalist><option></option></datalist></td><td>saasDailyBudget</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.dropdown-list &gt; div &gt; div:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.dropdown-list &gt; div &gt; div:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; .bid-checkbox &gt;  .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>document.querySelector('div.general-settings &gt; div.cell:nth-of-type(2) &gt; div.cell-content &gt; div.line &gt; span:nth-of-type(2)').innerText;<datalist><option></option></datalist></td><td>saasDailyBudget</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#optim-confirm-modal<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; p<datalist><option></option></datalist></td><td>Budget</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; p<datalist><option></option></datalist></td><td>Pacing Kind</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasDailyPacing}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_kind &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasDailyPacing}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value &gt; p<datalist><option></option></datalist></td><td>Daily Budget</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value.dirty &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value.dirty &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasDailyBudget}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value.dirty &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(3) &gt; div.row.pacing_value.dirty &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasDailyBudget}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>saasDailyBudget = storedVars['saasDailyBudget'] ; if(saasDailyBudget.match(/\./,'') == null) saasDailyBudget += ".00"; else saasDailyBudget<datalist><option></option></datalist></td><td>saasDailyBudget</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>"${oldSaasDailyPacing}" == "day" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget} (daily pacing enabled)</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "even" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget}</td>
+</tr>
+<tr><td>elseIf</td><td>"${oldSaasDailyPacing}" == "flight" &amp;&amp; '${saasDailyBudget}' != 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>€${saasDailyBudget}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasDailyBudget}' == 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(3) &gt; td:nth-child(2)<datalist><option></option></datalist></td><td>Unlimited</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Frequency Capping Switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1];<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingStatus</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingStatus}' == ''<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingStatus</td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-lifetime &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-day &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-every &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingLifetime}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingDay}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingEvery}' == 'Minute'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>elseIf</td><td>'${oldSaasFrequencyCappingStatus}' == 'off' || '${oldSaasFrequencyCappingStatus}' == 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-lifetime &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-day &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-every &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingLifetime}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingDay}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingEvery}' == 'Minute'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#imp_lifetime<datalist><option></option></datalist></td><td>lifetimeChecked</td>
+</tr>
+<tr><td>if</td><td>${lifetimeChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-lifetime &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#imp_user<datalist><option></option></datalist></td><td>dayChecked</td>
+</tr>
+<tr><td>if</td><td>${dayChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-day &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingDay</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#minutes_between_imps<datalist><option></option></datalist></td><td>everyChecked</td>
+</tr>
+<tr><td>if</td><td>${everyChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-every &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingEvery</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>saasFrequencyCappingStatus</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#optim-confirm-modal<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 4 Fields for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; p<datalist><option></option></datalist></td><td>Frequency Capping</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; p<datalist><option></option></datalist></td><td>Nb imps per user per Day</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingDay} maximum</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; p<datalist><option></option></datalist></td><td>Nb imps over lifetime</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingLifetime} maximum</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; p<datalist><option></option></datalist></td><td>One impression every</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingEvery} Minute</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; p<datalist><option></option></datalist></td><td>Status</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingStatus}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasFrequencyCappingStatus}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(9) &gt; td:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps<datalist><option></option></datalist></td><td>No Frequency Caps set</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingDay} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imps<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imp<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(2)<datalist><option></option></datalist></td><td>${saasFrequencyCappingDay} ${impOrImps} per day</td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingLifetime} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imps<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imp<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(3)<datalist><option></option></datalist></td><td>${saasFrequencyCappingLifetime} ${impOrImps} over lifetime</td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingEvery} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>minutes<datalist><option></option></datalist></td><td>minuteOrMinutes</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>minute<datalist><option></option></datalist></td><td>minuteOrMinutes</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(6)<datalist><option></option></datalist></td><td>1 imp per ${saasFrequencyCappingEvery} ${minuteOrMinutes}</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Optimizer Strategy Frequency Capping Switch</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>optimizer<datalist><option></option></datalist></td><td>page</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}-${currentWebsite}/${page}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div:nth-child(2) &gt; div:nth-child(2) &gt; div.ag-cell-label-container.ag-header-cell-sorted-none &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#topbanner &gt; div.frequency-submenu.range &gt; span.placeholder<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=li[data-title="last_2_days"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; div.row &gt; div.menu-graph-container.col-md-11 &gt; radio-buttons-column &gt; label.label-type.line_item<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#page-content &gt; ui-view &gt; div &gt; section &gt; div &gt; ng-transclude &gt; div.section-right.ng-scope &gt; optimizer-datagrid &gt; div &gt; div<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input[ng-model="navGridSearch"]<datalist><option></option></datalist></td><td>Bidder</td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"]<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=.ag-pinned-left-cols-container &gt; .ag-row[row-index="0"] &gt; div &gt; span &gt; span:nth-child(4)<datalist><option></option></datalist></td><td>strategyName</td>
+</tr>
+<tr><td>storeEval</td><td>storedVars['strategyName'].match(/.* \((.*)\)/)[1];<datalist><option></option></datalist></td><td>strategyID</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.fullOptim-overlay<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.full-optim-header &gt; .switch &gt; md-switch<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingStatus</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingStatus}' == ''<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingStatus</td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-lifetime &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-day &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-every &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingLifetime}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingDay}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingEvery}' == 'Minute'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>elseIf</td><td>'${oldSaasFrequencyCappingStatus}' == 'off' || '${oldSaasFrequencyCappingStatus}' == 'unlimited'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; switch &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; .edit-button.check<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-lifetime &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-day &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>storeText</td><td>css=div.imps-every &gt; span:nth-child(2)<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingLifetime}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingDay}' == 'maximum'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingDay</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${oldSaasFrequencyCappingEvery}' == 'Minute'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>unlimited<datalist><option></option></datalist></td><td>oldSaasFrequencyCappingEvery</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#imp_lifetime<datalist><option></option></datalist></td><td>lifetimeChecked</td>
+</tr>
+<tr><td>if</td><td>${lifetimeChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-lifetime &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingLifetime</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-lifetime &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#imp_user<datalist><option></option></datalist></td><td>dayChecked</td>
+</tr>
+<tr><td>if</td><td>${dayChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-day &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingDay</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-day &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeChecked</td><td>css=#minutes_between_imps<datalist><option></option></datalist></td><td>everyChecked</td>
+</tr>
+<tr><td>if</td><td>${everyChecked} == 0<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; div &gt; input<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; tl-num-selector &gt; div &gt; div &gt; .spinUp<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeValue</td><td>css=div.imps-every &gt; div &gt; tl-num-selector &gt; div &gt; input<datalist><option></option></datalist></td><td>saasFrequencyCappingEvery</td>
+</tr>
+<tr><td>click</td><td>css=div.imps-every &gt; div &gt; span.edit-button<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeText</td><td>css=div.general-settings &gt; div.cell:nth-of-type(3) &gt; div.cell-content &gt; div.line:nth-child(1) &gt; span:nth-of-type(2)<datalist><option></option></datalist></td><td>saasFrequencyCappingStatus</td>
+</tr>
+<tr><td>click</td><td>css=#updateFullOptim<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=#optim-confirm-modal<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#optim-confirm-modal &gt; md-toolbar &gt; div &gt; div &gt; h2<datalist><option></option></datalist></td><td>Confirmation quick optim</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 1 Field for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; p<datalist><option></option></datalist></td><td>You have edited 4 Fields for Strategy : ${strategyName}</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.first-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>Before edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(1) &gt; div &gt; div.last-line.col-md-3 &gt; p &gt; span<datalist><option></option></datalist></td><td>After edit</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; p<datalist><option></option></datalist></td><td>Frequency Capping</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; p<datalist><option></option></datalist></td><td>Nb imps per user per Day</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingDay}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_per_day &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingDay} maximum</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; p<datalist><option></option></datalist></td><td>Nb imps over lifetime</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingLifetime}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.imps_lifetime &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingLifetime} maximum</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; p<datalist><option></option></datalist></td><td>One impression every</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.first-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingEvery}</td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.minutes_between_imps &gt; div.last-line.col-md-3 &gt; p<datalist><option></option></datalist></td><td>${saasFrequencyCappingEvery} Minute</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; p<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; p<datalist><option></option></datalist></td><td>Status</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.first-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${oldSaasFrequencyCappingStatus}</td>
+</tr>
+<tr><td>assertVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; ng-transclude &gt; div &gt; div:nth-child(5) &gt; div.row.enabled &gt; div.last-line.col-md-3 &gt; p &gt; span:nth-child(1)<datalist><option></option></datalist></td><td>${saasFrequencyCappingStatus}</td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>css=#dialogContent_optim-confirm-modal &gt; div &gt; div &gt; div &gt; md-progress-circular<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=.force-update-icon<datalist><option></option></datalist></td><td>isForceUpdate</td>
+</tr>
+<tr><td>if</td><td>${isForceUpdate} == 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=#updateQuickOptimLauncher<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=.md-toast-text<datalist><option></option></datalist></td><td>Strategy has been successfully updated</td>
+</tr>
+<tr><td>pause</td><td>${waitForSync}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-username<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=#anxs-login-password<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>clickAndWait</td><td>css=.anx.btn.btn-login<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://console-test.appnexus.com/buyside/line-item:${strategyID}/show?advertiser_id=${appnexusAdvertiserID}<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=.details-table &gt; tbody &gt; tr:nth-child(9) &gt; td:nth-child(1)<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>'${saasFrequencyCappingStatus}' == 'off'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps<datalist><option></option></datalist></td><td>No Frequency Caps set</td>
+</tr>
+<tr><td>elseIf</td><td>'${saasFrequencyCappingStatus}' == 'on'<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingDay} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imps<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imp<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(2)<datalist><option></option></datalist></td><td>${saasFrequencyCappingDay} ${impOrImps} per day</td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingLifetime} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imps<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>imp<datalist><option></option></datalist></td><td>impOrImps</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(3)<datalist><option></option></datalist></td><td>${saasFrequencyCappingLifetime} ${impOrImps} over lifetime</td>
+</tr>
+<tr><td>if</td><td>${saasFrequencyCappingEvery} &gt; 1<datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>minutes<datalist><option></option></datalist></td><td>minuteOrMinutes</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>minute<datalist><option></option></datalist></td><td>minuteOrMinutes</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=div.li-settings-frequency-caps &gt; div &gt; div.targeting-summary &gt; p:nth-child(6)<datalist><option></option></datalist></td><td>1 imp per ${saasFrequencyCappingEvery} ${minuteOrMinutes}</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

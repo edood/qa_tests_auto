@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Reportfolio - CSV Settings - Non-Cumulative - CSV with empty lines</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Setup XLSX + Login</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>${csvXlsFolder}\APN.csv<datalist><option>${csvXlsFolder}\APN.csv</option></datalist></td><td>ApnCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Bigger CSV with empty lines.csv<datalist><option>${csvXlsFolder}\Bigger CSV with empty lines.csv</option></datalist></td><td>biggerCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\DBM.csv<datalist><option>${csvXlsFolder}\DBM.csv</option></datalist></td><td>DBMCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\DCM.csv<datalist><option>${csvXlsFolder}\DCM.csv</option></datalist></td><td>DCMCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\EUL.csv<datalist><option>${csvXlsFolder}\EUL.csv</option></datalist></td><td>EULCsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\GA.csv<datalist><option>${csvXlsFolder}\GA.csv</option></datalist></td><td>GACsvFullPath</td>
+</tr>
+<tr><td>store</td><td>${csvXlsFolder}\Template.xlsx<datalist><option>${csvXlsFolder}\Template.xlsx</option></datalist></td><td>templateFullPath</td>
+</tr>
+<tr><td>store</td><td>-<datalist><option>-</option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>if</td><td>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"<datalist><option>"${currentEnvironment}" == "dev" || "${currentEnvironment}" == "staging"</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>elseIf</td><td>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""<datalist><option>"${currentEnvironment}" == "prod"  || "${currentEnvironment}" == ""</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>reportfolio.tradelab.fr<datalist><option>reportfolio.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>tiret</td>
+</tr>
+<tr><td>store</td><td><datalist><option></option></datalist></td><td>currentEnvironment</td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>saas.tradelab.fr<datalist><option>saas.tradelab.fr</option></datalist></td><td>currentWebsite</td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>login<datalist><option>login</option></datalist></td><td>page</td>
+</tr>
+<tr><td>store</td><td>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}<datalist><option>path=/, domain=${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td>optionsString</td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td>isLoggedIn</td>
+</tr>
+<tr><td>if</td><td>${isLoggedIn} == 1<datalist><option>${isLoggedIn} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button.logout<datalist><option>css=button.logout</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=email</option><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>else</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForElementPresent</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=email<datalist><option>name=email</option><option>name=email</option></datalist></td><td>${saasLogin}</td>
+</tr>
+<tr><td>type</td><td>name=password<datalist><option>name=password</option></datalist></td><td>${saasPassword}</td>
+</tr>
+<tr><td>click</td><td>css=button.validation-login<datalist><option>css=button.validation-login</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Daily - Start from row</td></tr>
+</thead>
+<tbody>
+<tr><td>store</td><td>folders<datalist><option>folders</option></datalist></td><td>page</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-folder"]<datalist><option>css=button[id="button-new-folder"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Folder - CSV Settings Daily</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - CSV Settings Daily Start from row</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1000<datalist><option>1000</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>Start from row Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(1) &gt; input<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(1) &gt; input</option></datalist></td><td>14</td>
+</tr>
+<tr><td>select</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select</option></datalist></td><td>value=;</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${biggerCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>verifyText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 796</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>Header of first CSV (containing empty lines) at line 14PlacementDateDBM Cost (Account Currency)OR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-terminal _2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_fidelisation-terminal_2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-forfait-multi-ligne_2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-forfait_2018-01: Total ConversionsSH-Mobile_2018-01_Sales : sh_mobile_cv_acquisition-offre-mobile_2018-01: Total ConversionsSH-Mobile_2018-01_Sales : sh_mobile_cv_acquisition-terminal _2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-acquisition-internet-fibre_2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-migration-xdsl-vers-fibre_2018-01: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_acquisition-open-fibre_2018-05: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_migration-open-xdsl-vers-fibre_2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-acquisition-internet-xdsl_2018-01: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_acquisition-open-xdsl_2018-01: Total ConversionsSH-Mobile-Livebox_2018-01_Sales : sh_mobile-livebox_cv_acq-offre-convergente_2018-01: Total ConversionsSH-Box-Internet_2018-08_Sales : sh_box-internet_cv_confirmation-acquisition-internet-adsl_2018-08: Total ConversionsSH-Box-Internet_2018-08_Sales : sh_box-internet_cv_confirmation-acquisition-internet-fibre_2018-10: Total ConversionsFR Orange Internet22183140_tradelab_odr_pcc_multi-format-native1_cpm_mob_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.080.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native1_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20190.830.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native2_cpm_mob_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20195.290.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line is empty22183140_tradelab_odr_pcc_multi-format-native2_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native3_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.620.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line only separators22183140_tradelab_odr_std_120x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/20191.540.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_std_1800x1000_cpm_web_dis-eve_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/201910.210.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_std_300x250_cpm_mob_dis-iab_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/201927.220.000.000.000.000.000.000.000.000.000.001.000.000.000.000.00</td>
+</tr>
+<tr><td>verifyVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>FR Sosh Mobile22330690_tradelab_terminaux_std_160x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201931.520.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22330690_tradelab_terminaux_std_300x250_cpm_mob_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201919.710.000.000.000.000.001.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22330690_tradelab_terminaux_std_300x250_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/2019161.630.000.000.000.004.001.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22330690_tradelab_terminaux_std_300x50_cpm_mob_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/20199.980.000.000.000.000.000.000.000.000.000.000.000.000.001.000.00Next line only separators22330690_tradelab_terminaux_std_300x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/2019130.010.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22330690_tradelab_terminaux_std_320x50_cpm_mob_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201910.450.000.000.000.000.001.000.000.000.000.000.000.000.000.001.00Next line is empty22330690_tradelab_terminaux_std_728x90_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201990.440.000.000.000.004.000.000.000.000.000.000.000.000.000.000.00Last line of the first CSV (containing empty lines)------13367.257.0029.008.0013.0051.0014.003.001.001.000.008.000.000.0011.009.00</td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Daily - Exclude last</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - CSV Settings Daily Exclude last</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>Exclude last Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; input<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; input</option></datalist></td><td>14</td>
+</tr>
+<tr><td>select</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select</option></datalist></td><td>value=;</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${biggerCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>verifyText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 795</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>First line of first CSV (containing empty lines)Next line is empty2/20/19 4:39 AMReport Time ZoneEurope/ParisAccount ID743372Date Range2/19/19 - 2/19/19AdvertiserEquals:FR Orange Internet (8364571)AdvertiserEquals:FR Orange Mobile (8365738)Next line only separatorsEquals:FR Sosh Mobile (8364118)AdvertiserEquals:FR Sosh Internet (8364841)</td>
+</tr>
+<tr><td>verifyVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>FR Sosh Mobile22275335_tradelab_stvalentin_std_300x600_cpm_web_dis-iab_prosp_npa_profiling_dbm_3rd-classique_sosh_kpi4-terminaux-mobile19/02/2019162.900.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_300x600_cpm_web_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201963.250.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line is empty22330690_tradelab_terminaux_std_728x90_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201990.440.000.000.000.004.000.000.000.000.000.000.000.000.000.000.00Next line only separators22330690_tradelab_terminaux_std_300x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/2019130.010.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_320x50_cpm_mob_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201930.550.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_profiling_dbm_2nd-tl_sosh_kpi4-terminaux-mobile19/02/20190.620.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_profiling_dbm_3rd-classique_sosh_kpi4-terminaux-mobile19/02/2019124.150.000.000.000.004.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201942.060.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00</td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Daily - Both</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://${currentEnvironment}${tiret}${currentWebsite}/${page}<datalist><option>https://${currentEnvironment}${tiret}${currentWebsite}/${page}</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>2000<datalist><option>2000</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-report"]<datalist><option>css=button[id="button-new-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=button[id="button-new-basic-report"]<datalist><option>css=button[id="button-new-basic-report"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div &gt; mat-dialog-container<datalist><option>css=div &gt; mat-dialog-container</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select<datalist><option>css=mat-dialog-content div.mat-form-field-flex &gt; div &gt; mat-select</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>500<datalist><option>500</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)<datalist><option>css=div[class="cdk-overlay-pane"] &gt; div &gt; mat-option:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=div.mat-form-field-infix &gt; input.mat-input-element<datalist><option>css=div.mat-form-field-infix &gt; input.mat-input-element</option></datalist></td><td>Test auto - Report - CSV Settings Daily Both</td>
+</tr>
+<tr><td>click</td><td>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span<datalist><option>css=app-new-document-dialog &gt; form &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=span.no-source<datalist><option>css=span.no-source</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; div &gt; button &gt; span &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.mat-menu-content &gt; button:nth-child(1)<datalist><option>css=div.mat-menu-content &gt; button:nth-child(1)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; i</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>Both Subreport</td>
+</tr>
+<tr><td>fireEvent</td><td>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input<datalist><option>css=subreport &gt; div &gt; header &gt; tab-sheet:nth-child(1) &gt; div &gt; div.title &gt; contenteditable &gt; div &gt; input</option></datalist></td><td>blur</td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div.option.schedule &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=sat-datepicker-toggle &gt; button<datalist><option>css=sat-datepicker-toggle &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=.mat-calendar-body-today<datalist><option>css=.mat-calendar-body-today</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=document-scheduler &gt; div.mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForNotVisible</td><td>xpath=//*[text()='No report yet']<datalist><option>xpath=//*[text()='No report yet']</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; form &gt; button &gt; span &gt; input</option></datalist></td><td>${templateFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)<datalist><option>css=document-setup &gt; mat-card &gt; mat-card-content &gt; div:nth-child(3) &gt; button:nth-of-type(2)</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.mat-cell.cdk-column-xls_sheet_index.mat-column-xls_sheet_index.ng-star-inserted &gt; input</option></datalist></td><td>8</td>
+</tr>
+<tr><td>echo</td><td>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div<datalist><option>ISSUE WITH OPTION css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(4) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div<datalist><option>css=section.display-sheets &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td:nth-of-type(5) &gt; mat-checkbox &gt; label &gt; div</option></datalist></td><td></td>
+</tr>
+<tr><td>fireEvent</td><td>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input<datalist><option>css= td.cdk-column-xls_sheet_index.mat-column-xls_sheet_index &gt; input</option></datalist></td><td>change</td>
+</tr>
+<tr><td>click</td><td>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent<datalist><option>css=app-document-settings &gt; mat-dialog-actions &gt; button.mat-raised-button.mat-accent</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(1) &gt; input<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(1) &gt; input</option></datalist></td><td>14</td>
+</tr>
+<tr><td>type</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; input<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(2) &gt; div:nth-child(2) &gt; input</option></datalist></td><td>14</td>
+</tr>
+<tr><td>select</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div &gt; div:nth-child(3) &gt; div:nth-child(1) &gt; select</option></datalist></td><td>value=;</td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; csv-settings &gt; div &gt; div &gt; form &gt; div:nth-child(2) &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>1500<datalist><option>1500</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span<datalist><option>css=app-document &gt; section &gt; subreport &gt; div &gt; sheet &gt; mat-card &gt; div &gt; div &gt; button &gt; span &gt; span</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>css=input#fileUpload<datalist><option>css=input#fileUpload</option></datalist></td><td>${biggerCsvFullPath}</td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td></td>
+</tr>
+<tr><td>storeEval</td><td>var today = new Date(); today.toISOString().substring(0,10);<datalist><option>var today = new Date(); today.toISOString().substring(0,10);</option></datalist></td><td>currentDate</td>
+</tr>
+<tr><td>verifyText</td><td>css=div.preview-info<datalist><option>css=div.preview-info</option></datalist></td><td>CSV of iteration ${currentDate} - Total rows : 782</td>
+</tr>
+<tr><td>assertText</td><td>css=table.preview-table:nth-of-type(1)<datalist><option>css=table.preview-table:nth-of-type(1)</option></datalist></td><td>Header of first CSV (containing empty lines) at line 14PlacementDateDBM Cost (Account Currency)OR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-terminal _2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_fidelisation-terminal_2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-forfait-multi-ligne_2018-01: Total ConversionsOR-Mobile_2018-01_Sales : or_mobile_cv_acquisition-forfait_2018-01: Total ConversionsSH-Mobile_2018-01_Sales : sh_mobile_cv_acquisition-offre-mobile_2018-01: Total ConversionsSH-Mobile_2018-01_Sales : sh_mobile_cv_acquisition-terminal _2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-acquisition-internet-fibre_2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-migration-xdsl-vers-fibre_2018-01: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_acquisition-open-fibre_2018-05: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_migration-open-xdsl-vers-fibre_2018-01: Total ConversionsOR-FAI_2018-01_Sales : or_fai_cv_confirmation-acquisition-internet-xdsl_2018-01: Total ConversionsOR-Open_2018-01_Sales : or_open_cv_acquisition-open-xdsl_2018-01: Total ConversionsSH-Mobile-Livebox_2018-01_Sales : sh_mobile-livebox_cv_acq-offre-convergente_2018-01: Total ConversionsSH-Box-Internet_2018-08_Sales : sh_box-internet_cv_confirmation-acquisition-internet-adsl_2018-08: Total ConversionsSH-Box-Internet_2018-08_Sales : sh_box-internet_cv_confirmation-acquisition-internet-fibre_2018-10: Total ConversionsFR Orange Internet22183140_tradelab_odr_pcc_multi-format-native1_cpm_mob_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.080.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native1_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20190.830.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native2_cpm_mob_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20195.290.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line is empty22183140_tradelab_odr_pcc_multi-format-native2_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_pcc_multi-format-native3_cpm_web_dis-nat_rtg_npa_retargeting_dbm_1st-tms_or-fai_kpi1-acquisition-bb19/02/20194.620.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line only separators22183140_tradelab_odr_std_120x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/20191.540.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_std_1800x1000_cpm_web_dis-eve_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/201910.210.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Orange Internet22183140_tradelab_odr_std_300x250_cpm_mob_dis-iab_rtg_npa_retargeting_dbm_1st-tms__or-fai_kpi1-acquisition-bb19/02/201927.220.000.000.000.000.000.000.000.000.000.001.000.000.000.000.00</td>
+</tr>
+<tr><td>verifyVisible</td><td>css=div.spliter<datalist><option>css=div.spliter</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=table.preview-table:nth-of-type(2)<datalist><option>css=table.preview-table:nth-of-type(2)</option></datalist></td><td>FR Sosh Mobile22275335_tradelab_stvalentin_std_300x600_cpm_web_dis-iab_prosp_npa_profiling_dbm_3rd-classique_sosh_kpi4-terminaux-mobile19/02/2019162.900.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_300x600_cpm_web_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201963.250.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00Next line is empty22330690_tradelab_terminaux_std_728x90_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/201990.440.000.000.000.004.000.000.000.000.000.000.000.000.000.000.00Next line only separators22330690_tradelab_terminaux_std_300x600_cpm_web_dis-iab_rtg_npa_retargeting_dbm_1st-tms_sosh_kpi4-terminaux-mobile19/02/2019130.010.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_320x50_cpm_mob_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201930.550.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_profiling_dbm_2nd-tl_sosh_kpi4-terminaux-mobile19/02/20190.620.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_profiling_dbm_3rd-classique_sosh_kpi4-terminaux-mobile19/02/2019124.150.000.000.000.004.000.000.000.000.000.000.000.000.000.000.00FR Sosh Mobile22275335_tradelab_stvalentin_std_728x90_cpm_web_dis-iab_prosp_npa_prospectionalgo_dbm_ _sosh_kpi4-terminaux-mobile_kpi4-terminaux-mobile19/02/201942.060.000.000.000.000.000.000.000.000.000.000.000.000.000.000.00</td>
+</tr>
+<tr><td>if</td><td>${downloadReport} == 1<datalist><option>${downloadReport} == 1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>store</td><td>5000<datalist><option>5000</option></datalist></td><td>waitForReport</td>
+</tr>
+<tr><td>store</td><td>40<datalist><option>40</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>while</td><td>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0<datalist><option>${canDownloadReport} == 0 &amp;&amp; ${remainingAttempts} &gt; 0</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td>${waitForReport}<datalist><option>${waitForReport}</option></datalist></td><td></td>
+</tr>
+<tr><td>refresh</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)<datalist><option>css=document-setup &gt; div &gt; div &gt; button:nth-of-type(3)</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button</option></datalist></td><td></td>
+</tr>
+<tr><td>storeElementPresent</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td>canDownloadReport</td>
+</tr>
+<tr><td>storeEval</td><td>remainingAttempts - 1<datalist><option>remainingAttempts - 1</option></datalist></td><td>remainingAttempts</td>
+</tr>
+<tr><td>endWhile</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]<datalist><option>css=div.cdk-overlay-pane &gt; div &gt; div &gt; button[aria-disabled="false"]</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForVisible</td><td>css=snack-bar-container &gt; simple-snack-bar<datalist><option>css=snack-bar-container &gt; simple-snack-bar</option></datalist></td><td></td>
+</tr>
+<tr><td>endIf</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

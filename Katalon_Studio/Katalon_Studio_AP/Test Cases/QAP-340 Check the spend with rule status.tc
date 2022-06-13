@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>QAP-340 Check the spend with rule status</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>fa4a40f0-0c21-4ef7-944f-460f5b88bee2</testCaseGuid>
+</TestCaseEntity>
